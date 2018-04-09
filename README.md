@@ -14,5 +14,11 @@ To do
     * https://code.msdn.microsoft.com/ASPNET-MVC-5-Security-And-44cbdb97
 2. allow data entry/updates
 3. triggers to put in, active processes (at least one, more better ?)
+
+    * https://www.codeproject.com/Articles/38808/Overview-of-SQL-Server-database-Triggers
 4. queries
 5. reports
+
+Helpful Links
+-----
+* https://www.tutorialspoint.com/entity_framework/index.htm
