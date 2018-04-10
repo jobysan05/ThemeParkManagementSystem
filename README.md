@@ -18,6 +18,7 @@ To do
     * https://www.codeproject.com/Articles/38808/Overview-of-SQL-Server-database-Triggers
 4. queries
 5. reports
+6. fix null values in the dbms
 
 Helpful Links
 -----
