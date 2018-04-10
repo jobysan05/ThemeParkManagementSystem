@@ -20,9 +20,30 @@ namespace ThemeParkManagementSystem.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Rides()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your Rides page.";
+
+            return View();
+        }
+
+        public ActionResult Shops()
+        {
+            ViewBag.Message = "Your Shops page.";
+
+            return View();
+        }
+
+        public ActionResult Staff()
+        {
+            ViewBag.Message = "Your Staff page.";
+
+            return View();
+        }
+
+        public ActionResult Guests()
+        {
+            ViewBag.Message = "Your Guests page.";
 
             return View();
         }
