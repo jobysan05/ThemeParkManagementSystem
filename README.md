@@ -10,15 +10,15 @@ To manage information about a specific theme park and collect data including num
 To do
 -----
 1. user login, different types of users, authentication
-
     * https://code.msdn.microsoft.com/ASPNET-MVC-5-Security-And-44cbdb97
 2. allow data entry/updates
 3. triggers to put in, active processes (at least one, more better ?)
-
     * https://www.codeproject.com/Articles/38808/Overview-of-SQL-Server-database-Triggers
 4. queries
 5. reports
 6. fix null values in the dbms
+7. add Rides, Shops, Staff, and Guests views
+    * https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/introduction/adding-a-view
 
 Helpful Links
 -----
