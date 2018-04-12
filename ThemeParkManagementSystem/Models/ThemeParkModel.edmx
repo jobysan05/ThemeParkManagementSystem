@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="tpdatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GUEST">
+          <Key>
+            <PropertyRef Name="GuestID" />
+          </Key>
+          <Property Name="GuestID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="TicketID" Type="int" />
+        </EntityType>
+        <EntityType Name="GUEST_SHOPS">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="GuestID" Type="int" />
+          <Property Name="ShopID" Type="int" />
+          <Property Name="TransactionID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="TransactionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="INVENTORY">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="25" />
+          <Property Name="ProductPrice" Type="decimal" Precision="2" Scale="2" />
+          <Property Name="ProductStock" Type="int" />
+          <Property Name="ShopID" Type="int" />
+        </EntityType>
+        <EntityType Name="MAINTENENCE">
+          <Key>
+            <PropertyRef Name="CaseID" />
+          </Key>
+          <Property Name="CaseID" Type="int" Nullable="false" />
+          <Property Name="RideID" Type="int" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="Summary" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="RIDES">
+          <Key>
+            <PropertyRef Name="RideID" />
+          </Key>
+          <Property Name="RideID" Type="int" Nullable="false" />
+          <Property Name="RideName" Type="varchar" MaxLength="25" />
+          <Property Name="RidePrice" Type="decimal" Precision="2" Scale="2" />
+          <Property Name="IsOutside" Type="bit" />
+          <Property Name="RainOutCount" Type="int" />
+          <Property Name="IsOpen" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'tpdatabase.dbo.RIDES_STAFF' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="RIDES_STAFF">
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="RideID" Type="int" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SHOP_STAFF">
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="ShopID" Type="int" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>-->
+        <EntityType Name="SHOPS">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="int" Nullable="false" />
+          <Property Name="ShopName" Type="varchar" MaxLength="30" />
+          <Property Name="ShopType" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="STAFF">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="EmployeeType" Type="varchar" MaxLength="20" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'tpdatabase.dbo.TICKET' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TICKET">
+          <Property Name="TicketID" Type="int" />
+          <Property Name="TicketType" Type="varchar" MaxLength="20" />
+          <Property Name="TicketPrice" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="datePurchased" Type="date" />
+        </EntityType>-->
+        <Association Name="FK__GUEST_SHO__Guest__5EBF139D">
+          <End Role="GUEST" Type="Self.GUEST" Multiplicity="0..1" />
+          <End Role="GUEST_SHOPS" Type="Self.GUEST_SHOPS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GUEST">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="GUEST_SHOPS">
+              <PropertyRef Name="GuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GUEST_SHO__ShopI__5FB337D6">
+          <End Role="SHOPS" Type="Self.SHOPS" Multiplicity="0..1" />
+          <End Role="GUEST_SHOPS" Type="Self.GUEST_SHOPS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHOPS">
+              <PropertyRef Name="ShopID" />
+            </Principal>
+            <Dependent Role="GUEST_SHOPS">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__INVENTORY__ShopI__5441852A">
+          <End Role="SHOPS" Type="Self.SHOPS" Multiplicity="0..1" />
+          <End Role="INVENTORY" Type="Self.INVENTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHOPS">
+              <PropertyRef Name="ShopID" />
+            </Principal>
+            <Dependent Role="INVENTORY">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAINTENEN__RideI__5BE2A6F2">
+          <End Role="RIDES" Type="Self.RIDES" Multiplicity="0..1" />
+          <End Role="MAINTENENCE" Type="Self.MAINTENENCE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RIDES">
+              <PropertyRef Name="RideID" />
+            </Principal>
+            <Dependent Role="MAINTENENCE">
+              <PropertyRef Name="RideID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'tpdatabase.dbo.RIDES_STAFF' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__RIDES_STA__Emplo__619B8048" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'tpdatabase.dbo.RIDES_STAFF' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__RIDES_STA__RideI__628FA481" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__SHOP_STAF__Emplo__5629CD9C" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__SHOP_STAF__ShopI__5535A963" />-->
+        <EntityContainer Name="tpdatabaseModelStoreContainer">
+          <EntitySet Name="GUEST" EntityType="Self.GUEST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GUEST_SHOPS" EntityType="Self.GUEST_SHOPS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INVENTORY" EntityType="Self.INVENTORY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAINTENENCE" EntityType="Self.MAINTENENCE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RIDES" EntityType="Self.RIDES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHOPS" EntityType="Self.SHOPS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STAFF" EntityType="Self.STAFF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__GUEST_SHO__Guest__5EBF139D" Association="Self.FK__GUEST_SHO__Guest__5EBF139D">
+            <End Role="GUEST" EntitySet="GUEST" />
+            <End Role="GUEST_SHOPS" EntitySet="GUEST_SHOPS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GUEST_SHO__ShopI__5FB337D6" Association="Self.FK__GUEST_SHO__ShopI__5FB337D6">
+            <End Role="SHOPS" EntitySet="SHOPS" />
+            <End Role="GUEST_SHOPS" EntitySet="GUEST_SHOPS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INVENTORY__ShopI__5441852A" Association="Self.FK__INVENTORY__ShopI__5441852A">
+            <End Role="SHOPS" EntitySet="SHOPS" />
+            <End Role="INVENTORY" EntitySet="INVENTORY" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAINTENEN__RideI__5BE2A6F2" Association="Self.FK__MAINTENEN__RideI__5BE2A6F2">
+            <End Role="RIDES" EntitySet="RIDES" />
+            <End Role="MAINTENENCE" EntitySet="MAINTENENCE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tpdatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="GUEST">
+          <Key>
+            <PropertyRef Name="GuestID" />
+          </Key>
+          <Property Name="GuestID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="TicketID" Type="Int32" />
+          <NavigationProperty Name="GUEST_SHOPS" Relationship="Self.FK__GUEST_SHO__Guest__5EBF139D" FromRole="GUEST" ToRole="GUEST_SHOPS" />
+        </EntityType>
+        <EntityType Name="GUEST_SHOPS">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="GuestID" Type="Int32" />
+          <Property Name="ShopID" Type="Int32" />
+          <Property Name="TransactionID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="GUEST" Relationship="Self.FK__GUEST_SHO__Guest__5EBF139D" FromRole="GUEST_SHOPS" ToRole="GUEST" />
+          <NavigationProperty Name="SHOP" Relationship="Self.FK__GUEST_SHO__ShopI__5FB337D6" FromRole="GUEST_SHOPS" ToRole="SHOPS" />
+        </EntityType>
+        <EntityType Name="INVENTORY">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ProductPrice" Type="Decimal" Precision="2" Scale="2" />
+          <Property Name="ProductStock" Type="Int32" />
+          <Property Name="ShopID" Type="Int32" />
+          <NavigationProperty Name="SHOP" Relationship="Self.FK__INVENTORY__ShopI__5441852A" FromRole="INVENTORY" ToRole="SHOPS" />
+        </EntityType>
+        <EntityType Name="MAINTENENCE">
+          <Key>
+            <PropertyRef Name="CaseID" />
+          </Key>
+          <Property Name="CaseID" Type="Int32" Nullable="false" />
+          <Property Name="RideID" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Summary" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RIDE" Relationship="Self.FK__MAINTENEN__RideI__5BE2A6F2" FromRole="MAINTENENCE" ToRole="RIDES" />
+        </EntityType>
+        <EntityType Name="RIDE">
+          <Key>
+            <PropertyRef Name="RideID" />
+          </Key>
+          <Property Name="RideID" Type="Int32" Nullable="false" />
+          <Property Name="RideName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="RidePrice" Type="Decimal" Precision="2" Scale="2" />
+          <Property Name="IsOutside" Type="Boolean" />
+          <Property Name="RainOutCount" Type="Int32" />
+          <Property Name="IsOpen" Type="Boolean" />
+          <NavigationProperty Name="MAINTENENCEs" Relationship="Self.FK__MAINTENEN__RideI__5BE2A6F2" FromRole="RIDES" ToRole="MAINTENENCE" />
+        </EntityType>
+        <EntityType Name="SHOP">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="Int32" Nullable="false" />
+          <Property Name="ShopName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ShopType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GUEST_SHOPS" Relationship="Self.FK__GUEST_SHO__ShopI__5FB337D6" FromRole="SHOPS" ToRole="GUEST_SHOPS" />
+          <NavigationProperty Name="INVENTORies" Relationship="Self.FK__INVENTORY__ShopI__5441852A" FromRole="SHOPS" ToRole="INVENTORY" />
+        </EntityType>
+        <EntityType Name="STAFF">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__GUEST_SHO__Guest__5EBF139D">
+          <End Role="GUEST" Type="Self.GUEST" Multiplicity="0..1" />
+          <End Role="GUEST_SHOPS" Type="Self.GUEST_SHOPS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GUEST">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="GUEST_SHOPS">
+              <PropertyRef Name="GuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GUEST_SHO__ShopI__5FB337D6">
+          <End Role="SHOPS" Type="Self.SHOP" Multiplicity="0..1" />
+          <End Role="GUEST_SHOPS" Type="Self.GUEST_SHOPS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHOPS">
+              <PropertyRef Name="ShopID" />
+            </Principal>
+            <Dependent Role="GUEST_SHOPS">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__INVENTORY__ShopI__5441852A">
+          <End Role="SHOPS" Type="Self.SHOP" Multiplicity="0..1" />
+          <End Role="INVENTORY" Type="Self.INVENTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHOPS">
+              <PropertyRef Name="ShopID" />
+            </Principal>
+            <Dependent Role="INVENTORY">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MAINTENEN__RideI__5BE2A6F2">
+          <End Role="RIDES" Type="Self.RIDE" Multiplicity="0..1" />
+          <End Role="MAINTENENCE" Type="Self.MAINTENENCE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RIDES">
+              <PropertyRef Name="RideID" />
+            </Principal>
+            <Dependent Role="MAINTENENCE">
+              <PropertyRef Name="RideID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tpdatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GUESTs" EntityType="Self.GUEST" />
+          <EntitySet Name="GUEST_SHOPS" EntityType="Self.GUEST_SHOPS" />
+          <EntitySet Name="INVENTORies" EntityType="Self.INVENTORY" />
+          <EntitySet Name="MAINTENENCEs" EntityType="Self.MAINTENENCE" />
+          <EntitySet Name="RIDES" EntityType="Self.RIDE" />
+          <EntitySet Name="SHOPS" EntityType="Self.SHOP" />
+          <EntitySet Name="STAFFs" EntityType="Self.STAFF" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK__GUEST_SHO__Guest__5EBF139D" Association="Self.FK__GUEST_SHO__Guest__5EBF139D">
+            <End Role="GUEST" EntitySet="GUESTs" />
+            <End Role="GUEST_SHOPS" EntitySet="GUEST_SHOPS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GUEST_SHO__ShopI__5FB337D6" Association="Self.FK__GUEST_SHO__ShopI__5FB337D6">
+            <End Role="SHOPS" EntitySet="SHOPS" />
+            <End Role="GUEST_SHOPS" EntitySet="GUEST_SHOPS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INVENTORY__ShopI__5441852A" Association="Self.FK__INVENTORY__ShopI__5441852A">
+            <End Role="SHOPS" EntitySet="SHOPS" />
+            <End Role="INVENTORY" EntitySet="INVENTORies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAINTENEN__RideI__5BE2A6F2" Association="Self.FK__MAINTENEN__RideI__5BE2A6F2">
+            <End Role="RIDES" EntitySet="RIDES" />
+            <End Role="MAINTENENCE" EntitySet="MAINTENENCEs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="tpdatabaseModelStoreContainer" CdmEntityContainer="tpdatabaseEntities">
+          <EntitySetMapping Name="GUESTs">
+            <EntityTypeMapping TypeName="tpdatabaseModel.GUEST">
+              <MappingFragment StoreEntitySet="GUEST">
+                <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GUEST_SHOPS">
+            <EntityTypeMapping TypeName="tpdatabaseModel.GUEST_SHOPS">
+              <MappingFragment StoreEntitySet="GUEST_SHOPS">
+                <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INVENTORies">
+            <EntityTypeMapping TypeName="tpdatabaseModel.INVENTORY">
+              <MappingFragment StoreEntitySet="INVENTORY">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAINTENENCEs">
+            <EntityTypeMapping TypeName="tpdatabaseModel.MAINTENENCE">
+              <MappingFragment StoreEntitySet="MAINTENENCE">
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="RideID" ColumnName="RideID" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RIDES">
+            <EntityTypeMapping TypeName="tpdatabaseModel.RIDE">
+              <MappingFragment StoreEntitySet="RIDES">
+                <ScalarProperty Name="RideID" ColumnName="RideID" />
+                <ScalarProperty Name="RideName" ColumnName="RideName" />
+                <ScalarProperty Name="RidePrice" ColumnName="RidePrice" />
+                <ScalarProperty Name="IsOutside" ColumnName="IsOutside" />
+                <ScalarProperty Name="RainOutCount" ColumnName="RainOutCount" />
+                <ScalarProperty Name="IsOpen" ColumnName="IsOpen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHOPS">
+            <EntityTypeMapping TypeName="tpdatabaseModel.SHOP">
+              <MappingFragment StoreEntitySet="SHOPS">
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="ShopType" ColumnName="ShopType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STAFFs">
+            <EntityTypeMapping TypeName="tpdatabaseModel.STAFF">
+              <MappingFragment StoreEntitySet="STAFF">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="tpdatabaseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

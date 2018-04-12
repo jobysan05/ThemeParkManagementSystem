@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9269fc9a8c364ca2b73854ec32a6b071" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="tpdatabaseModel.GUEST" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.GUEST_SHOPS" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.INVENTORY" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.MAINTENENCE" Width="1.5" PointX="8" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.RIDE" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.SHOP" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.STAFF" Width="1.5" PointX="5.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.sysdiagram" Width="1.5" PointX="7.75" PointY="5.875" IsExpanded="false" />
+        <AssociationConnector Association="tpdatabaseModel.FK__GUEST_SHO__Guest__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="tpdatabaseModel.FK__GUEST_SHO__ShopI__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="tpdatabaseModel.FK__INVENTORY__ShopI__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="tpdatabaseModel.FK__MAINTENEN__RideI__5BE2A6F2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
