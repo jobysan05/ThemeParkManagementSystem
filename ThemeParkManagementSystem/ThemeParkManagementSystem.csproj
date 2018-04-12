@@ -151,6 +151,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RidesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -255,6 +256,11 @@
     <Content Include="Views\Home\Shops.cshtml" />
     <Content Include="Views\Home\Staff.cshtml" />
     <Content Include="Views\Home\Guests.cshtml" />
+    <Content Include="Views\Rides\Create.cshtml" />
+    <Content Include="Views\Rides\Delete.cshtml" />
+    <Content Include="Views\Rides\Details.cshtml" />
+    <Content Include="Views\Rides\Edit.cshtml" />
+    <Content Include="Views\Rides\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

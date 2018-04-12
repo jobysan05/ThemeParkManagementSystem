@@ -1,0 +1,58 @@
+﻿@model ThemeParkManagementSystem.Models.RIDE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RIDE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RideName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RideName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RidePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RidePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOutside)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOutside)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RainOutCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RainOutCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOpen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOpen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RideID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
