@@ -14,11 +14,18 @@ To do
 2. allow data entry/updates
 3. triggers to put in, active processes (at least one, more better ?)
     * https://www.codeproject.com/Articles/38808/Overview-of-SQL-Server-database-Triggers
+    * when maintenance caseID is created, set appropriate ride isOpen to false
 4. queries
 5. reports
 6. fix null values in the dbms
 7. add Rides, Shops, Staff, and Guests views
     * https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/introduction/adding-a-view
+8. other ideas:
+   bad weather - if isOutside then increment RainOutCount
+   when updating item/ride price - create new item/ride ID
+   when Guest_Shops is created, subtract quantity from productstock of appropriate item
+   when maintenance caseID is created, set appropriate ride isOpen to false
+   when endtime is initialized, set appropriate ride isOpen to true
 
 Helpful Links
 -----
