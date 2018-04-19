@@ -14,7 +14,7 @@ To do
     * https://weblog.west-wind.com/posts/2015/Apr/29/Adding-minimal-OWIN-Identity-Authentication-to-an-Existing-ASPNET-MVC-Application#MinimalCodeSummary
     * https://www.asp.net/aspnet/overview/owin-and-katana
 2. ~allow data entry/updates~
-3. triggers to put in, active processes (at least one, more better ?)
+3. ~triggers to put in, active processes (at least one, more better ?)~
     * https://www.codeproject.com/Articles/38808/Overview-of-SQL-Server-database-Triggers
     * when maintenance caseID is created, set appropriate ride isOpen to false
 4. reports
