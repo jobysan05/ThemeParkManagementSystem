@@ -24,7 +24,7 @@ namespace ThemeParkManagementSystem.Controllers
             {
                 model = model.Where(r => r.RideName.Contains(ridename));
             }
-            return View(db.RIDES.ToList());
+            return View(model.ToList());
         }
 
         // GET: Rides/Details/5
