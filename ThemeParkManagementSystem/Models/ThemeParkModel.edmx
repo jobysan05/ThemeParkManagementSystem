@@ -10,38 +10,50 @@
             <PropertyRef Name="GuestID" />
           </Key>
           <Property Name="GuestID" Type="int" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="20" />
-          <Property Name="LastName" Type="varchar" MaxLength="30" />
-          <Property Name="DateOfBirth" Type="date" />
-          <Property Name="TicketID" Type="int" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="TicketID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'tpdatabase.dbo.GUEST_RIDES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GUEST_RIDES">
+          <Key>
+            <PropertyRef Name="DateRode" />
+            <PropertyRef Name="GuestID" />
+            <PropertyRef Name="RideID" />
+          </Key>
+          <Property Name="DateRode" Type="date" Nullable="false" />
+          <Property Name="GuestID" Type="int" Nullable="false" />
+          <Property Name="RideID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="GUEST_SHOPS">
           <Key>
             <PropertyRef Name="TransactionID" />
           </Key>
-          <Property Name="GuestID" Type="int" />
-          <Property Name="ShopID" Type="int" />
+          <Property Name="GuestID" Type="int" Nullable="false" />
+          <Property Name="ShopID" Type="int" Nullable="false" />
           <Property Name="TransactionID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" />
-          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="INVENTORY">
           <Key>
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="int" Nullable="false" />
-          <Property Name="ProductName" Type="varchar" MaxLength="25" />
-          <Property Name="ProductPrice" Type="decimal" Precision="2" Scale="2" />
-          <Property Name="ProductStock" Type="int" />
-          <Property Name="ShopID" Type="int" />
+          <Property Name="ProductName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ProductPrice" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="ProductStock" Type="int" Nullable="false" />
+          <Property Name="ShopID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="MAINTENENCE">
+        <EntityType Name="MAINTENANCE">
           <Key>
             <PropertyRef Name="CaseID" />
           </Key>
           <Property Name="CaseID" Type="int" Nullable="false" />
-          <Property Name="RideID" Type="int" />
-          <Property Name="StartTime" Type="datetime" />
+          <Property Name="RideID" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="EndTime" Type="datetime" />
           <Property Name="Summary" Type="varchar" MaxLength="300" />
         </EntityType>
@@ -50,65 +62,90 @@
             <PropertyRef Name="RideID" />
           </Key>
           <Property Name="RideID" Type="int" Nullable="false" />
-          <Property Name="RideName" Type="varchar" MaxLength="25" />
-          <Property Name="RidePrice" Type="decimal" Precision="2" Scale="2" />
-          <Property Name="IsOutside" Type="bit" />
+          <Property Name="RideName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="RidePrice" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="IsOutside" Type="bit" Nullable="false" />
           <Property Name="RainOutCount" Type="int" />
-          <Property Name="IsOpen" Type="bit" />
+          <Property Name="IsOpen" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'tpdatabase.dbo.RIDES_STAFF' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6002: The table/view 'tpdatabase.dbo.RIDES_STAFF' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="RIDES_STAFF">
-          <Property Name="EmployeeID" Type="int" />
-          <Property Name="RideID" Type="int" />
-          <Property Name="StartDate" Type="date" />
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="RideID" />
+            <PropertyRef Name="StartDate" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="RideID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" />
-        </EntityType>-->
+        </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SHOP_STAFF">
-          <Property Name="EmployeeID" Type="int" />
-          <Property Name="ShopID" Type="int" />
-          <Property Name="StartDate" Type="date" />
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="ShopID" />
+            <PropertyRef Name="StartDate" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="ShopID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="SHOPS">
           <Key>
             <PropertyRef Name="ShopID" />
           </Key>
           <Property Name="ShopID" Type="int" Nullable="false" />
-          <Property Name="ShopName" Type="varchar" MaxLength="30" />
-          <Property Name="ShopType" Type="varchar" MaxLength="20" />
+          <Property Name="ShopName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ShopType" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="STAFF">
           <Key>
             <PropertyRef Name="EmployeeID" />
           </Key>
           <Property Name="EmployeeID" Type="int" Nullable="false" />
-          <Property Name="EmployeeType" Type="varchar" MaxLength="20" />
-          <Property Name="FirstName" Type="varchar" MaxLength="20" />
-          <Property Name="LastName" Type="varchar" MaxLength="30" />
+          <Property Name="EmployeeType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'tpdatabase.dbo.TICKET' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="TICKET">
-          <Property Name="TicketID" Type="int" />
-          <Property Name="TicketType" Type="varchar" MaxLength="20" />
-          <Property Name="TicketPrice" Type="decimal" Precision="3" Scale="2" />
-          <Property Name="datePurchased" Type="date" />
-        </EntityType>-->
+          <Key>
+            <PropertyRef Name="TicketID" />
+          </Key>
+          <Property Name="TicketID" Type="int" Nullable="false" />
+          <Property Name="TicketType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TicketPrice" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="datePurchased" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__GUEST_RID__Guest__208CD6FA">
+          <End Role="GUEST" Type="Self.GUEST" Multiplicity="1" />
+          <End Role="GUEST_RIDES" Type="Self.GUEST_RIDES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GUEST">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="GUEST_RIDES">
+              <PropertyRef Name="GuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GUEST_RID__RideI__2180FB33">
+          <End Role="RIDES" Type="Self.RIDES" Multiplicity="1" />
+          <End Role="GUEST_RIDES" Type="Self.GUEST_RIDES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RIDES">
+              <PropertyRef Name="RideID" />
+            </Principal>
+            <Dependent Role="GUEST_RIDES">
+              <PropertyRef Name="RideID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__GUEST_SHO__Guest__5EBF139D">
-          <End Role="GUEST" Type="Self.GUEST" Multiplicity="0..1" />
+          <End Role="GUEST" Type="Self.GUEST" Multiplicity="1" />
           <End Role="GUEST_SHOPS" Type="Self.GUEST_SHOPS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GUEST">
@@ -120,7 +157,7 @@ warning 6013: The table/view 'tpdatabase.dbo.TICKET' does not have a primary key
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__GUEST_SHO__ShopI__5FB337D6">
-          <End Role="SHOPS" Type="Self.SHOPS" Multiplicity="0..1" />
+          <End Role="SHOPS" Type="Self.SHOPS" Multiplicity="1" />
           <End Role="GUEST_SHOPS" Type="Self.GUEST_SHOPS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SHOPS">
@@ -132,7 +169,7 @@ warning 6013: The table/view 'tpdatabase.dbo.TICKET' does not have a primary key
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__INVENTORY__ShopI__5441852A">
-          <End Role="SHOPS" Type="Self.SHOPS" Multiplicity="0..1" />
+          <End Role="SHOPS" Type="Self.SHOPS" Multiplicity="1" />
           <End Role="INVENTORY" Type="Self.INVENTORY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SHOPS">
@@ -144,38 +181,105 @@ warning 6013: The table/view 'tpdatabase.dbo.TICKET' does not have a primary key
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__MAINTENEN__RideI__5BE2A6F2">
-          <End Role="RIDES" Type="Self.RIDES" Multiplicity="0..1" />
-          <End Role="MAINTENENCE" Type="Self.MAINTENENCE" Multiplicity="*" />
+          <End Role="RIDES" Type="Self.RIDES" Multiplicity="1" />
+          <End Role="MAINTENANCE" Type="Self.MAINTENANCE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RIDES">
               <PropertyRef Name="RideID" />
             </Principal>
-            <Dependent Role="MAINTENENCE">
+            <Dependent Role="MAINTENANCE">
               <PropertyRef Name="RideID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'tpdatabase.dbo.RIDES_STAFF' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__RIDES_STA__Emplo__619B8048" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'tpdatabase.dbo.RIDES_STAFF' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__RIDES_STA__RideI__628FA481" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__SHOP_STAF__Emplo__5629CD9C" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__SHOP_STAF__ShopI__5535A963" />-->
+        <Association Name="FK__RIDES_STA__Emplo__619B8048">
+          <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+          <End Role="RIDES_STAFF" Type="Self.RIDES_STAFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="RIDES_STAFF">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RIDES_STA__RideI__628FA481">
+          <End Role="RIDES" Type="Self.RIDES" Multiplicity="1" />
+          <End Role="RIDES_STAFF" Type="Self.RIDES_STAFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RIDES">
+              <PropertyRef Name="RideID" />
+            </Principal>
+            <Dependent Role="RIDES_STAFF">
+              <PropertyRef Name="RideID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SHOP_STAF__Emplo__5629CD9C">
+          <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+          <End Role="SHOP_STAFF" Type="Self.SHOP_STAFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="SHOP_STAFF">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SHOP_STAF__ShopI__5535A963">
+          <End Role="SHOPS" Type="Self.SHOPS" Multiplicity="1" />
+          <End Role="SHOP_STAFF" Type="Self.SHOP_STAFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHOPS">
+              <PropertyRef Name="ShopID" />
+            </Principal>
+            <Dependent Role="SHOP_STAFF">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="tpdatabaseModelStoreContainer">
           <EntitySet Name="GUEST" EntityType="Self.GUEST" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GUEST_SHOPS" EntityType="Self.GUEST_SHOPS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INVENTORY" EntityType="Self.INVENTORY" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MAINTENENCE" EntityType="Self.MAINTENENCE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAINTENANCE" EntityType="Self.MAINTENANCE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RIDES" EntityType="Self.RIDES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SHOPS" EntityType="Self.SHOPS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STAFF" EntityType="Self.STAFF" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TICKET" EntityType="Self.TICKET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GUEST_RIDES" EntityType="Self.GUEST_RIDES" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GUEST_RIDES].[DateRode] AS [DateRode], 
+    [GUEST_RIDES].[GuestID] AS [GuestID], 
+    [GUEST_RIDES].[RideID] AS [RideID]
+    FROM [dbo].[GUEST_RIDES] AS [GUEST_RIDES]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RIDES_STAFF" EntityType="Self.RIDES_STAFF" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RIDES_STAFF].[EmployeeID] AS [EmployeeID], 
+    [RIDES_STAFF].[RideID] AS [RideID], 
+    [RIDES_STAFF].[StartDate] AS [StartDate], 
+    [RIDES_STAFF].[EndDate] AS [EndDate]
+    FROM [dbo].[RIDES_STAFF] AS [RIDES_STAFF]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SHOP_STAFF" EntityType="Self.SHOP_STAFF" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SHOP_STAFF].[EmployeeID] AS [EmployeeID], 
+    [SHOP_STAFF].[ShopID] AS [ShopID], 
+    [SHOP_STAFF].[StartDate] AS [StartDate], 
+    [SHOP_STAFF].[EndDate] AS [EndDate]
+    FROM [dbo].[SHOP_STAFF] AS [SHOP_STAFF]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__GUEST_RID__Guest__208CD6FA" Association="Self.FK__GUEST_RID__Guest__208CD6FA">
+            <End Role="GUEST" EntitySet="GUEST" />
+            <End Role="GUEST_RIDES" EntitySet="GUEST_RIDES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GUEST_RID__RideI__2180FB33" Association="Self.FK__GUEST_RID__RideI__2180FB33">
+            <End Role="RIDES" EntitySet="RIDES" />
+            <End Role="GUEST_RIDES" EntitySet="GUEST_RIDES" />
+          </AssociationSet>
           <AssociationSet Name="FK__GUEST_SHO__Guest__5EBF139D" Association="Self.FK__GUEST_SHO__Guest__5EBF139D">
             <End Role="GUEST" EntitySet="GUEST" />
             <End Role="GUEST_SHOPS" EntitySet="GUEST_SHOPS" />
@@ -190,7 +294,23 @@ error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationshi
           </AssociationSet>
           <AssociationSet Name="FK__MAINTENEN__RideI__5BE2A6F2" Association="Self.FK__MAINTENEN__RideI__5BE2A6F2">
             <End Role="RIDES" EntitySet="RIDES" />
-            <End Role="MAINTENENCE" EntitySet="MAINTENENCE" />
+            <End Role="MAINTENANCE" EntitySet="MAINTENANCE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RIDES_STA__Emplo__619B8048" Association="Self.FK__RIDES_STA__Emplo__619B8048">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="RIDES_STAFF" EntitySet="RIDES_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RIDES_STA__RideI__628FA481" Association="Self.FK__RIDES_STA__RideI__628FA481">
+            <End Role="RIDES" EntitySet="RIDES" />
+            <End Role="RIDES_STAFF" EntitySet="RIDES_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SHOP_STAF__Emplo__5629CD9C" Association="Self.FK__SHOP_STAF__Emplo__5629CD9C">
+            <End Role="STAFF" EntitySet="STAFF" />
+            <End Role="SHOP_STAFF" EntitySet="SHOP_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SHOP_STAF__ShopI__5535A963" Association="Self.FK__SHOP_STAF__ShopI__5535A963">
+            <End Role="SHOPS" EntitySet="SHOPS" />
+            <End Role="SHOP_STAFF" EntitySet="SHOP_STAFF" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -203,21 +323,22 @@ error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationshi
             <PropertyRef Name="GuestID" />
           </Key>
           <Property Name="GuestID" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
-          <Property Name="TicketID" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TicketID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GUEST_RIDES" Relationship="Self.FK__GUEST_RID__Guest__208CD6FA" FromRole="GUEST" ToRole="GUEST_RIDES" />
           <NavigationProperty Name="GUEST_SHOPS" Relationship="Self.FK__GUEST_SHO__Guest__5EBF139D" FromRole="GUEST" ToRole="GUEST_SHOPS" />
         </EntityType>
         <EntityType Name="GUEST_SHOPS">
           <Key>
             <PropertyRef Name="TransactionID" />
           </Key>
-          <Property Name="GuestID" Type="Int32" />
-          <Property Name="ShopID" Type="Int32" />
+          <Property Name="GuestID" Type="Int32" Nullable="false" />
+          <Property Name="ShopID" Type="Int32" Nullable="false" />
           <Property Name="TransactionID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" />
-          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="GUEST" Relationship="Self.FK__GUEST_SHO__Guest__5EBF139D" FromRole="GUEST_SHOPS" ToRole="GUEST" />
           <NavigationProperty Name="SHOP" Relationship="Self.FK__GUEST_SHO__ShopI__5FB337D6" FromRole="GUEST_SHOPS" ToRole="SHOPS" />
         </EntityType>
@@ -226,66 +347,120 @@ error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationshi
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="ProductName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="ProductPrice" Type="Decimal" Precision="2" Scale="2" />
-          <Property Name="ProductStock" Type="Int32" />
-          <Property Name="ShopID" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductPrice" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="ProductStock" Type="Int32" Nullable="false" />
+          <Property Name="ShopID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SHOP" Relationship="Self.FK__INVENTORY__ShopI__5441852A" FromRole="INVENTORY" ToRole="SHOPS" />
         </EntityType>
-        <EntityType Name="MAINTENENCE">
+        <EntityType Name="MAINTENANCE">
           <Key>
             <PropertyRef Name="CaseID" />
           </Key>
           <Property Name="CaseID" Type="Int32" Nullable="false" />
-          <Property Name="RideID" Type="Int32" />
-          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="RideID" Type="Int32" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="Summary" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="RIDE" Relationship="Self.FK__MAINTENEN__RideI__5BE2A6F2" FromRole="MAINTENENCE" ToRole="RIDES" />
+          <NavigationProperty Name="RIDE" Relationship="Self.FK__MAINTENEN__RideI__5BE2A6F2" FromRole="MAINTENANCE" ToRole="RIDES" />
         </EntityType>
         <EntityType Name="RIDE">
           <Key>
             <PropertyRef Name="RideID" />
           </Key>
           <Property Name="RideID" Type="Int32" Nullable="false" />
-          <Property Name="RideName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="RidePrice" Type="Decimal" Precision="2" Scale="2" />
-          <Property Name="IsOutside" Type="Boolean" />
+          <Property Name="RideName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RidePrice" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="IsOutside" Type="Boolean" Nullable="false" />
           <Property Name="RainOutCount" Type="Int32" />
-          <Property Name="IsOpen" Type="Boolean" />
-          <NavigationProperty Name="MAINTENENCEs" Relationship="Self.FK__MAINTENEN__RideI__5BE2A6F2" FromRole="RIDES" ToRole="MAINTENENCE" />
+          <Property Name="IsOpen" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MAINTENANCEs" Relationship="Self.FK__MAINTENEN__RideI__5BE2A6F2" FromRole="RIDES" ToRole="MAINTENANCE" />
+          <NavigationProperty Name="GUEST_RIDES" Relationship="Self.FK__GUEST_RID__RideI__2180FB33" FromRole="RIDES" ToRole="GUEST_RIDES" />
+          <NavigationProperty Name="RIDES_STAFF" Relationship="Self.FK__RIDES_STA__RideI__628FA481" FromRole="RIDES" ToRole="RIDES_STAFF" />
         </EntityType>
         <EntityType Name="SHOP">
           <Key>
             <PropertyRef Name="ShopID" />
           </Key>
           <Property Name="ShopID" Type="Int32" Nullable="false" />
-          <Property Name="ShopName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ShopType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ShopName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ShopType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="GUEST_SHOPS" Relationship="Self.FK__GUEST_SHO__ShopI__5FB337D6" FromRole="SHOPS" ToRole="GUEST_SHOPS" />
           <NavigationProperty Name="INVENTORies" Relationship="Self.FK__INVENTORY__ShopI__5441852A" FromRole="SHOPS" ToRole="INVENTORY" />
+          <NavigationProperty Name="SHOP_STAFF" Relationship="Self.FK__SHOP_STAF__ShopI__5535A963" FromRole="SHOPS" ToRole="SHOP_STAFF" />
         </EntityType>
         <EntityType Name="STAFF">
           <Key>
             <PropertyRef Name="EmployeeID" />
           </Key>
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RIDES_STAFF" Relationship="Self.FK__RIDES_STA__Emplo__619B8048" FromRole="STAFF" ToRole="RIDES_STAFF" />
+          <NavigationProperty Name="SHOP_STAFF" Relationship="Self.FK__SHOP_STAF__Emplo__5629CD9C" FromRole="STAFF" ToRole="SHOP_STAFF" />
         </EntityType>
-        <EntityType Name="sysdiagram">
+        <EntityType Name="TICKET">
           <Key>
-            <PropertyRef Name="diagram_id" />
+            <PropertyRef Name="TicketID" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="TicketID" Type="Int32" Nullable="false" />
+          <Property Name="TicketType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TicketPrice" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="datePurchased" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
+        <EntityType Name="GUEST_RIDES">
+          <Key>
+            <PropertyRef Name="DateRode" />
+            <PropertyRef Name="GuestID" />
+            <PropertyRef Name="RideID" />
+          </Key>
+          <Property Name="DateRode" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GuestID" Type="Int32" Nullable="false" />
+          <Property Name="RideID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GUEST" Relationship="Self.FK__GUEST_RID__Guest__208CD6FA" FromRole="GUEST_RIDES" ToRole="GUEST" />
+          <NavigationProperty Name="RIDE" Relationship="Self.FK__GUEST_RID__RideI__2180FB33" FromRole="GUEST_RIDES" ToRole="RIDES" />
+        </EntityType>
+        <EntityType Name="RIDES_STAFF">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="RideID" />
+            <PropertyRef Name="StartDate" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="RideID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="RIDE" Relationship="Self.FK__RIDES_STA__RideI__628FA481" FromRole="RIDES_STAFF" ToRole="RIDES" />
+          <NavigationProperty Name="STAFF" Relationship="Self.FK__RIDES_STA__Emplo__619B8048" FromRole="RIDES_STAFF" ToRole="STAFF" />
+        </EntityType>
+        <EntityType Name="SHOP_STAFF">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="ShopID" />
+            <PropertyRef Name="StartDate" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="ShopID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SHOP" Relationship="Self.FK__SHOP_STAF__ShopI__5535A963" FromRole="SHOP_STAFF" ToRole="SHOPS" />
+          <NavigationProperty Name="STAFF" Relationship="Self.FK__SHOP_STAF__Emplo__5629CD9C" FromRole="SHOP_STAFF" ToRole="STAFF" />
+        </EntityType>
+        <Association Name="FK__GUEST_RID__Guest__208CD6FA">
+          <End Role="GUEST" Type="Self.GUEST" Multiplicity="1" />
+          <End Role="GUEST_RIDES" Type="Self.GUEST_RIDES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GUEST">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="GUEST_RIDES">
+              <PropertyRef Name="GuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__GUEST_SHO__Guest__5EBF139D">
-          <End Role="GUEST" Type="Self.GUEST" Multiplicity="0..1" />
+          <End Role="GUEST" Type="Self.GUEST" Multiplicity="1" />
           <End Role="GUEST_SHOPS" Type="Self.GUEST_SHOPS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GUEST">
@@ -297,7 +472,7 @@ error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationshi
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__GUEST_SHO__ShopI__5FB337D6">
-          <End Role="SHOPS" Type="Self.SHOP" Multiplicity="0..1" />
+          <End Role="SHOPS" Type="Self.SHOP" Multiplicity="1" />
           <End Role="GUEST_SHOPS" Type="Self.GUEST_SHOPS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SHOPS">
@@ -309,7 +484,7 @@ error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationshi
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__INVENTORY__ShopI__5441852A">
-          <End Role="SHOPS" Type="Self.SHOP" Multiplicity="0..1" />
+          <End Role="SHOPS" Type="Self.SHOP" Multiplicity="1" />
           <End Role="INVENTORY" Type="Self.INVENTORY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SHOPS">
@@ -321,14 +496,74 @@ error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationshi
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__MAINTENEN__RideI__5BE2A6F2">
-          <End Role="RIDES" Type="Self.RIDE" Multiplicity="0..1" />
-          <End Role="MAINTENENCE" Type="Self.MAINTENENCE" Multiplicity="*" />
+          <End Role="RIDES" Type="Self.RIDE" Multiplicity="1" />
+          <End Role="MAINTENANCE" Type="Self.MAINTENANCE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RIDES">
               <PropertyRef Name="RideID" />
             </Principal>
-            <Dependent Role="MAINTENENCE">
+            <Dependent Role="MAINTENANCE">
               <PropertyRef Name="RideID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GUEST_RID__RideI__2180FB33">
+          <End Role="RIDES" Type="Self.RIDE" Multiplicity="1" />
+          <End Role="GUEST_RIDES" Type="Self.GUEST_RIDES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RIDES">
+              <PropertyRef Name="RideID" />
+            </Principal>
+            <Dependent Role="GUEST_RIDES">
+              <PropertyRef Name="RideID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RIDES_STA__RideI__628FA481">
+          <End Role="RIDES" Type="Self.RIDE" Multiplicity="1" />
+          <End Role="RIDES_STAFF" Type="Self.RIDES_STAFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RIDES">
+              <PropertyRef Name="RideID" />
+            </Principal>
+            <Dependent Role="RIDES_STAFF">
+              <PropertyRef Name="RideID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SHOP_STAF__ShopI__5535A963">
+          <End Role="SHOPS" Type="Self.SHOP" Multiplicity="1" />
+          <End Role="SHOP_STAFF" Type="Self.SHOP_STAFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHOPS">
+              <PropertyRef Name="ShopID" />
+            </Principal>
+            <Dependent Role="SHOP_STAFF">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RIDES_STA__Emplo__619B8048">
+          <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+          <End Role="RIDES_STAFF" Type="Self.RIDES_STAFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="RIDES_STAFF">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SHOP_STAF__Emplo__5629CD9C">
+          <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+          <End Role="SHOP_STAFF" Type="Self.SHOP_STAFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STAFF">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="SHOP_STAFF">
+              <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -336,11 +571,18 @@ error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationshi
           <EntitySet Name="GUESTs" EntityType="Self.GUEST" />
           <EntitySet Name="GUEST_SHOPS" EntityType="Self.GUEST_SHOPS" />
           <EntitySet Name="INVENTORies" EntityType="Self.INVENTORY" />
-          <EntitySet Name="MAINTENENCEs" EntityType="Self.MAINTENENCE" />
+          <EntitySet Name="MAINTENANCEs" EntityType="Self.MAINTENANCE" />
           <EntitySet Name="RIDES" EntityType="Self.RIDE" />
           <EntitySet Name="SHOPS" EntityType="Self.SHOP" />
           <EntitySet Name="STAFFs" EntityType="Self.STAFF" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TICKETs" EntityType="Self.TICKET" />
+          <EntitySet Name="GUEST_RIDES" EntityType="Self.GUEST_RIDES" />
+          <EntitySet Name="RIDES_STAFF" EntityType="Self.RIDES_STAFF" />
+          <EntitySet Name="SHOP_STAFF" EntityType="Self.SHOP_STAFF" />
+          <AssociationSet Name="FK__GUEST_RID__Guest__208CD6FA" Association="Self.FK__GUEST_RID__Guest__208CD6FA">
+            <End Role="GUEST" EntitySet="GUESTs" />
+            <End Role="GUEST_RIDES" EntitySet="GUEST_RIDES" />
+          </AssociationSet>
           <AssociationSet Name="FK__GUEST_SHO__Guest__5EBF139D" Association="Self.FK__GUEST_SHO__Guest__5EBF139D">
             <End Role="GUEST" EntitySet="GUESTs" />
             <End Role="GUEST_SHOPS" EntitySet="GUEST_SHOPS" />
@@ -355,7 +597,27 @@ error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationshi
           </AssociationSet>
           <AssociationSet Name="FK__MAINTENEN__RideI__5BE2A6F2" Association="Self.FK__MAINTENEN__RideI__5BE2A6F2">
             <End Role="RIDES" EntitySet="RIDES" />
-            <End Role="MAINTENENCE" EntitySet="MAINTENENCEs" />
+            <End Role="MAINTENANCE" EntitySet="MAINTENANCEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GUEST_RID__RideI__2180FB33" Association="Self.FK__GUEST_RID__RideI__2180FB33">
+            <End Role="RIDES" EntitySet="RIDES" />
+            <End Role="GUEST_RIDES" EntitySet="GUEST_RIDES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RIDES_STA__RideI__628FA481" Association="Self.FK__RIDES_STA__RideI__628FA481">
+            <End Role="RIDES" EntitySet="RIDES" />
+            <End Role="RIDES_STAFF" EntitySet="RIDES_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SHOP_STAF__ShopI__5535A963" Association="Self.FK__SHOP_STAF__ShopI__5535A963">
+            <End Role="SHOPS" EntitySet="SHOPS" />
+            <End Role="SHOP_STAFF" EntitySet="SHOP_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RIDES_STA__Emplo__619B8048" Association="Self.FK__RIDES_STA__Emplo__619B8048">
+            <End Role="STAFF" EntitySet="STAFFs" />
+            <End Role="RIDES_STAFF" EntitySet="RIDES_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SHOP_STAF__Emplo__5629CD9C" Association="Self.FK__SHOP_STAF__Emplo__5629CD9C">
+            <End Role="STAFF" EntitySet="STAFFs" />
+            <End Role="SHOP_STAFF" EntitySet="SHOP_STAFF" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -397,9 +659,9 @@ error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationshi
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MAINTENENCEs">
-            <EntityTypeMapping TypeName="tpdatabaseModel.MAINTENENCE">
-              <MappingFragment StoreEntitySet="MAINTENENCE">
+          <EntitySetMapping Name="MAINTENANCEs">
+            <EntityTypeMapping TypeName="tpdatabaseModel.MAINTENANCE">
+              <MappingFragment StoreEntitySet="MAINTENANCE">
                 <ScalarProperty Name="CaseID" ColumnName="CaseID" />
                 <ScalarProperty Name="RideID" ColumnName="RideID" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
@@ -439,14 +701,42 @@ error 6004: The table 'tpdatabase.dbo.SHOP_STAFF' is referenced by a relationshi
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="tpdatabaseModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
+          <EntitySetMapping Name="TICKETs">
+            <EntityTypeMapping TypeName="tpdatabaseModel.TICKET">
+              <MappingFragment StoreEntitySet="TICKET">
+                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+                <ScalarProperty Name="TicketType" ColumnName="TicketType" />
+                <ScalarProperty Name="TicketPrice" ColumnName="TicketPrice" />
+                <ScalarProperty Name="datePurchased" ColumnName="datePurchased" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GUEST_RIDES">
+            <EntityTypeMapping TypeName="tpdatabaseModel.GUEST_RIDES">
+              <MappingFragment StoreEntitySet="GUEST_RIDES">
+                <ScalarProperty Name="DateRode" ColumnName="DateRode" />
+                <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+                <ScalarProperty Name="RideID" ColumnName="RideID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RIDES_STAFF">
+            <EntityTypeMapping TypeName="tpdatabaseModel.RIDES_STAFF">
+              <MappingFragment StoreEntitySet="RIDES_STAFF">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="RideID" ColumnName="RideID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHOP_STAFF">
+            <EntityTypeMapping TypeName="tpdatabaseModel.SHOP_STAFF">
+              <MappingFragment StoreEntitySet="SHOP_STAFF">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

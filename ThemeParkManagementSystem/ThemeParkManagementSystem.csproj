@@ -20,8 +20,8 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -52,10 +52,37 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -151,16 +178,24 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GuestsController.cs" />
+    <Compile Include="Controllers\Guest_RidesController.cs" />
+    <Compile Include="Controllers\Guest_ShopsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
-    <Compile Include="Controllers\MaintenenceController.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\RidesController.cs" />
+    <Compile Include="Controllers\Rides_StaffController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
+    <Compile Include="Controllers\Shop_StaffController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GUEST.cs">
+      <DependentUpon>ThemeParkModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GUEST_RIDES.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GUEST_SHOPS.cs">
@@ -169,19 +204,22 @@
     <Compile Include="Models\INVENTORY.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MAINTENENCE.cs">
+    <Compile Include="Models\MAINTENANCE.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RIDE.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RIDES_STAFF.cs">
+      <DependentUpon>ThemeParkModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SHOP.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\STAFF.cs">
+    <Compile Include="Models\SHOP_STAFF.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
+    <Compile Include="Models\STAFF.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ThemeParkModel.Context.cs">
@@ -194,12 +232,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ThemeParkModel.Designer.cs">
+    <Compile Include="Models\ThemeParkModel.Designer.cs" />
+    <Compile Include="Models\ThemeParkModel1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ThemeParkModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TICKET.cs">
+      <DependentUpon>ThemeParkModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\app_data.txt" />
@@ -209,15 +252,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\models.txt" />
     <Content Include="Models\ThemeParkModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ThemeParkModel.Context.cs</LastGenOutput>
-      <DependentUpon>ThemeParkModel.edmx</DependentUpon>
     </Content>
     <Content Include="Models\ThemeParkModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ThemeParkModel.edmx</DependentUpon>
       <LastGenOutput>ThemeParkModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
@@ -227,11 +267,8 @@
     </Content>
     <EntityDeploy Include="Models\ThemeParkModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ThemeParkModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ThemeParkModel1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ThemeParkModel.edmx.diagram">
-      <DependentUpon>ThemeParkModel.edmx</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\ThemeParkManagementSystem - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -244,7 +281,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

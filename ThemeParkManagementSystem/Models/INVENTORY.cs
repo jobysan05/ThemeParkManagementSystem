@@ -16,9 +16,9 @@ namespace ThemeParkManagementSystem.Models
     {
         public int ProductID { get; set; }
         public string ProductName { get; set; }
-        public Nullable<decimal> ProductPrice { get; set; }
-        public Nullable<int> ProductStock { get; set; }
-        public Nullable<int> ShopID { get; set; }
+        public decimal ProductPrice { get; set; }
+        public int ProductStock { get; set; }
+        public int ShopID { get; set; }
     
         public virtual SHOP SHOP { get; set; }
     }

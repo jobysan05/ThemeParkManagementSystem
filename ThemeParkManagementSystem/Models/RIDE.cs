@@ -17,17 +17,23 @@ namespace ThemeParkManagementSystem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RIDE()
         {
-            this.MAINTENENCEs = new HashSet<MAINTENENCE>();
+            this.MAINTENANCEs = new HashSet<MAINTENANCE>();
+            this.GUEST_RIDES = new HashSet<GUEST_RIDES>();
+            this.RIDES_STAFF = new HashSet<RIDES_STAFF>();
         }
     
         public int RideID { get; set; }
         public string RideName { get; set; }
-        public Nullable<decimal> RidePrice { get; set; }
-        public Nullable<bool> IsOutside { get; set; }
+        public decimal RidePrice { get; set; }
+        public bool IsOutside { get; set; }
         public Nullable<int> RainOutCount { get; set; }
-        public Nullable<bool> IsOpen { get; set; }
+        public bool IsOpen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MAINTENENCE> MAINTENENCEs { get; set; }
+        public virtual ICollection<MAINTENANCE> MAINTENANCEs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GUEST_RIDES> GUEST_RIDES { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RIDES_STAFF> RIDES_STAFF { get; set; }
     }
 }

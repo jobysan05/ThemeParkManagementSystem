@@ -12,14 +12,14 @@ namespace ThemeParkManagementSystem.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MAINTENENCE
+    public partial class RIDES_STAFF
     {
-        public int CaseID { get; set; }
-        public Nullable<int> RideID { get; set; }
-        public Nullable<System.DateTime> StartTime { get; set; }
-        public Nullable<System.DateTime> EndTime { get; set; }
-        public string Summary { get; set; }
+        public int EmployeeID { get; set; }
+        public int RideID { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
     
         public virtual RIDE RIDE { get; set; }
+        public virtual STAFF STAFF { get; set; }
     }
 }

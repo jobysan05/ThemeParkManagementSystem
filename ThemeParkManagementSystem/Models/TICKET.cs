@@ -12,12 +12,11 @@ namespace ThemeParkManagementSystem.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class TICKET
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int TicketID { get; set; }
+        public string TicketType { get; set; }
+        public decimal TicketPrice { get; set; }
+        public System.DateTime datePurchased { get; set; }
     }
 }

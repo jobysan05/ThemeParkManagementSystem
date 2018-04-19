@@ -28,10 +28,13 @@ namespace ThemeParkManagementSystem.Models
         public virtual DbSet<GUEST> GUESTs { get; set; }
         public virtual DbSet<GUEST_SHOPS> GUEST_SHOPS { get; set; }
         public virtual DbSet<INVENTORY> INVENTORies { get; set; }
-        public virtual DbSet<MAINTENENCE> MAINTENENCEs { get; set; }
+        public virtual DbSet<MAINTENANCE> MAINTENANCEs { get; set; }
         public virtual DbSet<RIDE> RIDES { get; set; }
         public virtual DbSet<SHOP> SHOPS { get; set; }
         public virtual DbSet<STAFF> STAFFs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<TICKET> TICKETs { get; set; }
+        public virtual DbSet<GUEST_RIDES> GUEST_RIDES { get; set; }
+        public virtual DbSet<RIDES_STAFF> RIDES_STAFF { get; set; }
+        public virtual DbSet<SHOP_STAFF> SHOP_STAFF { get; set; }
     }
 }

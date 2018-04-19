@@ -12,15 +12,14 @@ namespace ThemeParkManagementSystem.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class GUEST_SHOPS
+    public partial class MAINTENANCE
     {
-        public int GuestID { get; set; }
-        public int ShopID { get; set; }
-        public int TransactionID { get; set; }
-        public int Quantity { get; set; }
-        public System.DateTime TransactionDate { get; set; }
+        public int CaseID { get; set; }
+        public int RideID { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public Nullable<System.DateTime> EndTime { get; set; }
+        public string Summary { get; set; }
     
-        public virtual GUEST GUEST { get; set; }
-        public virtual SHOP SHOP { get; set; }
+        public virtual RIDE RIDE { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace ThemeParkManagementSystem.Models
         {
             this.GUEST_SHOPS = new HashSet<GUEST_SHOPS>();
             this.INVENTORies = new HashSet<INVENTORY>();
+            this.SHOP_STAFF = new HashSet<SHOP_STAFF>();
         }
     
         public int ShopID { get; set; }
@@ -29,5 +30,7 @@ namespace ThemeParkManagementSystem.Models
         public virtual ICollection<GUEST_SHOPS> GUEST_SHOPS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INVENTORY> INVENTORies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SHOP_STAFF> SHOP_STAFF { get; set; }
     }
 }

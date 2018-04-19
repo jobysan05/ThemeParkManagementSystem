@@ -10,112 +10,112 @@ using ThemeParkManagementSystem.Models;
 
 namespace ThemeParkManagementSystem.Controllers
 {
-    public class MaintenenceController : Controller
+    public class MaintenanceController : Controller
     {
         private tpdatabaseEntities db = new tpdatabaseEntities();
 
-        // GET: Maintenence
+        // GET: Maintenance
         public ActionResult Index()
         {
-            var mAINTENENCEs = db.MAINTENENCEs.Include(m => m.RIDE);
-            return View(mAINTENENCEs.ToList());
+            var mAINTENANCEs = db.MAINTENANCEs.Include(m => m.RIDE);
+            return View(mAINTENANCEs.ToList());
         }
 
-        // GET: Maintenence/Details/5
+        // GET: Maintenance/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MAINTENENCE mAINTENENCE = db.MAINTENENCEs.Find(id);
-            if (mAINTENENCE == null)
+            MAINTENANCE mAINTENANCE = db.MAINTENANCEs.Find(id);
+            if (mAINTENANCE == null)
             {
                 return HttpNotFound();
             }
-            return View(mAINTENENCE);
+            return View(mAINTENANCE);
         }
 
-        // GET: Maintenence/Create
+        // GET: Maintenance/Create
         public ActionResult Create()
         {
             ViewBag.RideID = new SelectList(db.RIDES, "RideID", "RideName");
             return View();
         }
 
-        // POST: Maintenence/Create
+        // POST: Maintenance/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CaseID,RideID,StartTime,EndTime,Summary")] MAINTENENCE mAINTENENCE)
+        public ActionResult Create([Bind(Include = "CaseID,RideID,StartTime,EndTime,Summary")] MAINTENANCE mAINTENANCE)
         {
             if (ModelState.IsValid)
             {
-                db.MAINTENENCEs.Add(mAINTENENCE);
+                db.MAINTENANCEs.Add(mAINTENANCE);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RideID = new SelectList(db.RIDES, "RideID", "RideName", mAINTENENCE.RideID);
-            return View(mAINTENENCE);
+            ViewBag.RideID = new SelectList(db.RIDES, "RideID", "RideName", mAINTENANCE.RideID);
+            return View(mAINTENANCE);
         }
 
-        // GET: Maintenence/Edit/5
+        // GET: Maintenance/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MAINTENENCE mAINTENENCE = db.MAINTENENCEs.Find(id);
-            if (mAINTENENCE == null)
+            MAINTENANCE mAINTENANCE = db.MAINTENANCEs.Find(id);
+            if (mAINTENANCE == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.RideID = new SelectList(db.RIDES, "RideID", "RideName", mAINTENENCE.RideID);
-            return View(mAINTENENCE);
+            ViewBag.RideID = new SelectList(db.RIDES, "RideID", "RideName", mAINTENANCE.RideID);
+            return View(mAINTENANCE);
         }
 
-        // POST: Maintenence/Edit/5
+        // POST: Maintenance/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CaseID,RideID,StartTime,EndTime,Summary")] MAINTENENCE mAINTENENCE)
+        public ActionResult Edit([Bind(Include = "CaseID,RideID,StartTime,EndTime,Summary")] MAINTENANCE mAINTENANCE)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(mAINTENENCE).State = EntityState.Modified;
+                db.Entry(mAINTENANCE).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RideID = new SelectList(db.RIDES, "RideID", "RideName", mAINTENENCE.RideID);
-            return View(mAINTENENCE);
+            ViewBag.RideID = new SelectList(db.RIDES, "RideID", "RideName", mAINTENANCE.RideID);
+            return View(mAINTENANCE);
         }
 
-        // GET: Maintenence/Delete/5
+        // GET: Maintenance/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MAINTENENCE mAINTENENCE = db.MAINTENENCEs.Find(id);
-            if (mAINTENENCE == null)
+            MAINTENANCE mAINTENANCE = db.MAINTENANCEs.Find(id);
+            if (mAINTENANCE == null)
             {
                 return HttpNotFound();
             }
-            return View(mAINTENENCE);
+            return View(mAINTENANCE);
         }
 
-        // POST: Maintenence/Delete/5
+        // POST: Maintenance/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MAINTENENCE mAINTENENCE = db.MAINTENENCEs.Find(id);
-            db.MAINTENENCEs.Remove(mAINTENENCE);
+            MAINTENANCE mAINTENANCE = db.MAINTENANCEs.Find(id);
+            db.MAINTENANCEs.Remove(mAINTENANCE);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

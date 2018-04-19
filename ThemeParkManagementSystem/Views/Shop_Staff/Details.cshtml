@@ -1,0 +1,42 @@
+﻿@model TempTPMS.Models.SHOP_STAFF
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SHOP_STAFF</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SHOP.ShopName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SHOP.ShopName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STAFF.EmployeeType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STAFF.EmployeeType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

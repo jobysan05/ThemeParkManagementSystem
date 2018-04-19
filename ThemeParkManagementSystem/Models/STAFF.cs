@@ -14,9 +14,21 @@ namespace ThemeParkManagementSystem.Models
     
     public partial class STAFF
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public STAFF()
+        {
+            this.RIDES_STAFF = new HashSet<RIDES_STAFF>();
+            this.SHOP_STAFF = new HashSet<SHOP_STAFF>();
+        }
+    
         public int EmployeeID { get; set; }
         public string EmployeeType { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RIDES_STAFF> RIDES_STAFF { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SHOP_STAFF> SHOP_STAFF { get; set; }
     }
 }
