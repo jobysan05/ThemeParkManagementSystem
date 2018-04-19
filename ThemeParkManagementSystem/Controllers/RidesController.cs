@@ -15,8 +15,15 @@ namespace ThemeParkManagementSystem.Controllers
         private tpdatabaseEntities db = new tpdatabaseEntities();
 
         // GET: Rides
-        public ActionResult Index()
+        public ActionResult Index(string ridename)
         {
+             var model = from r in db.RIDES
+                        //orderby r.RideName
+                        select r;
+            if(!String.IsNullOrEmpty(ridename))
+            {
+                model = model.Where(r => r.RideName.Contains(ridename));
+            }
             return View(db.RIDES.ToList());
         }
 
