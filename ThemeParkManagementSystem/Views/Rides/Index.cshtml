@@ -30,16 +30,16 @@
              @Html.ActionLink("RideName", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RidePrice)
+            @Html.DisplayNameFor(model => model.First().RidePrice)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsOutside)
+            @Html.DisplayNameFor(model => model.First().IsOutside)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RainOutCount)
+            @Html.DisplayNameFor(model => model.First().RainOutCount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsOpen)
+            @Html.DisplayNameFor(model => model.First().IsOpen)
         </th>
         <th></th>
     </tr>
