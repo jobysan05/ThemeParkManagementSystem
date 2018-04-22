@@ -23,7 +23,7 @@ To do
     * GUEST and TICKET - a list with guest and corresponding ticket info that can also be given a date range
     * Create graphs to show spikes in avg guests 
         * https://docs.microsoft.com/en-us/aspnet/web-pages/overview/data/7-displaying-data-in-a-chart
-5. fix null values in the dbms
+5. ~fix null values in the dbms~
 6. ~add Rides, Shops, Staff, and Guests views~
     * https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/introduction/adding-a-view
 7. additional functionality
