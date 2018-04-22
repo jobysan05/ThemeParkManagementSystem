@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 using ThemeParkManagementSystem.Models;
 
 namespace ThemeParkManagementSystem.Controllers
@@ -15,16 +17,29 @@ namespace ThemeParkManagementSystem.Controllers
         private tpdatabaseEntities db = new tpdatabaseEntities();
 
         // GET: Rides
-        public ActionResult Index(string ridename)
+        public ActionResult Index(string searchBy, string search, int? page, string sortBy)
         {
-             var model = from r in db.RIDES
-                        //orderby r.RideName
-                        select r;
-            if(!String.IsNullOrEmpty(ridename))
+             ViewBag.SortNameParameter = string.IsNullOrEmpty(sortBy) ? "RideName desc" : "";
+
+            var rides = from x in db.RIDES.AsQueryable()
+                        select x;
+            switch (sortBy)
             {
-                model = model.Where(r => r.RideName.Contains(ridename));
+                case "RideName desc":
+                    rides = rides.OrderByDescending(x => x.RideName);
+                    break;
+                default:
+                    rides = rides.OrderBy(x => x.RideName);
+                    break;
             }
-            return View(model.ToList());
+            if (searchBy == "Name")
+            {
+                return View(db.RIDES.Where(x=>x.RideName.StartsWith(search) || search== null).ToList().ToPagedList(page ?? 1,5));
+            }
+            else
+            {
+                return View(rides.ToList().ToPagedList(page ?? 1, 5));
+            }
         }
 
         // GET: Rides/Details/5
