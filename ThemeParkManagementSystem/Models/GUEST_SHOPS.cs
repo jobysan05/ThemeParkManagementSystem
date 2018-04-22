@@ -15,12 +15,12 @@ namespace ThemeParkManagementSystem.Models
     public partial class GUEST_SHOPS
     {
         public int GuestID { get; set; }
-        public int ShopID { get; set; }
+        public int ProductID { get; set; }
         public int TransactionID { get; set; }
         public int Quantity { get; set; }
         public System.DateTime TransactionDate { get; set; }
     
         public virtual GUEST GUEST { get; set; }
-        public virtual SHOP SHOP { get; set; }
+        public virtual INVENTORY INVENTORY { get; set; }
     }
 }

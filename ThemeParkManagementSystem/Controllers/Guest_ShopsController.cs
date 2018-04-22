@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ThemeParkManagementSystem.Models;
 
-namespace ThemeParkManagementSystem.Controllers
+namespace ThemeParkManagementSystem.Views
 {
     public class Guest_ShopsController : Controller
     {
@@ -17,7 +17,7 @@ namespace ThemeParkManagementSystem.Controllers
         // GET: Guest_Shops
         public ActionResult Index()
         {
-            var gUEST_SHOPS = db.GUEST_SHOPS.Include(g => g.GUEST).Include(g => g.SHOP);
+            var gUEST_SHOPS = db.GUEST_SHOPS.Include(g => g.GUEST).Include(g => g.INVENTORY);
             return View(gUEST_SHOPS.ToList());
         }
 
@@ -40,7 +40,7 @@ namespace ThemeParkManagementSystem.Controllers
         public ActionResult Create()
         {
             ViewBag.GuestID = new SelectList(db.GUESTs, "GuestID", "FirstName");
-            ViewBag.ShopID = new SelectList(db.SHOPS, "ShopID", "ShopName");
+            ViewBag.ProductID = new SelectList(db.INVENTORies, "ProductID", "ProductName");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace ThemeParkManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GuestID,ShopID,TransactionID,Quantity,TransactionDate")] GUEST_SHOPS gUEST_SHOPS)
+        public ActionResult Create([Bind(Include = "GuestID,ProductID,TransactionID,Quantity,TransactionDate")] GUEST_SHOPS gUEST_SHOPS)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace ThemeParkManagementSystem.Controllers
             }
 
             ViewBag.GuestID = new SelectList(db.GUESTs, "GuestID", "FirstName", gUEST_SHOPS.GuestID);
-            ViewBag.ShopID = new SelectList(db.SHOPS, "ShopID", "ShopName", gUEST_SHOPS.ShopID);
+            ViewBag.ProductID = new SelectList(db.INVENTORies, "ProductID", "ProductName", gUEST_SHOPS.ProductID);
             return View(gUEST_SHOPS);
         }
 
@@ -76,7 +76,7 @@ namespace ThemeParkManagementSystem.Controllers
                 return HttpNotFound();
             }
             ViewBag.GuestID = new SelectList(db.GUESTs, "GuestID", "FirstName", gUEST_SHOPS.GuestID);
-            ViewBag.ShopID = new SelectList(db.SHOPS, "ShopID", "ShopName", gUEST_SHOPS.ShopID);
+            ViewBag.ProductID = new SelectList(db.INVENTORies, "ProductID", "ProductName", gUEST_SHOPS.ProductID);
             return View(gUEST_SHOPS);
         }
 
@@ -85,7 +85,7 @@ namespace ThemeParkManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GuestID,ShopID,TransactionID,Quantity,TransactionDate")] GUEST_SHOPS gUEST_SHOPS)
+        public ActionResult Edit([Bind(Include = "GuestID,ProductID,TransactionID,Quantity,TransactionDate")] GUEST_SHOPS gUEST_SHOPS)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace ThemeParkManagementSystem.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.GuestID = new SelectList(db.GUESTs, "GuestID", "FirstName", gUEST_SHOPS.GuestID);
-            ViewBag.ShopID = new SelectList(db.SHOPS, "ShopID", "ShopName", gUEST_SHOPS.ShopID);
+            ViewBag.ProductID = new SelectList(db.INVENTORies, "ProductID", "ProductName", gUEST_SHOPS.ProductID);
             return View(gUEST_SHOPS);
         }
 

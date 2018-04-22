@@ -27,6 +27,7 @@ namespace ThemeParkManagementSystem.Models
         public System.DateTime DateOfBirth { get; set; }
         public int TicketID { get; set; }
     
+        public virtual TICKET TICKET { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GUEST_RIDES> GUEST_RIDES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

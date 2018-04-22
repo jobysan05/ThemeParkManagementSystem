@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TempTPMS.Models.GUEST_SHOPS>
+﻿@model IEnumerable<ThemeParkManagementSystem.Models.GUEST_SHOPS>
 
 @{
     ViewBag.Title = "Index";
@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.GUEST.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SHOP.ShopName)
+            @Html.DisplayNameFor(model => model.INVENTORY.ProductName)
         </th>
         <th></th>
     </tr>
@@ -38,7 +38,7 @@
             @Html.DisplayFor(modelItem => item.GUEST.FirstName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SHOP.ShopName)
+            @Html.DisplayFor(modelItem => item.INVENTORY.ProductName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.TransactionID }) |

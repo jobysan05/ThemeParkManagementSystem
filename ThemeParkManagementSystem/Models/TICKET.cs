@@ -14,9 +14,18 @@ namespace ThemeParkManagementSystem.Models
     
     public partial class TICKET
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TICKET()
+        {
+            this.GUESTs = new HashSet<GUEST>();
+        }
+    
         public int TicketID { get; set; }
         public string TicketType { get; set; }
         public decimal TicketPrice { get; set; }
-        public System.DateTime datePurchased { get; set; }
+        public System.DateTime DatePurchased { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GUEST> GUESTs { get; set; }
     }
 }

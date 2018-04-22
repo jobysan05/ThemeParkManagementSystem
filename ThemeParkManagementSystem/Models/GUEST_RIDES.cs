@@ -14,7 +14,7 @@ namespace ThemeParkManagementSystem.Models
     
     public partial class GUEST_RIDES
     {
-        public System.DateTime DateRode { get; set; }
+        public System.DateTime RideDate { get; set; }
         public int GuestID { get; set; }
         public int RideID { get; set; }
     

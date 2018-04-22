@@ -14,12 +14,20 @@ namespace ThemeParkManagementSystem.Models
     
     public partial class INVENTORY
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public INVENTORY()
+        {
+            this.GUEST_SHOPS = new HashSet<GUEST_SHOPS>();
+        }
+    
         public int ProductID { get; set; }
         public string ProductName { get; set; }
         public decimal ProductPrice { get; set; }
         public int ProductStock { get; set; }
         public int ShopID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GUEST_SHOPS> GUEST_SHOPS { get; set; }
         public virtual SHOP SHOP { get; set; }
     }
 }
