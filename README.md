@@ -16,7 +16,7 @@ To do
 2. ~allow data entry/updates~
 3. ~triggers to put in, active processes (at least one, more better ?)~
     * https://www.codeproject.com/Articles/38808/Overview-of-SQL-Server-database-Triggers
-    ~* when maintenance caseID is created, set appropriate ride isOpen to false~
+    * ~when maintenance caseID is created, set appropriate ride isOpen to false~
 4. reports
     * GUESTS_SHOPS - date parameter to see popularity during given date ranges
     * GUESTS_RIDES - date parameter to see popularity during given date ranges
@@ -30,7 +30,7 @@ To do
     * bad weather - if isOutside then increment RainOutCount
     * when updating item/ride price - create new item/ride ID
     * when Guest_Shops is created, subtract quantity from productstock of appropriate item
-    ~* when maintenance caseID is created, set appropriate ride isOpen to false~
+    * ~when maintenance caseID is created, set appropriate ride isOpen to false~
     * when endtime is initialized, set appropriate ride isOpen to true
     * add reference tables for employeetype, tickettype, shoptype
 
