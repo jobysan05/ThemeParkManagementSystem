@@ -249,6 +249,7 @@
     <Compile Include="Models\SHOP.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ShopIndexData.cs" />
     <Compile Include="Models\SHOPLOOKUP.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
