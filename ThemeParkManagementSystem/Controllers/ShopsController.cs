@@ -6,8 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using PagedList;
-using PagedList.Mvc;
 using ThemeParkManagementSystem.Models;
 
 namespace ThemeParkManagementSystem.Controllers
@@ -17,9 +15,8 @@ namespace ThemeParkManagementSystem.Controllers
         private tpdatabaseEntities db = new tpdatabaseEntities();
 
         // GET: Shops
-        public ActionResult Index(string searchBy, string search, int? page, string sortBy, int? id)
+        public ActionResult Index(string search, int? id)
         {
-
             var viewModel = new ShopIndexData();
             viewModel.Shops = db.SHOPS
                 .Include(i => i.INVENTORies);
