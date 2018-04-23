@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="tpdatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="tpdatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="GUEST">
           <Key>
             <PropertyRef Name="GuestID" />
@@ -396,86 +396,22 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             <End Role="SHOP_STAFF" EntitySet="SHOP_STAFF" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="tpdatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="tpdatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="GUESTs" EntityType="tpdatabaseModel.GUEST" />
-          <EntitySet Name="GUEST_SHOPS" EntityType="tpdatabaseModel.GUEST_SHOPS" />
-          <EntitySet Name="INVENTORies" EntityType="tpdatabaseModel.INVENTORY" />
-          <EntitySet Name="MAINTENANCEs" EntityType="tpdatabaseModel.MAINTENANCE" />
-          <EntitySet Name="RIDES" EntityType="tpdatabaseModel.RIDE" />
-          <EntitySet Name="SHOPS" EntityType="tpdatabaseModel.SHOP" />
-          <EntitySet Name="STAFFs" EntityType="tpdatabaseModel.STAFF" />
-          <EntitySet Name="TICKETs" EntityType="tpdatabaseModel.TICKET" />
-          <EntitySet Name="GUEST_RIDES" EntityType="tpdatabaseModel.GUEST_RIDES" />
-          <EntitySet Name="RIDES_STAFF" EntityType="tpdatabaseModel.RIDES_STAFF" />
-          <EntitySet Name="SHOP_STAFF" EntityType="tpdatabaseModel.SHOP_STAFF" />
-          <EntitySet Name="TICKETLOOKUPs" EntityType="tpdatabaseModel.TICKETLOOKUP" />
-          <AssociationSet Name="FK__GUEST_RID__guest__797309D9" Association="tpdatabaseModel.FK__GUEST_RID__guest__797309D9">
-            <End Role="GUEST" EntitySet="GUESTs" />
-            <End Role="GUEST_RIDES" EntitySet="GUEST_RIDES" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GUEST_SHO__Guest__25518C17" Association="tpdatabaseModel.FK__GUEST_SHO__Guest__25518C17">
-            <End Role="GUEST" EntitySet="GUESTs" />
-            <End Role="GUEST_SHOPS" EntitySet="GUEST_SHOPS" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GUEST_SHO__Produ__2645B050" Association="tpdatabaseModel.FK__GUEST_SHO__Produ__2645B050">
-            <End Role="INVENTORY" EntitySet="INVENTORies" />
-            <End Role="GUEST_SHOPS" EntitySet="GUEST_SHOPS" />
-          </AssociationSet>
-          <AssociationSet Name="FK__INVENTORY__ShopI__5441852A" Association="tpdatabaseModel.FK__INVENTORY__ShopI__5441852A">
-            <End Role="SHOP" EntitySet="SHOPS" />
-            <End Role="INVENTORY" EntitySet="INVENTORies" />
-          </AssociationSet>
-          <AssociationSet Name="FK__MAINTENEN__RideI__5BE2A6F2" Association="tpdatabaseModel.FK__MAINTENEN__RideI__5BE2A6F2">
-            <End Role="RIDE" EntitySet="RIDES" />
-            <End Role="MAINTENANCE" EntitySet="MAINTENANCEs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GUEST_RID__ride___7A672E12" Association="tpdatabaseModel.FK__GUEST_RID__ride___7A672E12">
-            <End Role="RIDE" EntitySet="RIDES" />
-            <End Role="GUEST_RIDES" EntitySet="GUEST_RIDES" />
-          </AssociationSet>
-          <AssociationSet Name="FK__RIDES_STA__RideI__628FA481" Association="tpdatabaseModel.FK__RIDES_STA__RideI__628FA481">
-            <End Role="RIDE" EntitySet="RIDES" />
-            <End Role="RIDES_STAFF" EntitySet="RIDES_STAFF" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SHOP_STAF__ShopI__5535A963" Association="tpdatabaseModel.FK__SHOP_STAF__ShopI__5535A963">
-            <End Role="SHOP" EntitySet="SHOPS" />
-            <End Role="SHOP_STAFF" EntitySet="SHOP_STAFF" />
-          </AssociationSet>
-          <AssociationSet Name="FK__RIDES_STA__Emplo__619B8048" Association="tpdatabaseModel.FK__RIDES_STA__Emplo__619B8048">
-            <End Role="STAFF" EntitySet="STAFFs" />
-            <End Role="RIDES_STAFF" EntitySet="RIDES_STAFF" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SHOP_STAF__Emplo__5629CD9C" Association="tpdatabaseModel.FK__SHOP_STAF__Emplo__5629CD9C">
-            <End Role="STAFF" EntitySet="STAFFs" />
-            <End Role="SHOP_STAFF" EntitySet="SHOP_STAFF" />
-          </AssociationSet>
-          <EntitySet Name="GUEST_TICKET" EntityType="tpdatabaseModel.GUEST_TICKET" />
-          <AssociationSet Name="FK__GUEST_TIC__Guest__3D2915A8" Association="tpdatabaseModel.FK__GUEST_TIC__Guest__3D2915A8">
-            <End Role="GUEST" EntitySet="GUESTs" />
-            <End Role="GUEST_TICKET" EntitySet="GUEST_TICKET" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GUEST_TIC__Ticke__3C34F16F" Association="tpdatabaseModel.FK__GUEST_TIC__Ticke__3C34F16F">
-            <End Role="TICKET" EntitySet="TICKETs" />
-            <End Role="GUEST_TICKET" EntitySet="GUEST_TICKET" />
-          </AssociationSet>
-          <EntitySet Name="SHOPLOOKUPs" EntityType="tpdatabaseModel.SHOPLOOKUP" />
-          <EntitySet Name="STAFFLOOKUPs" EntityType="tpdatabaseModel.STAFFLOOKUP" />
-        </EntityContainer>
         <EntityType Name="GUEST">
           <Key>
             <PropertyRef Name="GuestID" />
           </Key>
           <Property Name="GuestID" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="GUEST_RIDES" Relationship="tpdatabaseModel.FK__GUEST_RID__guest__797309D9" FromRole="GUEST" ToRole="GUEST_RIDES" />
-          <NavigationProperty Name="GUEST_SHOPS" Relationship="tpdatabaseModel.FK__GUEST_SHO__Guest__25518C17" FromRole="GUEST" ToRole="GUEST_SHOPS" />
-          <NavigationProperty Name="GUEST_TICKET" Relationship="tpdatabaseModel.FK__GUEST_TIC__Guest__3D2915A8" FromRole="GUEST" ToRole="GUEST_TICKET" />
+          <NavigationProperty Name="GUEST_RIDES" Relationship="Self.FK__GUEST_RID__guest__797309D9" FromRole="GUEST" ToRole="GUEST_RIDES" />
+          <NavigationProperty Name="GUEST_SHOPS" Relationship="Self.FK__GUEST_SHO__Guest__25518C17" FromRole="GUEST" ToRole="GUEST_SHOPS" />
+          <NavigationProperty Name="GUEST_TICKET" Relationship="Self.FK__GUEST_TIC__Guest__3D2915A8" FromRole="GUEST" ToRole="GUEST_TICKET" />
         </EntityType>
         <EntityType Name="GUEST_SHOPS">
           <Key>
@@ -486,20 +422,20 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <Property Name="TransactionID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="GUEST" Relationship="tpdatabaseModel.FK__GUEST_SHO__Guest__25518C17" FromRole="GUEST_SHOPS" ToRole="GUEST" />
-          <NavigationProperty Name="INVENTORY" Relationship="tpdatabaseModel.FK__GUEST_SHO__Produ__2645B050" FromRole="GUEST_SHOPS" ToRole="INVENTORY" />
+          <NavigationProperty Name="GUEST" Relationship="Self.FK__GUEST_SHO__Guest__25518C17" FromRole="GUEST_SHOPS" ToRole="GUEST" />
+          <NavigationProperty Name="INVENTORY" Relationship="Self.FK__GUEST_SHO__Produ__2645B050" FromRole="GUEST_SHOPS" ToRole="INVENTORY" />
         </EntityType>
         <EntityType Name="INVENTORY">
           <Key>
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="ProductPrice" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="ProductName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductPrice" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
           <Property Name="ProductStock" Type="Int32" Nullable="false" />
           <Property Name="ShopID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GUEST_SHOPS" Relationship="tpdatabaseModel.FK__GUEST_SHO__Produ__2645B050" FromRole="INVENTORY" ToRole="GUEST_SHOPS" />
-          <NavigationProperty Name="SHOP" Relationship="tpdatabaseModel.FK__INVENTORY__ShopI__5441852A" FromRole="INVENTORY" ToRole="SHOP" />
+          <NavigationProperty Name="GUEST_SHOPS" Relationship="Self.FK__GUEST_SHO__Produ__2645B050" FromRole="INVENTORY" ToRole="GUEST_SHOPS" />
+          <NavigationProperty Name="SHOP" Relationship="Self.FK__INVENTORY__ShopI__5441852A" FromRole="INVENTORY" ToRole="SHOPS" />
         </EntityType>
         <EntityType Name="MAINTENANCE">
           <Key>
@@ -510,31 +446,38 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="Summary" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="RIDE" Relationship="tpdatabaseModel.FK__MAINTENEN__RideI__5BE2A6F2" FromRole="MAINTENANCE" ToRole="RIDE" />
+          <NavigationProperty Name="RIDE" Relationship="Self.FK__MAINTENEN__RideI__5BE2A6F2" FromRole="MAINTENANCE" ToRole="RIDES" />
         </EntityType>
         <EntityType Name="RIDE">
           <Key>
             <PropertyRef Name="RideID" />
           </Key>
           <Property Name="RideID" Type="Int32" Nullable="false" />
-          <Property Name="RideName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="RidePrice" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="RideName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RidePrice" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
           <Property Name="IsOutside" Type="Boolean" Nullable="false" />
           <Property Name="RainOutCount" Type="Int32" />
           <Property Name="IsOpen" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="MAINTENANCEs" Relationship="tpdatabaseModel.FK__MAINTENEN__RideI__5BE2A6F2" FromRole="RIDE" ToRole="MAINTENANCE" />
-          <NavigationProperty Name="GUEST_RIDES" Relationship="tpdatabaseModel.FK__GUEST_RID__ride___7A672E12" FromRole="RIDE" ToRole="GUEST_RIDES" />
-          <NavigationProperty Name="RIDES_STAFF" Relationship="tpdatabaseModel.FK__RIDES_STA__RideI__628FA481" FromRole="RIDE" ToRole="RIDES_STAFF" />
+          <NavigationProperty Name="MAINTENANCEs" Relationship="Self.FK__MAINTENEN__RideI__5BE2A6F2" FromRole="RIDES" ToRole="MAINTENANCE" />
+          <NavigationProperty Name="GUEST_RIDES" Relationship="Self.FK__GUEST_RID__ride___7A672E12" FromRole="RIDES" ToRole="GUEST_RIDES" />
+          <NavigationProperty Name="RIDES_STAFF" Relationship="Self.FK__RIDES_STA__RideI__628FA481" FromRole="RIDES" ToRole="RIDES_STAFF" />
+        </EntityType>
+        <EntityType Name="SHOPLOOKUP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ShopType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="SHOP">
           <Key>
             <PropertyRef Name="ShopID" />
           </Key>
           <Property Name="ShopID" Type="Int32" Nullable="false" />
-          <Property Name="ShopName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ShopName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ShopType" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="INVENTORies" Relationship="tpdatabaseModel.FK__INVENTORY__ShopI__5441852A" FromRole="SHOP" ToRole="INVENTORY" />
-          <NavigationProperty Name="SHOP_STAFF" Relationship="tpdatabaseModel.FK__SHOP_STAF__ShopI__5535A963" FromRole="SHOP" ToRole="SHOP_STAFF" />
+          <NavigationProperty Name="INVENTORies" Relationship="Self.FK__INVENTORY__ShopI__5441852A" FromRole="SHOPS" ToRole="INVENTORY" />
+          <NavigationProperty Name="SHOP_STAFF" Relationship="Self.FK__SHOP_STAF__ShopI__5535A963" FromRole="SHOPS" ToRole="SHOP_STAFF" />
         </EntityType>
         <EntityType Name="STAFF">
           <Key>
@@ -542,10 +485,17 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           </Key>
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="EmployeeType" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="RIDES_STAFF" Relationship="tpdatabaseModel.FK__RIDES_STA__Emplo__619B8048" FromRole="STAFF" ToRole="RIDES_STAFF" />
-          <NavigationProperty Name="SHOP_STAFF" Relationship="tpdatabaseModel.FK__SHOP_STAF__Emplo__5629CD9C" FromRole="STAFF" ToRole="SHOP_STAFF" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RIDES_STAFF" Relationship="Self.FK__RIDES_STA__Emplo__619B8048" FromRole="STAFF" ToRole="RIDES_STAFF" />
+          <NavigationProperty Name="SHOP_STAFF" Relationship="Self.FK__SHOP_STAF__Emplo__5629CD9C" FromRole="STAFF" ToRole="SHOP_STAFF" />
+        </EntityType>
+        <EntityType Name="STAFFLOOKUP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="TICKET">
           <Key>
@@ -553,7 +503,7 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           </Key>
           <Property Name="TicketID" Type="Int32" Nullable="false" />
           <Property Name="TicketType" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GUEST_TICKET" Relationship="tpdatabaseModel.FK__GUEST_TIC__Ticke__3C34F16F" FromRole="TICKET" ToRole="GUEST_TICKET" />
+          <NavigationProperty Name="GUEST_TICKET" Relationship="Self.FK__GUEST_TIC__Ticke__3C34F16F" FromRole="TICKET" ToRole="GUEST_TICKET" />
         </EntityType>
         <EntityType Name="GUEST_RIDES">
           <Key>
@@ -564,8 +514,20 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <Property Name="RideDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="GuestID" Type="Int32" Nullable="false" />
           <Property Name="RideID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GUEST" Relationship="tpdatabaseModel.FK__GUEST_RID__guest__797309D9" FromRole="GUEST_RIDES" ToRole="GUEST" />
-          <NavigationProperty Name="RIDE" Relationship="tpdatabaseModel.FK__GUEST_RID__ride___7A672E12" FromRole="GUEST_RIDES" ToRole="RIDE" />
+          <NavigationProperty Name="GUEST" Relationship="Self.FK__GUEST_RID__guest__797309D9" FromRole="GUEST_RIDES" ToRole="GUEST" />
+          <NavigationProperty Name="RIDE" Relationship="Self.FK__GUEST_RID__ride___7A672E12" FromRole="GUEST_RIDES" ToRole="RIDES" />
+        </EntityType>
+        <EntityType Name="GUEST_TICKET">
+          <Key>
+            <PropertyRef Name="TicketID" />
+            <PropertyRef Name="GuestID" />
+            <PropertyRef Name="DatePurchased" />
+          </Key>
+          <Property Name="TicketID" Type="Int32" Nullable="false" />
+          <Property Name="GuestID" Type="Int32" Nullable="false" />
+          <Property Name="DatePurchased" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="GUEST" Relationship="Self.FK__GUEST_TIC__Guest__3D2915A8" FromRole="GUEST_TICKET" ToRole="GUEST" />
+          <NavigationProperty Name="TICKET" Relationship="Self.FK__GUEST_TIC__Ticke__3C34F16F" FromRole="GUEST_TICKET" ToRole="TICKET" />
         </EntityType>
         <EntityType Name="RIDES_STAFF">
           <Key>
@@ -577,8 +539,8 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <Property Name="RideID" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="RIDE" Relationship="tpdatabaseModel.FK__RIDES_STA__RideI__628FA481" FromRole="RIDES_STAFF" ToRole="RIDE" />
-          <NavigationProperty Name="STAFF" Relationship="tpdatabaseModel.FK__RIDES_STA__Emplo__619B8048" FromRole="RIDES_STAFF" ToRole="STAFF" />
+          <NavigationProperty Name="RIDE" Relationship="Self.FK__RIDES_STA__RideI__628FA481" FromRole="RIDES_STAFF" ToRole="RIDES" />
+          <NavigationProperty Name="STAFF" Relationship="Self.FK__RIDES_STA__Emplo__619B8048" FromRole="RIDES_STAFF" ToRole="STAFF" />
         </EntityType>
         <EntityType Name="SHOP_STAFF">
           <Key>
@@ -590,8 +552,8 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <Property Name="ShopID" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="SHOP" Relationship="tpdatabaseModel.FK__SHOP_STAF__ShopI__5535A963" FromRole="SHOP_STAFF" ToRole="SHOP" />
-          <NavigationProperty Name="STAFF" Relationship="tpdatabaseModel.FK__SHOP_STAF__Emplo__5629CD9C" FromRole="SHOP_STAFF" ToRole="STAFF" />
+          <NavigationProperty Name="SHOP" Relationship="Self.FK__SHOP_STAF__ShopI__5535A963" FromRole="SHOP_STAFF" ToRole="SHOPS" />
+          <NavigationProperty Name="STAFF" Relationship="Self.FK__SHOP_STAF__Emplo__5629CD9C" FromRole="SHOP_STAFF" ToRole="STAFF" />
         </EntityType>
         <EntityType Name="TICKETLOOKUP">
           <Key>
@@ -600,12 +562,12 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             <PropertyRef Name="TicketPrice" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="TicketType" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="TicketPrice" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="TicketType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TicketPrice" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
         </EntityType>
         <Association Name="FK__GUEST_RID__guest__797309D9">
-          <End Type="tpdatabaseModel.GUEST" Role="GUEST" Multiplicity="1" />
-          <End Type="tpdatabaseModel.GUEST_RIDES" Role="GUEST_RIDES" Multiplicity="*" />
+          <End Role="GUEST" Type="Self.GUEST" Multiplicity="1" />
+          <End Role="GUEST_RIDES" Type="Self.GUEST_RIDES" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GUEST">
               <PropertyRef Name="GuestID" />
@@ -616,8 +578,8 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__GUEST_SHO__Guest__25518C17">
-          <End Type="tpdatabaseModel.GUEST" Role="GUEST" Multiplicity="1" />
-          <End Type="tpdatabaseModel.GUEST_SHOPS" Role="GUEST_SHOPS" Multiplicity="*" />
+          <End Role="GUEST" Type="Self.GUEST" Multiplicity="1" />
+          <End Role="GUEST_SHOPS" Type="Self.GUEST_SHOPS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GUEST">
               <PropertyRef Name="GuestID" />
@@ -627,9 +589,21 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__GUEST_TIC__Guest__3D2915A8">
+          <End Role="GUEST" Type="Self.GUEST" Multiplicity="1" />
+          <End Role="GUEST_TICKET" Type="Self.GUEST_TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GUEST">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="GUEST_TICKET">
+              <PropertyRef Name="GuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__GUEST_SHO__Produ__2645B050">
-          <End Type="tpdatabaseModel.INVENTORY" Role="INVENTORY" Multiplicity="1" />
-          <End Type="tpdatabaseModel.GUEST_SHOPS" Role="GUEST_SHOPS" Multiplicity="*" />
+          <End Role="INVENTORY" Type="Self.INVENTORY" Multiplicity="1" />
+          <End Role="GUEST_SHOPS" Type="Self.GUEST_SHOPS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INVENTORY">
               <PropertyRef Name="ProductID" />
@@ -640,10 +614,10 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__INVENTORY__ShopI__5441852A">
-          <End Type="tpdatabaseModel.SHOP" Role="SHOP" Multiplicity="1" />
-          <End Type="tpdatabaseModel.INVENTORY" Role="INVENTORY" Multiplicity="*" />
+          <End Role="SHOPS" Type="Self.SHOP" Multiplicity="1" />
+          <End Role="INVENTORY" Type="Self.INVENTORY" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SHOP">
+            <Principal Role="SHOPS">
               <PropertyRef Name="ShopID" />
             </Principal>
             <Dependent Role="INVENTORY">
@@ -652,10 +626,10 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__MAINTENEN__RideI__5BE2A6F2">
-          <End Type="tpdatabaseModel.RIDE" Role="RIDE" Multiplicity="1" />
-          <End Type="tpdatabaseModel.MAINTENANCE" Role="MAINTENANCE" Multiplicity="*" />
+          <End Role="RIDES" Type="Self.RIDE" Multiplicity="1" />
+          <End Role="MAINTENANCE" Type="Self.MAINTENANCE" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="RIDE">
+            <Principal Role="RIDES">
               <PropertyRef Name="RideID" />
             </Principal>
             <Dependent Role="MAINTENANCE">
@@ -664,10 +638,10 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__GUEST_RID__ride___7A672E12">
-          <End Type="tpdatabaseModel.RIDE" Role="RIDE" Multiplicity="1" />
-          <End Type="tpdatabaseModel.GUEST_RIDES" Role="GUEST_RIDES" Multiplicity="*" />
+          <End Role="RIDES" Type="Self.RIDE" Multiplicity="1" />
+          <End Role="GUEST_RIDES" Type="Self.GUEST_RIDES" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="RIDE">
+            <Principal Role="RIDES">
               <PropertyRef Name="RideID" />
             </Principal>
             <Dependent Role="GUEST_RIDES">
@@ -676,10 +650,10 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__RIDES_STA__RideI__628FA481">
-          <End Type="tpdatabaseModel.RIDE" Role="RIDE" Multiplicity="1" />
-          <End Type="tpdatabaseModel.RIDES_STAFF" Role="RIDES_STAFF" Multiplicity="*" />
+          <End Role="RIDES" Type="Self.RIDE" Multiplicity="1" />
+          <End Role="RIDES_STAFF" Type="Self.RIDES_STAFF" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="RIDE">
+            <Principal Role="RIDES">
               <PropertyRef Name="RideID" />
             </Principal>
             <Dependent Role="RIDES_STAFF">
@@ -688,10 +662,10 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__SHOP_STAF__ShopI__5535A963">
-          <End Type="tpdatabaseModel.SHOP" Role="SHOP" Multiplicity="1" />
-          <End Type="tpdatabaseModel.SHOP_STAFF" Role="SHOP_STAFF" Multiplicity="*" />
+          <End Role="SHOPS" Type="Self.SHOP" Multiplicity="1" />
+          <End Role="SHOP_STAFF" Type="Self.SHOP_STAFF" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SHOP">
+            <Principal Role="SHOPS">
               <PropertyRef Name="ShopID" />
             </Principal>
             <Dependent Role="SHOP_STAFF">
@@ -700,8 +674,8 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__RIDES_STA__Emplo__619B8048">
-          <End Type="tpdatabaseModel.STAFF" Role="STAFF" Multiplicity="1" />
-          <End Type="tpdatabaseModel.RIDES_STAFF" Role="RIDES_STAFF" Multiplicity="*" />
+          <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+          <End Role="RIDES_STAFF" Type="Self.RIDES_STAFF" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="STAFF">
               <PropertyRef Name="EmployeeID" />
@@ -712,8 +686,8 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__SHOP_STAF__Emplo__5629CD9C">
-          <End Type="tpdatabaseModel.STAFF" Role="STAFF" Multiplicity="1" />
-          <End Type="tpdatabaseModel.SHOP_STAFF" Role="SHOP_STAFF" Multiplicity="*" />
+          <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+          <End Role="SHOP_STAFF" Type="Self.SHOP_STAFF" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="STAFF">
               <PropertyRef Name="EmployeeID" />
@@ -723,33 +697,9 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="GUEST_TICKET">
-          <Key>
-            <PropertyRef Name="TicketID" />
-            <PropertyRef Name="GuestID" />
-            <PropertyRef Name="DatePurchased" />
-          </Key>
-          <Property Name="TicketID" Type="Int32" Nullable="false" />
-          <Property Name="GuestID" Type="Int32" Nullable="false" />
-          <Property Name="DatePurchased" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="GUEST" Relationship="tpdatabaseModel.FK__GUEST_TIC__Guest__3D2915A8" FromRole="GUEST_TICKET" ToRole="GUEST" />
-          <NavigationProperty Name="TICKET" Relationship="tpdatabaseModel.FK__GUEST_TIC__Ticke__3C34F16F" FromRole="GUEST_TICKET" ToRole="TICKET" />
-        </EntityType>
-        <Association Name="FK__GUEST_TIC__Guest__3D2915A8">
-          <End Type="tpdatabaseModel.GUEST" Role="GUEST" Multiplicity="1" />
-          <End Type="tpdatabaseModel.GUEST_TICKET" Role="GUEST_TICKET" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GUEST">
-              <PropertyRef Name="GuestID" />
-            </Principal>
-            <Dependent Role="GUEST_TICKET">
-              <PropertyRef Name="GuestID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__GUEST_TIC__Ticke__3C34F16F">
-          <End Type="tpdatabaseModel.TICKET" Role="TICKET" Multiplicity="1" />
-          <End Type="tpdatabaseModel.GUEST_TICKET" Role="GUEST_TICKET" Multiplicity="*" />
+          <End Role="TICKET" Type="Self.TICKET" Multiplicity="1" />
+          <End Role="GUEST_TICKET" Type="Self.GUEST_TICKET" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TICKET">
               <PropertyRef Name="TicketID" />
@@ -759,21 +709,72 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SHOPLOOKUP">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="ShopType" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="STAFFLOOKUP">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeType" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-        </EntityType>
-        </Schema>
+        <EntityContainer Name="tpdatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GUESTs" EntityType="Self.GUEST" />
+          <EntitySet Name="GUEST_SHOPS" EntityType="Self.GUEST_SHOPS" />
+          <EntitySet Name="INVENTORies" EntityType="Self.INVENTORY" />
+          <EntitySet Name="MAINTENANCEs" EntityType="Self.MAINTENANCE" />
+          <EntitySet Name="RIDES" EntityType="Self.RIDE" />
+          <EntitySet Name="SHOPLOOKUPs" EntityType="Self.SHOPLOOKUP" />
+          <EntitySet Name="SHOPS" EntityType="Self.SHOP" />
+          <EntitySet Name="STAFFs" EntityType="Self.STAFF" />
+          <EntitySet Name="STAFFLOOKUPs" EntityType="Self.STAFFLOOKUP" />
+          <EntitySet Name="TICKETs" EntityType="Self.TICKET" />
+          <EntitySet Name="GUEST_RIDES" EntityType="Self.GUEST_RIDES" />
+          <EntitySet Name="GUEST_TICKET" EntityType="Self.GUEST_TICKET" />
+          <EntitySet Name="RIDES_STAFF" EntityType="Self.RIDES_STAFF" />
+          <EntitySet Name="SHOP_STAFF" EntityType="Self.SHOP_STAFF" />
+          <EntitySet Name="TICKETLOOKUPs" EntityType="Self.TICKETLOOKUP" />
+          <AssociationSet Name="FK__GUEST_RID__guest__797309D9" Association="Self.FK__GUEST_RID__guest__797309D9">
+            <End Role="GUEST" EntitySet="GUESTs" />
+            <End Role="GUEST_RIDES" EntitySet="GUEST_RIDES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GUEST_SHO__Guest__25518C17" Association="Self.FK__GUEST_SHO__Guest__25518C17">
+            <End Role="GUEST" EntitySet="GUESTs" />
+            <End Role="GUEST_SHOPS" EntitySet="GUEST_SHOPS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GUEST_TIC__Guest__3D2915A8" Association="Self.FK__GUEST_TIC__Guest__3D2915A8">
+            <End Role="GUEST" EntitySet="GUESTs" />
+            <End Role="GUEST_TICKET" EntitySet="GUEST_TICKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GUEST_SHO__Produ__2645B050" Association="Self.FK__GUEST_SHO__Produ__2645B050">
+            <End Role="INVENTORY" EntitySet="INVENTORies" />
+            <End Role="GUEST_SHOPS" EntitySet="GUEST_SHOPS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INVENTORY__ShopI__5441852A" Association="Self.FK__INVENTORY__ShopI__5441852A">
+            <End Role="SHOPS" EntitySet="SHOPS" />
+            <End Role="INVENTORY" EntitySet="INVENTORies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MAINTENEN__RideI__5BE2A6F2" Association="Self.FK__MAINTENEN__RideI__5BE2A6F2">
+            <End Role="RIDES" EntitySet="RIDES" />
+            <End Role="MAINTENANCE" EntitySet="MAINTENANCEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GUEST_RID__ride___7A672E12" Association="Self.FK__GUEST_RID__ride___7A672E12">
+            <End Role="RIDES" EntitySet="RIDES" />
+            <End Role="GUEST_RIDES" EntitySet="GUEST_RIDES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RIDES_STA__RideI__628FA481" Association="Self.FK__RIDES_STA__RideI__628FA481">
+            <End Role="RIDES" EntitySet="RIDES" />
+            <End Role="RIDES_STAFF" EntitySet="RIDES_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SHOP_STAF__ShopI__5535A963" Association="Self.FK__SHOP_STAF__ShopI__5535A963">
+            <End Role="SHOPS" EntitySet="SHOPS" />
+            <End Role="SHOP_STAFF" EntitySet="SHOP_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RIDES_STA__Emplo__619B8048" Association="Self.FK__RIDES_STA__Emplo__619B8048">
+            <End Role="STAFF" EntitySet="STAFFs" />
+            <End Role="RIDES_STAFF" EntitySet="RIDES_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SHOP_STAF__Emplo__5629CD9C" Association="Self.FK__SHOP_STAF__Emplo__5629CD9C">
+            <End Role="STAFF" EntitySet="STAFFs" />
+            <End Role="SHOP_STAFF" EntitySet="SHOP_STAFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GUEST_TIC__Ticke__3C34F16F" Association="Self.FK__GUEST_TIC__Ticke__3C34F16F">
+            <End Role="TICKET" EntitySet="TICKETs" />
+            <End Role="GUEST_TICKET" EntitySet="GUEST_TICKET" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -782,145 +783,145 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <EntitySetMapping Name="GUESTs">
             <EntityTypeMapping TypeName="tpdatabaseModel.GUEST">
               <MappingFragment StoreEntitySet="GUEST">
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GUEST_SHOPS">
             <EntityTypeMapping TypeName="tpdatabaseModel.GUEST_SHOPS">
               <MappingFragment StoreEntitySet="GUEST_SHOPS">
-                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="INVENTORies">
             <EntityTypeMapping TypeName="tpdatabaseModel.INVENTORY">
               <MappingFragment StoreEntitySet="INVENTORY">
-                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
-                <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
-                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MAINTENANCEs">
             <EntityTypeMapping TypeName="tpdatabaseModel.MAINTENANCE">
               <MappingFragment StoreEntitySet="MAINTENANCE">
-                <ScalarProperty Name="Summary" ColumnName="Summary" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="RideID" ColumnName="RideID" />
                 <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="RideID" ColumnName="RideID" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RIDES">
             <EntityTypeMapping TypeName="tpdatabaseModel.RIDE">
               <MappingFragment StoreEntitySet="RIDES">
-                <ScalarProperty Name="IsOpen" ColumnName="IsOpen" />
-                <ScalarProperty Name="RainOutCount" ColumnName="RainOutCount" />
-                <ScalarProperty Name="IsOutside" ColumnName="IsOutside" />
-                <ScalarProperty Name="RidePrice" ColumnName="RidePrice" />
+                <ScalarProperty Name="RideID" ColumnName="RideID" />
                 <ScalarProperty Name="RideName" ColumnName="RideName" />
-                <ScalarProperty Name="RideID" ColumnName="RideID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SHOPS">
-            <EntityTypeMapping TypeName="tpdatabaseModel.SHOP">
-              <MappingFragment StoreEntitySet="SHOPS">
-                <ScalarProperty Name="ShopType" ColumnName="ShopType" />
-                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
-                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="STAFFs">
-            <EntityTypeMapping TypeName="tpdatabaseModel.STAFF">
-              <MappingFragment StoreEntitySet="STAFF">
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TICKETs">
-            <EntityTypeMapping TypeName="tpdatabaseModel.TICKET">
-              <MappingFragment StoreEntitySet="TICKET">
-                <ScalarProperty Name="TicketType" ColumnName="TicketType" />
-                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GUEST_RIDES">
-            <EntityTypeMapping TypeName="tpdatabaseModel.GUEST_RIDES">
-              <MappingFragment StoreEntitySet="GUEST_RIDES">
-                <ScalarProperty Name="RideID" ColumnName="RideID" />
-                <ScalarProperty Name="GuestID" ColumnName="GuestID" />
-                <ScalarProperty Name="RideDate" ColumnName="RideDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RIDES_STAFF">
-            <EntityTypeMapping TypeName="tpdatabaseModel.RIDES_STAFF">
-              <MappingFragment StoreEntitySet="RIDES_STAFF">
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="RideID" ColumnName="RideID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SHOP_STAFF">
-            <EntityTypeMapping TypeName="tpdatabaseModel.SHOP_STAFF">
-              <MappingFragment StoreEntitySet="SHOP_STAFF">
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TICKETLOOKUPs">
-            <EntityTypeMapping TypeName="tpdatabaseModel.TICKETLOOKUP">
-              <MappingFragment StoreEntitySet="TICKETLOOKUP">
-                <ScalarProperty Name="TicketPrice" ColumnName="TicketPrice" />
-                <ScalarProperty Name="TicketType" ColumnName="TicketType" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GUEST_TICKET">
-            <EntityTypeMapping TypeName="tpdatabaseModel.GUEST_TICKET">
-              <MappingFragment StoreEntitySet="GUEST_TICKET">
-                <ScalarProperty Name="DatePurchased" ColumnName="DatePurchased" />
-                <ScalarProperty Name="GuestID" ColumnName="GuestID" />
-                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+                <ScalarProperty Name="RidePrice" ColumnName="RidePrice" />
+                <ScalarProperty Name="IsOutside" ColumnName="IsOutside" />
+                <ScalarProperty Name="RainOutCount" ColumnName="RainOutCount" />
+                <ScalarProperty Name="IsOpen" ColumnName="IsOpen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SHOPLOOKUPs">
             <EntityTypeMapping TypeName="tpdatabaseModel.SHOPLOOKUP">
               <MappingFragment StoreEntitySet="SHOPLOOKUP">
-                <ScalarProperty Name="ShopType" ColumnName="ShopType" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ShopType" ColumnName="ShopType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHOPS">
+            <EntityTypeMapping TypeName="tpdatabaseModel.SHOP">
+              <MappingFragment StoreEntitySet="SHOPS">
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="ShopType" ColumnName="ShopType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STAFFs">
+            <EntityTypeMapping TypeName="tpdatabaseModel.STAFF">
+              <MappingFragment StoreEntitySet="STAFF">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="STAFFLOOKUPs">
             <EntityTypeMapping TypeName="tpdatabaseModel.STAFFLOOKUP">
               <MappingFragment StoreEntitySet="STAFFLOOKUP">
-                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TICKETs">
+            <EntityTypeMapping TypeName="tpdatabaseModel.TICKET">
+              <MappingFragment StoreEntitySet="TICKET">
+                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+                <ScalarProperty Name="TicketType" ColumnName="TicketType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GUEST_RIDES">
+            <EntityTypeMapping TypeName="tpdatabaseModel.GUEST_RIDES">
+              <MappingFragment StoreEntitySet="GUEST_RIDES">
+                <ScalarProperty Name="RideDate" ColumnName="RideDate" />
+                <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+                <ScalarProperty Name="RideID" ColumnName="RideID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GUEST_TICKET">
+            <EntityTypeMapping TypeName="tpdatabaseModel.GUEST_TICKET">
+              <MappingFragment StoreEntitySet="GUEST_TICKET">
+                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+                <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+                <ScalarProperty Name="DatePurchased" ColumnName="DatePurchased" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RIDES_STAFF">
+            <EntityTypeMapping TypeName="tpdatabaseModel.RIDES_STAFF">
+              <MappingFragment StoreEntitySet="RIDES_STAFF">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="RideID" ColumnName="RideID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHOP_STAFF">
+            <EntityTypeMapping TypeName="tpdatabaseModel.SHOP_STAFF">
+              <MappingFragment StoreEntitySet="SHOP_STAFF">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TICKETLOOKUPs">
+            <EntityTypeMapping TypeName="tpdatabaseModel.TICKETLOOKUP">
+              <MappingFragment StoreEntitySet="TICKETLOOKUP">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TicketType" ColumnName="TicketType" />
+                <ScalarProperty Name="TicketPrice" ColumnName="TicketPrice" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

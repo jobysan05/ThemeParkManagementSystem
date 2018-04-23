@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\mpotter\Documents\Visual Studio 2017\Projects\TempTPMS\TempTPMS\Models\ThemeParkModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Matt\Source\Repos\new_TPMS\ThemeParkManagementSystem\ThemeParkManagementSystem\Models\ThemeParkModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
