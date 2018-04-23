@@ -215,6 +215,7 @@
     <Compile Include="Controllers\StaffLookupController.cs" />
     <Compile Include="Controllers\TicketLookupController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -437,6 +438,7 @@
     <Content Include="Views\TicketLookup\Details.cshtml" />
     <Content Include="Views\TicketLookup\Edit.cshtml" />
     <Content Include="Views\TicketLookup\Index.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
