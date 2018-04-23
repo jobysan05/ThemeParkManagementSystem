@@ -28,7 +28,6 @@ To do
     * https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/introduction/adding-a-view
 7. additional functionality
     * bad weather - if isOutside then increment RainOutCount
-    * when updating item/ride price - create new item/ride ID
     * ~when Guest_Shops is created, subtract quantity from productstock of appropriate item~
     * ~when maintenance caseID is created, set appropriate ride isOpen to false~
     * when endtime is initialized, set appropriate ride isOpen to true
