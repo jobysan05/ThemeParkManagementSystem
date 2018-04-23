@@ -1,4 +1,4 @@
-﻿@model TempTPMS.Models.GUEST_RIDES
+﻿@model ThemeParkManagementSystem.Models.GUEST_RIDES
 
 @{
     ViewBag.Title = "Edit";
@@ -15,7 +15,7 @@
         <h4>GUEST_RIDES</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.DateRode)
+        @Html.HiddenFor(model => model.RideDate)
 
         @Html.HiddenFor(model => model.GuestID)
 

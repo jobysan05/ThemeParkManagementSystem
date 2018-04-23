@@ -40,7 +40,7 @@ namespace ThemeParkManagementSystem.Controllers
         public ActionResult Create()
         {
             ViewBag.RideID = new SelectList(db.RIDES, "RideID", "RideName");
-            ViewBag.EmployeeID = new SelectList(db.STAFFs, "EmployeeID", "EmployeeType");
+            ViewBag.EmployeeID = new SelectList(db.STAFFs, "EmployeeID", "FirstName");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace ThemeParkManagementSystem.Controllers
             }
 
             ViewBag.RideID = new SelectList(db.RIDES, "RideID", "RideName", rIDES_STAFF.RideID);
-            ViewBag.EmployeeID = new SelectList(db.STAFFs, "EmployeeID", "EmployeeType", rIDES_STAFF.EmployeeID);
+            ViewBag.EmployeeID = new SelectList(db.STAFFs, "EmployeeID", "FirstName", rIDES_STAFF.EmployeeID);
             return View(rIDES_STAFF);
         }
 
@@ -76,7 +76,7 @@ namespace ThemeParkManagementSystem.Controllers
                 return HttpNotFound();
             }
             ViewBag.RideID = new SelectList(db.RIDES, "RideID", "RideName", rIDES_STAFF.RideID);
-            ViewBag.EmployeeID = new SelectList(db.STAFFs, "EmployeeID", "EmployeeType", rIDES_STAFF.EmployeeID);
+            ViewBag.EmployeeID = new SelectList(db.STAFFs, "EmployeeID", "FirstName", rIDES_STAFF.EmployeeID);
             return View(rIDES_STAFF);
         }
 
@@ -94,7 +94,7 @@ namespace ThemeParkManagementSystem.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.RideID = new SelectList(db.RIDES, "RideID", "RideName", rIDES_STAFF.RideID);
-            ViewBag.EmployeeID = new SelectList(db.STAFFs, "EmployeeID", "EmployeeType", rIDES_STAFF.EmployeeID);
+            ViewBag.EmployeeID = new SelectList(db.STAFFs, "EmployeeID", "FirstName", rIDES_STAFF.EmployeeID);
             return View(rIDES_STAFF);
         }
 

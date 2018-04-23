@@ -46,7 +46,7 @@ namespace ThemeParkManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GuestID,FirstName,LastName,DateOfBirth,TicketID")] GUEST gUEST)
+        public ActionResult Create([Bind(Include = "GuestID,FirstName,LastName,DateOfBirth")] GUEST gUEST)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace ThemeParkManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GuestID,FirstName,LastName,DateOfBirth,TicketID")] GUEST gUEST)
+        public ActionResult Edit([Bind(Include = "GuestID,FirstName,LastName,DateOfBirth")] GUEST gUEST)
         {
             if (ModelState.IsValid)
             {

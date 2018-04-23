@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TempTPMS.Models.TICKET>
+﻿@model IEnumerable<ThemeParkManagementSystem.Models.TICKET>
 
 @{
     ViewBag.Title = "Index";
@@ -14,12 +14,6 @@
         <th>
             @Html.DisplayNameFor(model => model.TicketType)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TicketPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.datePurchased)
-        </th>
         <th></th>
     </tr>
 
@@ -27,12 +21,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.TicketType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TicketPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.datePurchased)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.TicketID }) |

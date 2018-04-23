@@ -49,7 +49,7 @@ namespace ThemeParkManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DateRode,GuestID,RideID")] GUEST_RIDES gUEST_RIDES)
+        public ActionResult Create([Bind(Include = "RideDate,GuestID,RideID")] GUEST_RIDES gUEST_RIDES)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ThemeParkManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DateRode,GuestID,RideID")] GUEST_RIDES gUEST_RIDES)
+        public ActionResult Edit([Bind(Include = "RideDate,GuestID,RideID")] GUEST_RIDES gUEST_RIDES)
         {
             if (ModelState.IsValid)
             {

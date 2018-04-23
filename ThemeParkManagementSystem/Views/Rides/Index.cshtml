@@ -1,58 +1,35 @@
-@using PagedList;
-@using PagedList.Mvc;
-    
-@model IPagedList<ThemeParkManagementSystem.Models.RIDE>
+﻿@model IEnumerable<ThemeParkManagementSystem.Models.RIDE>
 
 @{
     ViewBag.Title = "Index";
 }
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
-<div style="font-family:Arial">
+
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<p>
-    @using (Html.BeginForm("Index", "Rides", FormMethod.Get))
-    {
-        <text> Search By: </text> @Html.RadioButton("searchBy", "Name") <text> Ride Name </text>
-        //@Html.RadioButton("searchBy", "RidePrice") <text> Ride Price </text> <br />
-        @Html.TextBox("search")<input type="submit" value="Search" />
-        /*<text>RideName </text>@Html.DropDownList("ridename", new SelectList(ViewBag.RideName))
-        <text>RidePrice </text>@Html.DropDownList("rideprice", new SelectList(ViewBag.RidePrice))*/
- 
-    }
-</p>
 <table class="table">
     <tr>
         <th>
-             @Html.ActionLink("RideName", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
+            @Html.DisplayNameFor(model => model.RideName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().RidePrice)
+            @Html.DisplayNameFor(model => model.RidePrice)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().IsOutside)
+            @Html.DisplayNameFor(model => model.IsOutside)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().RainOutCount)
+            @Html.DisplayNameFor(model => model.RainOutCount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().IsOpen)
+            @Html.DisplayNameFor(model => model.IsOpen)
         </th>
         <th></th>
     </tr>
-@if (Model.Count() == 0)
-{
-    <tr>
-        <td colspan="5"> There are no searches for your result</td>
-    </tr>
-}
-else
-{
-    foreach (var item in Model)
-    {
+
+@foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.RideName)
@@ -75,10 +52,6 @@ else
             @Html.ActionLink("Delete", "Delete", new { id=item.RideID })
         </td>
     </tr>
-    }
 }
-</table>
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchBy = Request.QueryString["searchBy"], search = Request.QueryString["search"], sortBy= Request["sortBy"] }),
-new PagedListRenderOptions(){Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, DisplayItemSliceAndTotal = true})
 
-</div>
+</table>

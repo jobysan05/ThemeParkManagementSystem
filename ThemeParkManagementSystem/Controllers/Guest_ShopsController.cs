@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ThemeParkManagementSystem.Models;
 
-namespace ThemeParkManagementSystem.Views
+namespace ThemeParkManagementSystem.Controllers
 {
     public class Guest_ShopsController : Controller
     {
