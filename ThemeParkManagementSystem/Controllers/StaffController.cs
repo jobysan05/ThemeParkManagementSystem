@@ -29,10 +29,10 @@ namespace ThemeParkManagementSystem.Controllers
             }
 
             var vModel = new StaffIndexData();
-            if (!String.IsNullOrEmpty(search))
-            {
+            if(!String.IsNullOrEmpty(search))
+               {
                 vModel.Staff = db.STAFFs
-                    .Where(c => c.FirstName.Contains(search));
+                .Where(c => c.LastName.Contains(search));
                 return View(vModel);
             }
             else

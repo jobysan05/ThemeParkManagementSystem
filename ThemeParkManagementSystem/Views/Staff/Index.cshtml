@@ -12,7 +12,7 @@
 <p>
     @using (Html.BeginForm("Index", "Staff", FormMethod.Get))
     {
-        <text> Search By: </text> @Html.RadioButton("searchBy", "Name") <text> First Name </text>
+        <text> Search By: </text> @Html.RadioButton("searchBy", "Name") <text> Last Name </text>
         @Html.TextBox("search")<input type="submit" value="Search" />
 
     }
@@ -85,7 +85,7 @@
     </table>
 }
 <p>
-    @Html.ActionLink("Access Staff Types Page", "Index", "StaffLookup")
+    @Html.ActionLink("Access Employee Types Page", "Index", "StaffLookup")
 </p>
 <p>
     @Html.ActionLink("Access Rides Staff Page", "Index", "Rides_Staff")
