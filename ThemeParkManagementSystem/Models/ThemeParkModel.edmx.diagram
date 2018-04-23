@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0051e51f27044e8d84f9c9a0855180ae" Name="Diagram1">
-        <EntityTypeShape EntityType="tpdatabaseModel.GUEST" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.GUEST_SHOPS" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.INVENTORY" Width="1.5" PointX="0.75" PointY="17.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.MAINTENANCE" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.RIDE" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.SHOPLOOKUP" Width="1.5" PointX="5.75" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.SHOP" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.STAFF" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.STAFFLOOKUP" Width="1.5" PointX="5.75" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.TICKET" Width="1.5" PointX="3.75" PointY="16.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.GUEST_RIDES" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.GUEST_TICKET" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.RIDES_STAFF" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.SHOP_STAFF" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="tpdatabaseModel.TICKETLOOKUP" Width="1.5" PointX="7.75" PointY="6.5" IsExpanded="true" />
+      <Diagram DiagramId="0051e51f27044e8d84f9c9a0855180ae" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="tpdatabaseModel.GUEST" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.GUEST_SHOPS" Width="1.5" PointX="2.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.INVENTORY" Width="1.5" PointX="6.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.MAINTENANCE" Width="1.5" PointX="5.625" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.RIDE" Width="1.5" PointX="2.625" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.SHOPLOOKUP" Width="1.5" PointX="8.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.SHOP" Width="1.5" PointX="8.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.STAFF" Width="1.5" PointX="10.625" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.STAFFLOOKUP" Width="1.5" PointX="12" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.TICKET" Width="1.5" PointX="4.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.GUEST_RIDES" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.GUEST_TICKET" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.RIDES_STAFF" Width="1.5" PointX="8.625" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.SHOP_STAFF" Width="1.5" PointX="10.875" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="tpdatabaseModel.TICKETLOOKUP" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="tpdatabaseModel.FK__GUEST_RID__guest__797309D9" ManuallyRouted="false" />
         <AssociationConnector Association="tpdatabaseModel.FK__GUEST_SHO__Guest__25518C17" ManuallyRouted="false" />
         <AssociationConnector Association="tpdatabaseModel.FK__GUEST_TIC__Guest__3D2915A8" ManuallyRouted="false" />

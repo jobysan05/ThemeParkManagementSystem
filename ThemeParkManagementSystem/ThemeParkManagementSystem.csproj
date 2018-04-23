@@ -297,6 +297,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Schema.PNG" />
     <Content Include="Models\ThemeParkModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ThemeParkModel.edmx</DependentUpon>
