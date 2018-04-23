@@ -11,21 +11,23 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ShopName)
+            Shop ID
         </dt>
-
+        <dd>
+            @Html.DisplayFor(model => model.ShopID)
+        </dd>
+        <dt>
+            Shop Name
+        </dt>
         <dd>
             @Html.DisplayFor(model => model.ShopName)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.ShopType)
+            Shop Type
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ShopType)
         </dd>
-
     </dl>
 </div>
 <p>
