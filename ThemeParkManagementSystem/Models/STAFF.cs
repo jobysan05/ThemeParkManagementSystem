@@ -22,7 +22,7 @@ namespace ThemeParkManagementSystem.Models
         }
     
         public int EmployeeID { get; set; }
-        public string EmployeeType { get; set; }
+        public int EmployeeType { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
     

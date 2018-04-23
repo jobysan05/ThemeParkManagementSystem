@@ -36,5 +36,9 @@ namespace ThemeParkManagementSystem.Models
         public virtual DbSet<GUEST_RIDES> GUEST_RIDES { get; set; }
         public virtual DbSet<RIDES_STAFF> RIDES_STAFF { get; set; }
         public virtual DbSet<SHOP_STAFF> SHOP_STAFF { get; set; }
+        public virtual DbSet<TICKETLOOKUP> TICKETLOOKUPs { get; set; }
+        public virtual DbSet<GUEST_TICKET> GUEST_TICKET { get; set; }
+        public virtual DbSet<SHOPLOOKUP> SHOPLOOKUPs { get; set; }
+        public virtual DbSet<STAFFLOOKUP> STAFFLOOKUPs { get; set; }
     }
 }

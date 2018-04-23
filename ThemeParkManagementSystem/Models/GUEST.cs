@@ -19,18 +19,19 @@ namespace ThemeParkManagementSystem.Models
         {
             this.GUEST_RIDES = new HashSet<GUEST_RIDES>();
             this.GUEST_SHOPS = new HashSet<GUEST_SHOPS>();
+            this.GUEST_TICKET = new HashSet<GUEST_TICKET>();
         }
     
         public int GuestID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public System.DateTime DateOfBirth { get; set; }
-        public int TicketID { get; set; }
     
-        public virtual TICKET TICKET { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GUEST_RIDES> GUEST_RIDES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GUEST_SHOPS> GUEST_SHOPS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GUEST_TICKET> GUEST_TICKET { get; set; }
     }
 }

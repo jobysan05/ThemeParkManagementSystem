@@ -13,7 +13,6 @@
           <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="DateOfBirth" Type="date" Nullable="false" />
-          <Property Name="TicketID" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'tpdatabase.dbo.GUEST_RIDES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -36,6 +35,18 @@ warning 6002: The table/view 'tpdatabase.dbo.GUEST_RIDES' does not have a primar
           <Property Name="TransactionID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'tpdatabase.dbo.GUEST_TICKET' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GUEST_TICKET">
+          <Key>
+            <PropertyRef Name="TicketID" />
+            <PropertyRef Name="GuestID" />
+            <PropertyRef Name="DatePurchased" />
+          </Key>
+          <Property Name="TicketID" Type="int" Nullable="false" />
+          <Property Name="GuestID" Type="int" Nullable="false" />
+          <Property Name="DatePurchased" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="INVENTORY">
           <Key>
@@ -94,44 +105,56 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" />
         </EntityType>
+        <EntityType Name="SHOPLOOKUP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ShopType" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
         <EntityType Name="SHOPS">
           <Key>
             <PropertyRef Name="ShopID" />
           </Key>
           <Property Name="ShopID" Type="int" Nullable="false" />
           <Property Name="ShopName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="ShopType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ShopType" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="STAFF">
           <Key>
             <PropertyRef Name="EmployeeID" />
           </Key>
           <Property Name="EmployeeID" Type="int" Nullable="false" />
-          <Property Name="EmployeeType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmployeeType" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STAFFLOOKUP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="EmployeeType" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="TICKET">
           <Key>
             <PropertyRef Name="TicketID" />
           </Key>
           <Property Name="TicketID" Type="int" Nullable="false" />
-          <Property Name="TicketType" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="TicketPrice" Type="decimal" Precision="5" Scale="2" Nullable="false" />
-          <Property Name="DatePurchased" Type="date" Nullable="false" />
+          <Property Name="TicketType" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__GUEST__TicketID__2739D489">
-          <End Role="TICKET" Type="Self.TICKET" Multiplicity="1" />
-          <End Role="GUEST" Type="Self.GUEST" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TICKET">
-              <PropertyRef Name="TicketID" />
-            </Principal>
-            <Dependent Role="GUEST">
-              <PropertyRef Name="TicketID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TICKETLOOKUP">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="TicketType" />
+            <PropertyRef Name="TicketPrice" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="TicketType" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="TicketPrice" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
         <Association Name="FK__GUEST_RID__guest__797309D9">
           <End Role="GUEST" Type="Self.GUEST" Multiplicity="1" />
           <End Role="GUEST_RIDES" Type="Self.GUEST_RIDES" Multiplicity="*" />
@@ -177,6 +200,30 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
             </Principal>
             <Dependent Role="GUEST_SHOPS">
               <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GUEST_TIC__Guest__3D2915A8">
+          <End Role="GUEST" Type="Self.GUEST" Multiplicity="1" />
+          <End Role="GUEST_TICKET" Type="Self.GUEST_TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GUEST">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="GUEST_TICKET">
+              <PropertyRef Name="GuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GUEST_TIC__Ticke__3C34F16F">
+          <End Role="TICKET" Type="Self.TICKET" Multiplicity="1" />
+          <End Role="GUEST_TICKET" Type="Self.GUEST_TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TICKET">
+              <PropertyRef Name="TicketID" />
+            </Principal>
+            <Dependent Role="GUEST_TICKET">
+              <PropertyRef Name="TicketID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -258,8 +305,10 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
           <EntitySet Name="INVENTORY" EntityType="Self.INVENTORY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MAINTENANCE" EntityType="Self.MAINTENANCE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RIDES" EntityType="Self.RIDES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHOPLOOKUP" EntityType="Self.SHOPLOOKUP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SHOPS" EntityType="Self.SHOPS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STAFF" EntityType="Self.STAFF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STAFFLOOKUP" EntityType="Self.STAFFLOOKUP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TICKET" EntityType="Self.TICKET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GUEST_RIDES" EntityType="Self.GUEST_RIDES" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -267,6 +316,13 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
     [GUEST_RIDES].[GuestID] AS [GuestID], 
     [GUEST_RIDES].[RideID] AS [RideID]
     FROM [dbo].[GUEST_RIDES] AS [GUEST_RIDES]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GUEST_TICKET" EntityType="Self.GUEST_TICKET" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GUEST_TICKET].[TicketID] AS [TicketID], 
+    [GUEST_TICKET].[GuestID] AS [GuestID], 
+    [GUEST_TICKET].[DatePurchased] AS [DatePurchased]
+    FROM [dbo].[GUEST_TICKET] AS [GUEST_TICKET]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="RIDES_STAFF" EntityType="Self.RIDES_STAFF" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -284,10 +340,13 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
     [SHOP_STAFF].[EndDate] AS [EndDate]
     FROM [dbo].[SHOP_STAFF] AS [SHOP_STAFF]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__GUEST__TicketID__2739D489" Association="Self.FK__GUEST__TicketID__2739D489">
-            <End Role="TICKET" EntitySet="TICKET" />
-            <End Role="GUEST" EntitySet="GUEST" />
-          </AssociationSet>
+          <EntitySet Name="TICKETLOOKUP" EntityType="Self.TICKETLOOKUP" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TICKETLOOKUP].[ID] AS [ID], 
+    [TICKETLOOKUP].[TicketType] AS [TicketType], 
+    [TICKETLOOKUP].[TicketPrice] AS [TicketPrice]
+    FROM [dbo].[TICKETLOOKUP] AS [TICKETLOOKUP]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__GUEST_RID__guest__797309D9" Association="Self.FK__GUEST_RID__guest__797309D9">
             <End Role="GUEST" EntitySet="GUEST" />
             <End Role="GUEST_RIDES" EntitySet="GUEST_RIDES" />
@@ -303,6 +362,14 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
           <AssociationSet Name="FK__GUEST_SHO__Produ__2645B050" Association="Self.FK__GUEST_SHO__Produ__2645B050">
             <End Role="INVENTORY" EntitySet="INVENTORY" />
             <End Role="GUEST_SHOPS" EntitySet="GUEST_SHOPS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GUEST_TIC__Guest__3D2915A8" Association="Self.FK__GUEST_TIC__Guest__3D2915A8">
+            <End Role="GUEST" EntitySet="GUEST" />
+            <End Role="GUEST_TICKET" EntitySet="GUEST_TICKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GUEST_TIC__Ticke__3C34F16F" Association="Self.FK__GUEST_TIC__Ticke__3C34F16F">
+            <End Role="TICKET" EntitySet="TICKET" />
+            <End Role="GUEST_TICKET" EntitySet="GUEST_TICKET" />
           </AssociationSet>
           <AssociationSet Name="FK__INVENTORY__ShopI__5441852A" Association="Self.FK__INVENTORY__ShopI__5441852A">
             <End Role="SHOPS" EntitySet="SHOPS" />
@@ -345,10 +412,7 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
           <EntitySet Name="GUEST_RIDES" EntityType="tpdatabaseModel.GUEST_RIDES" />
           <EntitySet Name="RIDES_STAFF" EntityType="tpdatabaseModel.RIDES_STAFF" />
           <EntitySet Name="SHOP_STAFF" EntityType="tpdatabaseModel.SHOP_STAFF" />
-          <AssociationSet Name="FK__GUEST__TicketID__2739D489" Association="tpdatabaseModel.FK__GUEST__TicketID__2739D489">
-            <End Role="TICKET" EntitySet="TICKETs" />
-            <End Role="GUEST" EntitySet="GUESTs" />
-          </AssociationSet>
+          <EntitySet Name="TICKETLOOKUPs" EntityType="tpdatabaseModel.TICKETLOOKUP" />
           <AssociationSet Name="FK__GUEST_RID__guest__797309D9" Association="tpdatabaseModel.FK__GUEST_RID__guest__797309D9">
             <End Role="GUEST" EntitySet="GUESTs" />
             <End Role="GUEST_RIDES" EntitySet="GUEST_RIDES" />
@@ -389,6 +453,17 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
             <End Role="STAFF" EntitySet="STAFFs" />
             <End Role="SHOP_STAFF" EntitySet="SHOP_STAFF" />
           </AssociationSet>
+          <EntitySet Name="GUEST_TICKET" EntityType="tpdatabaseModel.GUEST_TICKET" />
+          <AssociationSet Name="FK__GUEST_TIC__Guest__3D2915A8" Association="tpdatabaseModel.FK__GUEST_TIC__Guest__3D2915A8">
+            <End Role="GUEST" EntitySet="GUESTs" />
+            <End Role="GUEST_TICKET" EntitySet="GUEST_TICKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GUEST_TIC__Ticke__3C34F16F" Association="tpdatabaseModel.FK__GUEST_TIC__Ticke__3C34F16F">
+            <End Role="TICKET" EntitySet="TICKETs" />
+            <End Role="GUEST_TICKET" EntitySet="GUEST_TICKET" />
+          </AssociationSet>
+          <EntitySet Name="SHOPLOOKUPs" EntityType="tpdatabaseModel.SHOPLOOKUP" />
+          <EntitySet Name="STAFFLOOKUPs" EntityType="tpdatabaseModel.STAFFLOOKUP" />
         </EntityContainer>
         <EntityType Name="GUEST">
           <Key>
@@ -398,10 +473,9 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TicketID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TICKET" Relationship="tpdatabaseModel.FK__GUEST__TicketID__2739D489" FromRole="GUEST" ToRole="TICKET" />
           <NavigationProperty Name="GUEST_RIDES" Relationship="tpdatabaseModel.FK__GUEST_RID__guest__797309D9" FromRole="GUEST" ToRole="GUEST_RIDES" />
           <NavigationProperty Name="GUEST_SHOPS" Relationship="tpdatabaseModel.FK__GUEST_SHO__Guest__25518C17" FromRole="GUEST" ToRole="GUEST_SHOPS" />
+          <NavigationProperty Name="GUEST_TICKET" Relationship="tpdatabaseModel.FK__GUEST_TIC__Guest__3D2915A8" FromRole="GUEST" ToRole="GUEST_TICKET" />
         </EntityType>
         <EntityType Name="GUEST_SHOPS">
           <Key>
@@ -458,7 +532,7 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
           </Key>
           <Property Name="ShopID" Type="Int32" Nullable="false" />
           <Property Name="ShopName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ShopType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ShopType" Type="Int32" Nullable="false" />
           <NavigationProperty Name="INVENTORies" Relationship="tpdatabaseModel.FK__INVENTORY__ShopI__5441852A" FromRole="SHOP" ToRole="INVENTORY" />
           <NavigationProperty Name="SHOP_STAFF" Relationship="tpdatabaseModel.FK__SHOP_STAF__ShopI__5535A963" FromRole="SHOP" ToRole="SHOP_STAFF" />
         </EntityType>
@@ -467,7 +541,7 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
             <PropertyRef Name="EmployeeID" />
           </Key>
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeType" Type="Int32" Nullable="false" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="RIDES_STAFF" Relationship="tpdatabaseModel.FK__RIDES_STA__Emplo__619B8048" FromRole="STAFF" ToRole="RIDES_STAFF" />
@@ -478,10 +552,8 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
             <PropertyRef Name="TicketID" />
           </Key>
           <Property Name="TicketID" Type="Int32" Nullable="false" />
-          <Property Name="TicketType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="TicketPrice" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
-          <Property Name="DatePurchased" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="GUESTs" Relationship="tpdatabaseModel.FK__GUEST__TicketID__2739D489" FromRole="TICKET" ToRole="GUEST" />
+          <Property Name="TicketType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GUEST_TICKET" Relationship="tpdatabaseModel.FK__GUEST_TIC__Ticke__3C34F16F" FromRole="TICKET" ToRole="GUEST_TICKET" />
         </EntityType>
         <EntityType Name="GUEST_RIDES">
           <Key>
@@ -521,18 +593,16 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
           <NavigationProperty Name="SHOP" Relationship="tpdatabaseModel.FK__SHOP_STAF__ShopI__5535A963" FromRole="SHOP_STAFF" ToRole="SHOP" />
           <NavigationProperty Name="STAFF" Relationship="tpdatabaseModel.FK__SHOP_STAF__Emplo__5629CD9C" FromRole="SHOP_STAFF" ToRole="STAFF" />
         </EntityType>
-        <Association Name="FK__GUEST__TicketID__2739D489">
-          <End Type="tpdatabaseModel.TICKET" Role="TICKET" Multiplicity="1" />
-          <End Type="tpdatabaseModel.GUEST" Role="GUEST" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TICKET">
-              <PropertyRef Name="TicketID" />
-            </Principal>
-            <Dependent Role="GUEST">
-              <PropertyRef Name="TicketID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="TICKETLOOKUP">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="TicketType" />
+            <PropertyRef Name="TicketPrice" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TicketType" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="TicketPrice" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+        </EntityType>
         <Association Name="FK__GUEST_RID__guest__797309D9">
           <End Type="tpdatabaseModel.GUEST" Role="GUEST" Multiplicity="1" />
           <End Type="tpdatabaseModel.GUEST_RIDES" Role="GUEST_RIDES" Multiplicity="*" />
@@ -653,6 +723,56 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="GUEST_TICKET">
+          <Key>
+            <PropertyRef Name="TicketID" />
+            <PropertyRef Name="GuestID" />
+            <PropertyRef Name="DatePurchased" />
+          </Key>
+          <Property Name="TicketID" Type="Int32" Nullable="false" />
+          <Property Name="GuestID" Type="Int32" Nullable="false" />
+          <Property Name="DatePurchased" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="GUEST" Relationship="tpdatabaseModel.FK__GUEST_TIC__Guest__3D2915A8" FromRole="GUEST_TICKET" ToRole="GUEST" />
+          <NavigationProperty Name="TICKET" Relationship="tpdatabaseModel.FK__GUEST_TIC__Ticke__3C34F16F" FromRole="GUEST_TICKET" ToRole="TICKET" />
+        </EntityType>
+        <Association Name="FK__GUEST_TIC__Guest__3D2915A8">
+          <End Type="tpdatabaseModel.GUEST" Role="GUEST" Multiplicity="1" />
+          <End Type="tpdatabaseModel.GUEST_TICKET" Role="GUEST_TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GUEST">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="GUEST_TICKET">
+              <PropertyRef Name="GuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GUEST_TIC__Ticke__3C34F16F">
+          <End Type="tpdatabaseModel.TICKET" Role="TICKET" Multiplicity="1" />
+          <End Type="tpdatabaseModel.GUEST_TICKET" Role="GUEST_TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TICKET">
+              <PropertyRef Name="TicketID" />
+            </Principal>
+            <Dependent Role="GUEST_TICKET">
+              <PropertyRef Name="TicketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SHOPLOOKUP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ShopType" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="STAFFLOOKUP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeType" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -662,7 +782,6 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
           <EntitySetMapping Name="GUESTs">
             <EntityTypeMapping TypeName="tpdatabaseModel.GUEST">
               <MappingFragment StoreEntitySet="GUEST">
-                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -737,8 +856,6 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
           <EntitySetMapping Name="TICKETs">
             <EntityTypeMapping TypeName="tpdatabaseModel.TICKET">
               <MappingFragment StoreEntitySet="TICKET">
-                <ScalarProperty Name="DatePurchased" ColumnName="DatePurchased" />
-                <ScalarProperty Name="TicketPrice" ColumnName="TicketPrice" />
                 <ScalarProperty Name="TicketType" ColumnName="TicketType" />
                 <ScalarProperty Name="TicketID" ColumnName="TicketID" />
               </MappingFragment>
@@ -770,6 +887,40 @@ warning 6002: The table/view 'tpdatabase.dbo.SHOP_STAFF' does not have a primary
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="ShopID" ColumnName="ShopID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TICKETLOOKUPs">
+            <EntityTypeMapping TypeName="tpdatabaseModel.TICKETLOOKUP">
+              <MappingFragment StoreEntitySet="TICKETLOOKUP">
+                <ScalarProperty Name="TicketPrice" ColumnName="TicketPrice" />
+                <ScalarProperty Name="TicketType" ColumnName="TicketType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GUEST_TICKET">
+            <EntityTypeMapping TypeName="tpdatabaseModel.GUEST_TICKET">
+              <MappingFragment StoreEntitySet="GUEST_TICKET">
+                <ScalarProperty Name="DatePurchased" ColumnName="DatePurchased" />
+                <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHOPLOOKUPs">
+            <EntityTypeMapping TypeName="tpdatabaseModel.SHOPLOOKUP">
+              <MappingFragment StoreEntitySet="SHOPLOOKUP">
+                <ScalarProperty Name="ShopType" ColumnName="ShopType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STAFFLOOKUPs">
+            <EntityTypeMapping TypeName="tpdatabaseModel.STAFFLOOKUP">
+              <MappingFragment StoreEntitySet="STAFFLOOKUP">
+                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

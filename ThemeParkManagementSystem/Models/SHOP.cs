@@ -23,7 +23,7 @@ namespace ThemeParkManagementSystem.Models
     
         public int ShopID { get; set; }
         public string ShopName { get; set; }
-        public string ShopType { get; set; }
+        public int ShopType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INVENTORY> INVENTORies { get; set; }

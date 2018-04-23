@@ -12,18 +12,13 @@ namespace ThemeParkManagementSystem.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TICKET
+    public partial class GUEST_TICKET
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TICKET()
-        {
-            this.GUEST_TICKET = new HashSet<GUEST_TICKET>();
-        }
-    
         public int TicketID { get; set; }
-        public int TicketType { get; set; }
+        public int GuestID { get; set; }
+        public System.DateTime DatePurchased { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GUEST_TICKET> GUEST_TICKET { get; set; }
+        public virtual GUEST GUEST { get; set; }
+        public virtual TICKET TICKET { get; set; }
     }
 }
