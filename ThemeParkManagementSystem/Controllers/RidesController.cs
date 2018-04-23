@@ -16,6 +16,24 @@ namespace ThemeParkManagementSystem.Controllers
     {
         private tpdatabaseEntities db = new tpdatabaseEntities();
 
+        public ActionResult Rainout(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            RIDE rIDE = db.RIDES.Find(id);
+            if (rIDE == null)
+            {
+                return HttpNotFound();
+            }
+            ++rIDE.RainOutCount;
+            rIDE.IsOpen = false;
+            db.SaveChanges();
+            string url = this.Request.UrlReferrer.AbsolutePath;
+            return Redirect(url);
+        }
+
         // GET: Rides
         public ActionResult Index(string searchBy, string search, int? page, string sortBy)
         {

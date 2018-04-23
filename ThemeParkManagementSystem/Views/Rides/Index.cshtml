@@ -73,7 +73,11 @@
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.RideID }) |
                         @Html.ActionLink("Details", "Details", new { id = item.RideID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.RideID })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.RideID }) |
+                        @if (item.IsOutside && item.IsOpen)
+                        {
+                             @Html.ActionLink("Issue Rainout", "Rainout", new { id = item.RideID })
+                        }
                     </td>
                 </tr>
             }
@@ -83,3 +87,7 @@
 new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, DisplayItemSliceAndTotal = true })
 
 </div>
+
+<p>
+    @Html.ActionLink("Access Maintenance Page", "Index", "Maintenance")
+</p>

@@ -43,7 +43,11 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CaseID }) |
             @Html.ActionLink("Details", "Details", new { id=item.CaseID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CaseID })
+            @Html.ActionLink("Delete", "Delete", new { id=item.CaseID }) |
+            @if (item.EndTime == null)
+            {
+                @Html.ActionLink("Maintenance Completed", "CompleteMaintenance", new { id = item.CaseID })
+            }
         </td>
     </tr>
 }

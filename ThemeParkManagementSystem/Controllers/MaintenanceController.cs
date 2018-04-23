@@ -14,6 +14,25 @@ namespace ThemeParkManagementSystem.Controllers
     {
         private tpdatabaseEntities db = new tpdatabaseEntities();
 
+        public ActionResult CompleteMaintenance(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            MAINTENANCE mAINTENANCE = db.MAINTENANCEs.Find(id);
+            if (mAINTENANCE == null)
+            {
+                return HttpNotFound();
+            }
+            mAINTENANCE.EndTime = DateTime.Now;
+            RIDE rIDE = db.RIDES.Find(mAINTENANCE.RideID);
+            rIDE.IsOpen = true;
+            db.SaveChanges();
+            string url = this.Request.UrlReferrer.AbsolutePath;
+            return Redirect(url);
+        }
+
         // GET: Maintenance
         public ActionResult Index()
         {
