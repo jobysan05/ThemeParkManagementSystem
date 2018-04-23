@@ -243,12 +243,14 @@
     <Compile Include="Models\RIDE.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StaffIndexData.cs" />
     <Compile Include="Models\RIDES_STAFF.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SHOP.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ShopIndexData.cs" />
     <Compile Include="Models\SHOPLOOKUP.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>

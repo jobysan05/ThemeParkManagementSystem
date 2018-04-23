@@ -15,9 +15,30 @@ namespace ThemeParkManagementSystem.Controllers
         private tpdatabaseEntities db = new tpdatabaseEntities();
 
         // GET: Staff
-        public ActionResult Index()
+        public ActionResult Index(string search, int ?id)
         {
-            return View(db.STAFFs.ToList());
+            var viewModel = new StaffIndexData();
+            viewModel.Staff = db.STAFFs
+                .Include(i => i.RIDES_STAFF);
+
+            if (id != null)
+            {
+                ViewBag.EmployeeID = id.Value;
+                viewModel.RidesStaff = viewModel.Staff.Where(
+                    i => i.EmployeeID == id.Value).Single().RIDES_STAFF;
+            }
+
+            var vModel = new StaffIndexData();
+            if(!String.IsNullOrEmpty(search))
+               {
+                vModel.Staff = db.STAFFs
+                .Where(c => c.LastName.Contains(search));
+                return View(vModel);
+            }
+            else
+            {
+                return View(viewModel);
+            }
         }
 
         // GET: Staff/Details/5

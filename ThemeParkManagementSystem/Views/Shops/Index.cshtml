@@ -1,67 +1,152 @@
-﻿@using PagedList;
-@using PagedList.Mvc;
+﻿@*@using PagedList;
+    @using PagedList.Mvc;
 
-@model IPagedList<ThemeParkManagementSystem.Models.SHOP>
+    @model IPagedList<ThemeParkManagementSystem.Models.SHOP>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <div style="font-family:Arial">
+        <h2>Index</h2>
+
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <p>
+            @using (Html.BeginForm("Index", "Shops", FormMethod.Get))
+            {
+                <text> Search By: </text> @Html.RadioButton("searchBy", "Name") <text> Shop Name </text>
+                @Html.TextBox("search")<input type="submit" value="Search" />
+
+            }
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.ActionLink("Shop Name", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
+                </th>
+                <th>
+                    Shop Type
+                </th>
+                <th></th>
+            </tr>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="5"> There are no searches for your result</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShopName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShopType)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ShopID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ShopID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ShopID })
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchBy = Request.QueryString["searchBy"], search = Request.QueryString["search"], sortBy = Request["sortBy"] }),
+            new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, DisplayItemSliceAndTotal = true })
+
+    </div>
+
+    <p>
+        @Html.ActionLink("Access Inventory Page", "Index", "Inventory")
+    </p>
+    <p>
+        @Html.ActionLink("Access Shop Types Page", "Index", "ShopLookup")
+    </p>*@
+
+@model ThemeParkManagementSystem.Models.ShopIndexData
 
 @{
     ViewBag.Title = "Index";
 }
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
-<div style="font-family:Arial">
-    <h2>Index</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <p>
-        @using (Html.BeginForm("Index", "Shops", FormMethod.Get))
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @using (Html.BeginForm("Index", "Shops", FormMethod.Get))
+    {
+        <text> Search By: </text> @Html.RadioButton("searchBy", "Name") <text> Shop Name </text>
+        @Html.TextBox("search")<input type="submit" value="Search" />
+
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Shop Name
+        </th>
+        <th>
+            Shop Type
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Shops)
+    {
+        string selectedRow = "";
+        if (item.ShopID == ViewBag.ShopID)
         {
-            <text> Search By: </text> @Html.RadioButton("searchBy", "Name") <text> Shop Name </text>
-            @Html.TextBox("search")<input type="submit" value="Search" />
-
+            selectedRow = "selectedrow";
         }
-    </p>
+        <tr class="@selectedRow" valign="top">
+            <td>
+                @Html.DisplayFor(modelItem => item.ShopName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShopType)
+            </td>
+            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.ShopID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.ShopID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ShopID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ShopID })
+            </td>
+        </tr>
+    }
+</table>
+@if (Model.Inventory != null)
+{
+    <h3>Products in shop</h3>
     <table class="table">
         <tr>
-            <th>
-                @Html.ActionLink("Shop Name", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
-            </th>
-            <th>
-                Shop Type
-            </th>
-            <th></th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
         </tr>
-        @if (Model.Count() == 0)
+        @foreach (var item in Model.Inventory)
         {
             <tr>
-                <td colspan="5"> There are no searches for your result</td>
+                <td>
+                    @item.ProductName
+                </td>
+                <td>
+                    @item.ProductPrice
+                </td>
+                <td>
+                    @item.ProductStock
+                </td>
             </tr>
         }
-        else
-        {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ShopName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ShopType)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ShopID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ShopID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ShopID })
-                    </td>
-                </tr>
-            }
-        }
     </table>
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchBy = Request.QueryString["searchBy"], search = Request.QueryString["search"], sortBy = Request["sortBy"] }),
-        new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, DisplayItemSliceAndTotal = true })
-
-</div>
-
+}
 <p>
     @Html.ActionLink("Access Inventory Page", "Index", "Inventory")
 </p>
