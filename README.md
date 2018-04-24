@@ -27,10 +27,10 @@ To do
 6. ~add Rides, Shops, Staff, and Guests views~
     * https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/introduction/adding-a-view
 7. additional functionality
-    * bad weather - if isOutside then increment RainOutCount
+    * ~bad weather - if isOutside then increment RainOutCount~
     * ~when Guest_Shops is created, subtract quantity from productstock of appropriate item~
     * ~when maintenance caseID is created, set appropriate ride isOpen to false~
-    * when endtime is initialized, set appropriate ride isOpen to true
+    * ~when endtime is initialized, set appropriate ride isOpen to true~
     * ~add reference tables for employeetype, tickettype, shoptype~
 
 Helpful Links
