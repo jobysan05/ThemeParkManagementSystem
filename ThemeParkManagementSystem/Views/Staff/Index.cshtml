@@ -7,7 +7,10 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (Convert.ToBoolean(ViewData["userRole"]))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 <p>
     @using (Html.BeginForm("Index", "Staff", FormMethod.Get))
@@ -49,44 +52,21 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                @*@Html.ActionLink("Select", "Index", new { id = item.EmployeeID }) |*@
-                @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.EmployeeID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
+                @if (Convert.ToBoolean(ViewData["userRole"]))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID })<text> |</text>
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.EmployeeID })
+                @if (Convert.ToBoolean(ViewData["userRole"]))
+                {
+                    <text> | </text>@Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
+                }
             </td>
         </tr>
     }
 
 </table>
 
-@*@if (Model.RidesStaff != null)
-{
-    <h3>Ride information</h3>
-    <table class="table">
-        <tr>
-            <th>Ride ID</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-        </tr>
-        @foreach (var item in Model.RidesStaff)
-        {
-            <tr>
-                <td>
-                    @item.RideID
-                </td>
-                <td>
-                    @item.StartDate
-                </td>
-                <td>
-                    @item.EndDate
-                </td>
-            </tr>
-        }
-    </table>
-}*@
 <p>
     @Html.ActionLink("Access Employee Types Page", "Index", "StaffLookup")
 </p>
-@*<p>
-    @Html.ActionLink("Access Staff's Rides Page", "Index", "Rides_Staff")
-</p>*@
