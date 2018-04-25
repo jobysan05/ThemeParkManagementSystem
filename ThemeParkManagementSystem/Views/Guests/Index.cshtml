@@ -1,54 +1,79 @@
-﻿@model IEnumerable<ThemeParkManagementSystem.Models.GUEST>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<ThemeParkManagementSystem.Models.GUEST>
 
 @{
     ViewBag.Title = "Index";
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<div style="font-family:Arial">
 
-<h2>Guests</h2>
+    <h2>Guests</h2>
 
-<p>
-    @if (Convert.ToBoolean(ViewData["userRole"]))
+    <p>
+        @if (Convert.ToBoolean(ViewData["userRole"]))
+        {
+            @Html.ActionLink("Create New", "Create")
+        }
+    </p>
+    <p>
+        @using (Html.BeginForm("Index", "Guests", FormMethod.Get))
     {
-        @Html.ActionLink("Create New", "Create")
-    }
-</p>
-<table class="table">
-    <tr>
-        <th>
-            First Name
-        </th>
-        <th>
-            Last Name
-        </th>
-        <th>
-            Date of Birth
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfBirth)
-        </td>
-        <td>
-            @if (Convert.ToBoolean(ViewData["userRole"]))
-            {
-                @Html.ActionLink("Edit", "Edit", new { id = item.GuestID })<text> |</text>
-            }
-            @Html.ActionLink("Details", "Details", new { id = item.GuestID })
-            @if (Convert.ToBoolean(ViewData["userRole"]))
-            {
-                <text> | </text>@Html.ActionLink("Delete", "Delete", new { id = item.GuestID })
-            }
-        </td>
-    </tr>
+        <text> Search By: </text> @Html.RadioButton("searchBy", "FirstName") <text> First Name </text> @Html.RadioButton("searchBy", "LastName") <text> Last Name </text>
+        @Html.TextBox("search")<input type="submit" value="Search" />
 }
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("First Name", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Date of Birth
+            </th>
+            <th></th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="5"> There are no searches for your result</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfBirth)
+                    </td>
+                    <td>
+                        @if (Convert.ToBoolean(ViewData["userRole"]))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.GuestID })<text> |</text>
+                        }
+                        @Html.ActionLink("Details", "Details", new { id = item.GuestID })
+                        @if (Convert.ToBoolean(ViewData["userRole"]))
+                        {
+                            <text> | </text>@Html.ActionLink("Delete", "Delete", new { id = item.GuestID })
+                        }
+                    </td>
+                </tr>
 
-</table>
+            }
+        }
+    </table>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchBy = Request.QueryString["searchBy"], search = Request.QueryString["search"], sortBy = Request["sortBy"] }),
+    new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, DisplayItemSliceAndTotal = true })
+
+</div>

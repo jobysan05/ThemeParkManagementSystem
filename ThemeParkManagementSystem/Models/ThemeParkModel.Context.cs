@@ -42,6 +42,7 @@ namespace ThemeParkManagementSystem.Models
         public virtual DbSet<RIDES_STAFF> RIDES_STAFF { get; set; }
         public virtual DbSet<SHOP_STAFF> SHOP_STAFF { get; set; }
         public virtual DbSet<TICKETLOOKUP> TICKETLOOKUPs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     
         public virtual ObjectResult<Nullable<int>> RideCount(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2, Nullable<int> rideNum)
         {
@@ -59,7 +60,7 @@ namespace ThemeParkManagementSystem.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("RideCount", date1Parameter, date2Parameter, rideNumParameter);
         }
-    
+
         public virtual ObjectResult<string> GetShopTypes(Nullable<int> typeID)
         {
             var typeIDParameter = typeID.HasValue ?

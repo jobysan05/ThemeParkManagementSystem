@@ -9,6 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ThemeParkManagementSystem.Models;
+using PagedList;
 
 namespace ThemeParkManagementSystem.Controllers
 {
@@ -17,10 +18,34 @@ namespace ThemeParkManagementSystem.Controllers
         private tpdatabaseEntities tpdb = new tpdatabaseEntities();
 
         // GET: Guests
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search, int? page, string sortBy)
         {
             isAdmin();
-            return View(tpdb.GUESTs.ToList());
+            ViewBag.SortNameParameter = string.IsNullOrEmpty(sortBy) ? "FirstName desc" : "";
+
+            var guests = from x in tpdb.GUESTs.AsQueryable()
+                        select x;
+            switch (sortBy)
+            {
+                case "FirstName desc":
+                    guests = guests.OrderByDescending(x => x.FirstName);
+                    break;
+                default:
+                    guests = guests.OrderBy(x => x.FirstName);
+                    break;
+            }
+            if (searchBy == "FirstName")
+            {
+                return View(tpdb.GUESTs.Where(x => x.FirstName.StartsWith(search) || search == null).ToList().ToPagedList(page ?? 1, 5));
+            }
+            else if(searchBy == "LastName")
+            {
+                return View(tpdb.GUESTs.Where(x => x.LastName.StartsWith(search) || search == null).ToList().ToPagedList(page ?? 1, 5));
+            }
+            else
+            {
+                return View(guests.ToList().ToPagedList(page ?? 1, 5));
+            }
         }
 
         private void isAdmin()

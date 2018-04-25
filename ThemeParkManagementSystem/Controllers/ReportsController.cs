@@ -12,11 +12,11 @@ namespace ThemeParkManagementSystem.Controllers
         // GET: Reports
         private tpdatabaseEntities db = new tpdatabaseEntities();
         public ActionResult Index(DateTime? date1, DateTime? date2, int? id)
-        {
-            
+        {        
             Nullable<int> countList = db.RideCount(date1, date2, id).ToList<Nullable<int>>().FirstOrDefault();
             var rideCount = countList.Value;                
             ViewData["RideCount"] = rideCount;
+
             return View();
         }
 

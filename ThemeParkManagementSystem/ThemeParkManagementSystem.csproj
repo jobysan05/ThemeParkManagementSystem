@@ -241,6 +241,7 @@
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ReportIndexData.cs" />
     <Compile Include="Models\RIDE.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
@@ -268,6 +269,9 @@
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\STAFFLOOKUP.cs">
+      <DependentUpon>ThemeParkModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ThemeParkModel.Context.cs">
