@@ -27,16 +27,16 @@
     <table class="table">
         <tr>
             <th>
-                @Html.ActionLink("RideName", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
+                @Html.ActionLink("Ride Name", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().RidePrice)
+                Ride Price
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.First().IsOutside)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().RainOutCount)
+                Rain Out Count
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.First().IsOpen)
