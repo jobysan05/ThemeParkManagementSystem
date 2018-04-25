@@ -60,7 +60,7 @@ namespace ThemeParkManagementSystem.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("RideCount", date1Parameter, date2Parameter, rideNumParameter);
         }
-
+    
         public virtual ObjectResult<string> GetShopTypes(Nullable<int> typeID)
         {
             var typeIDParameter = typeID.HasValue ?
