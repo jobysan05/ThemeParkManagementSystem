@@ -40,12 +40,12 @@
         <td>
             @if (Convert.ToBoolean(ViewData["userRole"]))
             {
-                @Html.ActionLink("Edit", "Edit", new { id = item.GuestID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.GuestID })<text> |</text>
             }
-            | @Html.ActionLink("Details", "Details", new { id = item.GuestID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.GuestID })
             @if (Convert.ToBoolean(ViewData["userRole"]))
             {
-                @Html.ActionLink("Delete", "Delete", new { id = item.GuestID })
+                <text> | </text>@Html.ActionLink("Delete", "Delete", new { id = item.GuestID })
             }
         </td>
     </tr>

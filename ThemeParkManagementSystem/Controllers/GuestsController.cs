@@ -15,29 +15,41 @@ namespace ThemeParkManagementSystem.Controllers
     public class GuestsController : Controller
     {
         private tpdatabaseEntities tpdb = new tpdatabaseEntities();
-        private ApplicationDbContext adp = new ApplicationDbContext();
 
         // GET: Guests
         public ActionResult Index()
         {
-            var user = User.Identity;
-            ApplicationDbContext context = new ApplicationDbContext();
-            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var s = UserManager.GetRoles(user.GetUserId());
-            if (s[0].ToString() == "Admin")
+            isAdmin();
+            return View(tpdb.GUESTs.ToList());
+        }
+
+        private void isAdmin()
+        {
+            try
             {
-                ViewData["userRole"] = true;
+                var user = User.Identity;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == "Admin")
+                {
+                    ViewData["userRole"] = true;
+                }
+                else
+                {
+                    ViewData["userRole"] = false;
+                }
             }
-            else
+            catch (Exception e)
             {
                 ViewData["userRole"] = false;
             }
-            return View(tpdb.GUESTs.ToList());
         }
 
         // GET: Guests/Details/5
         public ActionResult Details(int? id)
         {
+            isAdmin();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
