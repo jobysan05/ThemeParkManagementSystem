@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -13,6 +15,29 @@ namespace ThemeParkManagementSystem.Controllers
     public class MaintenanceController : Controller
     {
         private tpdatabaseEntities db = new tpdatabaseEntities();
+
+        private void isAdmin()
+        {
+            try
+            {
+                var user = User.Identity;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == "Admin")
+                {
+                    ViewData["userRole"] = true;
+                }
+                else
+                {
+                    ViewData["userRole"] = false;
+                }
+            }
+            catch (Exception e)
+            {
+                ViewData["userRole"] = false;
+            }
+        }
 
         public ActionResult CompleteMaintenance(int? id)
         {
@@ -36,6 +61,7 @@ namespace ThemeParkManagementSystem.Controllers
         // GET: Maintenance
         public ActionResult Index()
         {
+            isAdmin();
             var mAINTENANCEs = db.MAINTENANCEs.Include(m => m.RIDE);
             return View(mAINTENANCEs.ToList());
         }
@@ -43,6 +69,7 @@ namespace ThemeParkManagementSystem.Controllers
         // GET: Maintenance/Details/5
         public ActionResult Details(int? id)
         {
+            isAdmin();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
