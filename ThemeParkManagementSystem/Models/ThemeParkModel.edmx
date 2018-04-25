@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="tpdatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="tpdatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="GUEST">
           <Key>
             <PropertyRef Name="GuestID" />
@@ -12,7 +12,7 @@
           <Property Name="GuestID" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'tpdatabase.dbo.GUEST_RIDES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -34,7 +34,7 @@ warning 6002: The table/view 'tpdatabase.dbo.GUEST_RIDES' does not have a primar
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="TransactionID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="TransactionDate" Type="date" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'tpdatabase.dbo.GUEST_TICKET' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -299,6 +299,11 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="RideCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date1" Type="date" Mode="In" />
+          <Parameter Name="date2" Type="date" Mode="In" />
+          <Parameter Name="rideNum" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="tpdatabaseModelStoreContainer">
           <EntitySet Name="GUEST" EntityType="Self.GUEST" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GUEST_SHOPS" EntityType="Self.GUEST_SHOPS" Schema="dbo" store:Type="Tables" />
@@ -396,8 +401,7 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             <End Role="SHOP_STAFF" EntitySet="SHOP_STAFF" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="tpdatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -408,7 +412,7 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <Property Name="GuestID" Type="Int32" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="GUEST_RIDES" Relationship="Self.FK__GUEST_RID__guest__797309D9" FromRole="GUEST" ToRole="GUEST_RIDES" />
           <NavigationProperty Name="GUEST_SHOPS" Relationship="Self.FK__GUEST_SHO__Guest__25518C17" FromRole="GUEST" ToRole="GUEST_SHOPS" />
           <NavigationProperty Name="GUEST_TICKET" Relationship="Self.FK__GUEST_TIC__Guest__3D2915A8" FromRole="GUEST" ToRole="GUEST_TICKET" />
@@ -421,7 +425,7 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="TransactionID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="GUEST" Relationship="Self.FK__GUEST_SHO__Guest__25518C17" FromRole="GUEST_SHOPS" ToRole="GUEST" />
           <NavigationProperty Name="INVENTORY" Relationship="Self.FK__GUEST_SHO__Produ__2645B050" FromRole="GUEST_SHOPS" ToRole="INVENTORY" />
         </EntityType>
@@ -773,7 +777,18 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             <End Role="TICKET" EntitySet="TICKETs" />
             <End Role="GUEST_TICKET" EntitySet="GUEST_TICKET" />
           </AssociationSet>
+          <FunctionImport Name="RideCount" ReturnType="Collection(Int32)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+            <Parameter Name="rideNum" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="RideCount">
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="RideCount_Result">
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -925,6 +940,8 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="RideCount" FunctionName="tpdatabaseModel.Store.RideCount" >
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
