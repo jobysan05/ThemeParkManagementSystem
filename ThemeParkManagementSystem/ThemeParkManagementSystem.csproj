@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{262C8934-6A51-42FF-8CF2-C3D9ABD4CE28}</ProjectGuid>
+    <ProjectGuid>{0637F40F-C63A-4D67-A270-57D56F32AAA7}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -206,6 +206,7 @@
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RevenueController.cs" />
     <Compile Include="Controllers\RidesController.cs" />
     <Compile Include="Controllers\Rides_StaffController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -242,6 +243,9 @@
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ReportIndexData.cs" />
+    <Compile Include="Models\revenue.cs">
+      <DependentUpon>ThemeParkModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\RIDE.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
@@ -454,6 +458,8 @@
     <Content Include="Views\TicketLookup\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Revenue\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

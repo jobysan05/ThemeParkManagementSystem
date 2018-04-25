@@ -315,6 +315,12 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <Parameter Name="date1" Type="date" Mode="In" />
           <Parameter Name="date2" Type="date" Mode="In" />
         </Function>
+        <Function Name="GetEmpTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="typeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetShopTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="typeID" Type="int" Mode="In" />
+        </Function>
         <Function Name="revenue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="date1" Type="date" Mode="In" />
           <Parameter Name="date2" Type="date" Mode="In" />
@@ -815,6 +821,12 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             <Parameter Name="date1" Mode="In" Type="DateTime" />
             <Parameter Name="date2" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="GetEmpTypes" ReturnType="Collection(String)">
+            <Parameter Name="typeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetShopTypes" ReturnType="Collection(String)">
+            <Parameter Name="typeID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RideCount">
           <Property Type="Int32" Name="Column1" Nullable="true" />
@@ -1003,6 +1015,8 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="revenue" FunctionName="tpdatabaseModel.Store.revenue" >
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetEmpTypes" FunctionName="tpdatabaseModel.Store.GetEmpTypes" />
+          <FunctionImportMapping FunctionImportName="GetShopTypes" FunctionName="tpdatabaseModel.Store.GetShopTypes" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
