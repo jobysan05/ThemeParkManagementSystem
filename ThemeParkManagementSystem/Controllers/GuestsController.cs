@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -12,12 +14,25 @@ namespace ThemeParkManagementSystem.Controllers
 {
     public class GuestsController : Controller
     {
-        private tpdatabaseEntities db = new tpdatabaseEntities();
+        private tpdatabaseEntities tpdb = new tpdatabaseEntities();
+        private ApplicationDbContext adp = new ApplicationDbContext();
 
         // GET: Guests
         public ActionResult Index()
         {
-            return View(db.GUESTs.ToList());
+            var user = User.Identity;
+            ApplicationDbContext context = new ApplicationDbContext();
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var s = UserManager.GetRoles(user.GetUserId());
+            if (s[0].ToString() == "Admin")
+            {
+                ViewData["userRole"] = true;
+            }
+            else
+            {
+                ViewData["userRole"] = false;
+            }
+            return View(tpdb.GUESTs.ToList());
         }
 
         // GET: Guests/Details/5
@@ -27,7 +42,7 @@ namespace ThemeParkManagementSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GUEST gUEST = db.GUESTs.Find(id);
+            GUEST gUEST = tpdb.GUESTs.Find(id);
             if (gUEST == null)
             {
                 return HttpNotFound();
@@ -50,8 +65,8 @@ namespace ThemeParkManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.GUESTs.Add(gUEST);
-                db.SaveChanges();
+                tpdb.GUESTs.Add(gUEST);
+                tpdb.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +80,7 @@ namespace ThemeParkManagementSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GUEST gUEST = db.GUESTs.Find(id);
+            GUEST gUEST = tpdb.GUESTs.Find(id);
             if (gUEST == null)
             {
                 return HttpNotFound();
@@ -82,8 +97,8 @@ namespace ThemeParkManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(gUEST).State = EntityState.Modified;
-                db.SaveChanges();
+                tpdb.Entry(gUEST).State = EntityState.Modified;
+                tpdb.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(gUEST);
@@ -96,7 +111,7 @@ namespace ThemeParkManagementSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GUEST gUEST = db.GUESTs.Find(id);
+            GUEST gUEST = tpdb.GUESTs.Find(id);
             if (gUEST == null)
             {
                 return HttpNotFound();
@@ -109,9 +124,9 @@ namespace ThemeParkManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            GUEST gUEST = db.GUESTs.Find(id);
-            db.GUESTs.Remove(gUEST);
-            db.SaveChanges();
+            GUEST gUEST = tpdb.GUESTs.Find(id);
+            tpdb.GUESTs.Remove(gUEST);
+            tpdb.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -119,7 +134,7 @@ namespace ThemeParkManagementSystem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                tpdb.Dispose();
             }
             base.Dispose(disposing);
         }
