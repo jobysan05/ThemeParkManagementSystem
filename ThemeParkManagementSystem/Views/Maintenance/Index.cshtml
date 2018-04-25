@@ -4,18 +4,20 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Maintenance</h2>
 
-<p>
+@if (Convert.ToBoolean(ViewData["userRole"]))
+{
     @Html.ActionLink("Create New", "Create")
-</p>
+}
+
 <table class="table">
     <tr>
         <th>
             Start Time
         </th>
         <th>
-            End Date
+            End Time
         </th>
         <th>
             Summary
@@ -26,31 +28,38 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Summary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RIDE.RideName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CaseID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CaseID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CaseID }) |
-            @if (item.EndTime == null)
-            {
-                @Html.ActionLink("Maintenance Completed", "CompleteMaintenance", new { id = item.CaseID })
-            }
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Summary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RIDE.RideName)
+            </td>
+            <td>
+                @if (Convert.ToBoolean(ViewData["userRole"]))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CaseID })<text> |</text>
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.CaseID })
+                @if (Convert.ToBoolean(ViewData["userRole"]))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CaseID })<text> | </text>
+                }
+                @if (item.EndTime == null)
+                {
+                    <text> | </text>@Html.ActionLink("Maintenance Completed", "CompleteMaintenance", new { id = item.CaseID })
+                }
+            </td>
+        </tr>
+    }
 
 </table>
 
