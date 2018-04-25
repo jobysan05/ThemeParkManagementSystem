@@ -6,13 +6,21 @@
 
 <h2>Index</h2>
 
-
+<p>
+    @using (Html.BeginForm("Index", "s", FormMethod.Get))
+    {
+        <text> Date 1 </text>
+        @Html.TextBox("date1")
+        <text> Date 2 </text>
+        @Html.TextBox("date2")
+        <text> Ride ID </text>
+        @Html.TextBox("id")<input type="submit" value="Search" />
+    }
+</p>
 <table>
     <tr>
         <th>
-            @ViewData["RideCount"]
-
-
+            The number of customers who came in was @ViewData["RideCount"]
         </th>
 
 
