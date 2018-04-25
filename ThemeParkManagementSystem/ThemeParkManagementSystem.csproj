@@ -208,7 +208,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RidesController.cs" />
     <Compile Include="Controllers\Rides_StaffController.cs" />
-    <Compile Include="Controllers\sController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ShopLookupController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
     <Compile Include="Controllers\Shop_StaffController.cs" />
@@ -449,7 +449,7 @@
     <Content Include="Views\TicketLookup\Edit.cshtml" />
     <Content Include="Views\TicketLookup\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\s\Index.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
