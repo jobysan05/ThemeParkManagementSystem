@@ -7,7 +7,7 @@
 <h2>Reports</h2>
 
 <p>
-    @using (Html.BeginForm("Index", "s", FormMethod.Get))
+    @using (Html.BeginForm("Index", "Reports", FormMethod.Get))
     {
         <text> Date 1 </text>
         @Html.TextBox("date1")
@@ -20,7 +20,7 @@
 <table>
     <tr>
         <th>
-            The number of customers who came in was @ViewData["RideCount"]
+            <text>The number of customers who came in was </text>@ViewData["RideCount"]
         </th>
 
 
