@@ -31,6 +31,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ShopID }) |
+    @if (Convert.ToBoolean(ViewData["userRole"]))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ShopID }) <text> | </text>
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>
