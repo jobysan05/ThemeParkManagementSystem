@@ -299,6 +299,9 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetEmpTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="typeID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetShopTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="typeID" Type="int" Mode="In" />
         </Function>
@@ -786,6 +789,9 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             <Parameter Name="rideNum" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetShopTypes" ReturnType="Collection(String)">
+          <Parameter Name="typeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetEmpTypes" ReturnType="Collection(String)">
             <Parameter Name="typeID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -949,6 +955,7 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <FunctionImportMapping FunctionImportName="RideCount" FunctionName="tpdatabaseModel.Store.RideCount" >
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetShopTypes" FunctionName="tpdatabaseModel.Store.GetShopTypes" />
+          <FunctionImportMapping FunctionImportName="GetEmpTypes" FunctionName="tpdatabaseModel.Store.GetEmpTypes" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

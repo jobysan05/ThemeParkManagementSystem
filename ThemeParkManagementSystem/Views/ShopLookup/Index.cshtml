@@ -2,9 +2,12 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Index</h2>
+<h2>Shop Types</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (Convert.ToBoolean(ViewData["userRole"]))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 <table class="table">
     <tr>
@@ -20,9 +23,15 @@
                 @Html.DisplayFor(modelItem => item.ShopType)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @if (Convert.ToBoolean(ViewData["userRole"]))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID })<text> |</text>
+            }
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
+            @if (Convert.ToBoolean(ViewData["userRole"]))
+            {
+                <text> | </text>@Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            }
             </td>
         </tr>
     }

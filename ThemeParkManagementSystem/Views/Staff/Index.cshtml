@@ -43,7 +43,7 @@
         }
         <tr class="@selectedRow" valign="top">
             <td>
-                @Html.DisplayFor(modelItem => item.EmployeeType)
+                @ViewData[item.EmployeeType.ToString()]
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)

@@ -16,6 +16,15 @@ namespace ThemeParkManagementSystem.Controllers
     {
         private tpdatabaseEntities db = new tpdatabaseEntities();
 
+        private void GetTypeNames()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                string empName = db.GetEmpTypes(i).FirstOrDefault();
+                ViewData[i.ToString()] = empName;
+            }
+        }
+
         private void isAdmin()
         {
             try
@@ -43,7 +52,7 @@ namespace ThemeParkManagementSystem.Controllers
         public ActionResult Index(string search, int ?id)
         {
             isAdmin();
-
+            GetTypeNames();
             var viewModel = new StaffIndexData();
             viewModel.Staff = db.STAFFs
                 .Include(i => i.RIDES_STAFF);
