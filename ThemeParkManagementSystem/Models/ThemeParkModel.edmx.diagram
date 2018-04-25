@@ -32,6 +32,7 @@
         <AssociationConnector Association="tpdatabaseModel.FK__RIDES_STA__Emplo__619B8048" ManuallyRouted="false" />
         <AssociationConnector Association="tpdatabaseModel.FK__SHOP_STAF__Emplo__5629CD9C" ManuallyRouted="false" />
         <AssociationConnector Association="tpdatabaseModel.FK__GUEST_TIC__Ticke__3C34F16F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="tpdatabaseModel.sysdiagram" Width="1.5" PointX="5.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

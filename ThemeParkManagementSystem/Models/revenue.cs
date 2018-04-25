@@ -10,16 +10,9 @@
 namespace ThemeParkManagementSystem.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class GUEST_TICKET
+    public partial class revenue
     {
-        public int TicketID { get; set; }
-        public int GuestID { get; set; }
-        public System.DateTime DatePurchased { get; set; }
-        public decimal TicketPrice { get; set; }
-    
-        public virtual GUEST GUEST { get; set; }
-        public virtual TICKET TICKET { get; set; }
+        public Nullable<decimal> Column1 { get; set; }
     }
 }

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ThemeParkManagementSystem.Models.revenue>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+
+    @using (Html.BeginForm("Index", "Revenue", FormMethod.Get))
+    {
+        <text> Begin Date </text>
+        @Html.TextBox("date1")
+        <text> End Date </text>
+        @Html.TextBox("date2")
+        <input type="submit" value= "Search"/>
+
+
+    }
+
+</p>
+<table>
+    <tr>
+        <th>
+         <text> Ticket revenue for the requested dates is $</text>   @ViewData["Revenue"]
+
+
+        </th>
+
+    </tr>
+
+
+</table>
+
+
+

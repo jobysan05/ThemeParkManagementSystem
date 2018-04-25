@@ -7,38 +7,34 @@ using ThemeParkManagementSystem.Models;
 
 namespace ThemeParkManagementSystem.Controllers
 {
-    public class sController : Controller
+    public class RevenueController : Controller
     {
-        // GET: s
+        // GET: Revenue
         private tpdatabaseEntities db = new tpdatabaseEntities();
-        public ActionResult Index(DateTime? search1 , DateTime? search2 , int? id )
+        public ActionResult Index(DateTime? date1, DateTime? date2)
+
         {
-
-
-
-
-        Nullable<int> countList = db.RideCount(search1, search2, id).ToList<Nullable<int>>().FirstOrDefault();
-            var rideCount = countList.Value;                
-            ViewData["RideCount"] = rideCount;
-
-
-
+            
+            Nullable<decimal> countlist = db.revenue(date1, date2).ToList<Nullable<decimal>>().FirstOrDefault();
+            
+            var count = countlist;
+            ViewData["Revenue"] = count;
             return View();
         }
 
-        // GET: s/Details/5
+        // GET: Revenue/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: s/Create
+        // GET: Revenue/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: s/Create
+        // POST: Revenue/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -54,13 +50,13 @@ namespace ThemeParkManagementSystem.Controllers
             }
         }
 
-        // GET: s/Edit/5
+        // GET: Revenue/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: s/Edit/5
+        // POST: Revenue/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -76,13 +72,13 @@ namespace ThemeParkManagementSystem.Controllers
             }
         }
 
-        // GET: s/Delete/5
+        // GET: Revenue/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: s/Delete/5
+        // POST: Revenue/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

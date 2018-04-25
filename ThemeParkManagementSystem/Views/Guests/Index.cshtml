@@ -26,29 +26,34 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfBirth)
-        </td>
-        <td>
-            @if (Convert.ToBoolean(ViewData["userRole"]))
-            {
-                @Html.ActionLink("Edit", "Edit", new { id = item.GuestID })<text> |</text>
-            }
-            @Html.ActionLink("Details", "Details", new { id = item.GuestID })
-            @if (Convert.ToBoolean(ViewData["userRole"]))
-            {
-                <text> | </text>@Html.ActionLink("Delete", "Delete", new { id = item.GuestID })
-            }
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @if (Convert.ToBoolean(ViewData["userRole"]))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.GuestID })<text> |</text>
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.GuestID })
+                @if (Convert.ToBoolean(ViewData["userRole"]))
+                {
+                    <text> | </text>@Html.ActionLink("Delete", "Delete", new { id = item.GuestID })
+                }
+            </td>
+        </tr>
+    }
+
 
 </table>
+<p>
+    @Html.ActionLink("Access Ticket Revenue Report Page", "Index", "Revenue")
+</p>

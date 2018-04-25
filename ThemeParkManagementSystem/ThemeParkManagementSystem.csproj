@@ -206,6 +206,7 @@
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RevenueController.cs" />
     <Compile Include="Controllers\RidesController.cs" />
     <Compile Include="Controllers\Rides_StaffController.cs" />
     <Compile Include="Controllers\sController.cs" />
@@ -241,6 +242,9 @@
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\revenue.cs">
+      <DependentUpon>ThemeParkModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\RIDE.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
@@ -268,6 +272,9 @@
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\STAFFLOOKUP.cs">
+      <DependentUpon>ThemeParkModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ThemeParkModel.Context.cs">
@@ -450,6 +457,7 @@
     <Content Include="Views\TicketLookup\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\s\Index.cshtml" />
+    <Content Include="Views\Revenue\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

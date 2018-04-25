@@ -42,6 +42,7 @@ namespace ThemeParkManagementSystem.Models
         public virtual DbSet<RIDES_STAFF> RIDES_STAFF { get; set; }
         public virtual DbSet<SHOP_STAFF> SHOP_STAFF { get; set; }
         public virtual DbSet<TICKETLOOKUP> TICKETLOOKUPs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     
         public virtual ObjectResult<Nullable<int>> RideCount(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2, Nullable<int> rideNum)
         {
@@ -58,6 +59,32 @@ namespace ThemeParkManagementSystem.Models
                 new ObjectParameter("rideNum", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("RideCount", date1Parameter, date2Parameter, rideNumParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> CalculateTicketRevenue(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2)
+        {
+            var date1Parameter = date1.HasValue ?
+                new ObjectParameter("date1", date1) :
+                new ObjectParameter("date1", typeof(System.DateTime));
+    
+            var date2Parameter = date2.HasValue ?
+                new ObjectParameter("date2", date2) :
+                new ObjectParameter("date2", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CalculateTicketRevenue", date1Parameter, date2Parameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> revenue(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2)
+        {
+            var date1Parameter = date1.HasValue ?
+                new ObjectParameter("date1", date1) :
+                new ObjectParameter("date1", typeof(System.DateTime));
+    
+            var date2Parameter = date2.HasValue ?
+                new ObjectParameter("date2", date2) :
+                new ObjectParameter("date2", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("revenue", date1Parameter, date2Parameter);
         }
     }
 }
