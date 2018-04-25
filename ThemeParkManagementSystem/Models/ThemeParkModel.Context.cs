@@ -69,5 +69,14 @@ namespace ThemeParkManagementSystem.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetShopTypes", typeIDParameter);
         }
+    
+        public virtual ObjectResult<string> GetEmpTypes(Nullable<int> typeID)
+        {
+            var typeIDParameter = typeID.HasValue ?
+                new ObjectParameter("typeID", typeID) :
+                new ObjectParameter("typeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetEmpTypes", typeIDParameter);
+        }
     }
 }
