@@ -35,11 +35,15 @@
             @Html.DisplayFor(modelItem => item.EndDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id = item.StartDate }) |
+            @Html.ActionLink("Details", "Details", new { id = item.StartDate}) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.StartDate })
         </td>
     </tr>
 }
 
 </table>
+
+<p>
+    @Html.ActionLink("Back to Staff Page", "Index", "Staff")
+</p>
