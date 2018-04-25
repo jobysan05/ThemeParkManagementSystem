@@ -7,7 +7,7 @@ using ThemeParkManagementSystem.Models;
 
 namespace ThemeParkManagementSystem.Controllers
 {
-    public class sController : Controller
+    public class ReportsController : Controller
     {
         // GET: s
         private tpdatabaseEntities db = new tpdatabaseEntities();
