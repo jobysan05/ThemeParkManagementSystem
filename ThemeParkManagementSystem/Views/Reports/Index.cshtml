@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ThemeParkManagementSystem.Models.RideCount>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Reports</h2>
+
+<p>
+    @using (Html.BeginForm("Index", "Reports", FormMethod.Get))
+    {
+        <text> Date 1 </text>
+        @Html.TextBox("date1")
+        <text> Date 2 </text>
+        @Html.TextBox("date2")
+        <text> Ride ID </text>
+        @Html.TextBox("id")<input type="submit" value="Search" />
+    }
+</p>
+<table>
+    <tr>
+        <th>
+            <text>The number of customers who came in was </text>@ViewData["RideCount"]
+        </th>
+    </tr>
+</table>

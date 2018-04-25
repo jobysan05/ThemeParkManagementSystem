@@ -16,6 +16,15 @@ namespace ThemeParkManagementSystem.Controllers
     {
         private tpdatabaseEntities db = new tpdatabaseEntities();
 
+        private void GetTypeNames()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                string shopName = db.GetShopTypes(i).FirstOrDefault();
+                ViewData[i.ToString()] = shopName;
+            }            
+        }
+
         private void isAdmin()
         {
             try
@@ -43,6 +52,7 @@ namespace ThemeParkManagementSystem.Controllers
         public ActionResult Index(string search, int? id)
         {
             isAdmin();
+            GetTypeNames();
             var viewModel = new ShopIndexData();
             viewModel.Shops = db.SHOPS
                 .Include(i => i.INVENTORies);

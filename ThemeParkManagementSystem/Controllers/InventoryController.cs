@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -14,9 +16,33 @@ namespace ThemeParkManagementSystem.Controllers
     {
         private tpdatabaseEntities db = new tpdatabaseEntities();
 
+        private void isAdmin()
+        {
+            try
+            {
+                var user = User.Identity;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == "Admin")
+                {
+                    ViewData["userRole"] = true;
+                }
+                else
+                {
+                    ViewData["userRole"] = false;
+                }
+            }
+            catch (Exception e)
+            {
+                ViewData["userRole"] = false;
+            }
+        }
+
         // GET: Inventory
         public ActionResult Index()
         {
+            isAdmin();
             var iNVENTORies = db.INVENTORies.Include(i => i.SHOP);
             return View(iNVENTORies.ToList());
         }
@@ -24,6 +50,7 @@ namespace ThemeParkManagementSystem.Controllers
         // GET: Inventory/Details/5
         public ActionResult Details(int? id)
         {
+            isAdmin();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

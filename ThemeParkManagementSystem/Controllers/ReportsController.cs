@@ -7,26 +7,20 @@ using ThemeParkManagementSystem.Models;
 
 namespace ThemeParkManagementSystem.Controllers
 {
-    public class sController : Controller
+    public class ReportsController : Controller
     {
-        // GET: s
+        // GET: Reports
         private tpdatabaseEntities db = new tpdatabaseEntities();
-        public ActionResult Index(DateTime? search1 , DateTime? search2 , int? id )
-        {
-
-
-
-
-        Nullable<int> countList = db.RideCount(search1, search2, id).ToList<Nullable<int>>().FirstOrDefault();
+        public ActionResult Index(DateTime? date1, DateTime? date2, int? id)
+        {        
+            Nullable<int> countList = db.RideCount(date1, date2, id).ToList<Nullable<int>>().FirstOrDefault();
             var rideCount = countList.Value;                
             ViewData["RideCount"] = rideCount;
-
-
 
             return View();
         }
 
-        // GET: s/Details/5
+        // GET: Reports/Details/5
         public ActionResult Details(int id)
         {
             return View();
