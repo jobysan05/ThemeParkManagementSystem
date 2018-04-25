@@ -51,7 +51,7 @@
                 @Html.ActionLink("Details", "Details", new { id = item.CaseID })
                 @if (Convert.ToBoolean(ViewData["userRole"]))
                 {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CaseID })<text> | </text>
+                    <text> | </text>@Html.ActionLink("Delete", "Delete", new { id = item.CaseID })
                 }
                 @if (item.EndTime == null)
                 {
