@@ -9,7 +9,7 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <div style="font-family:Arial">
 
-    <h2>Index</h2>
+    <h2>Rides</h2>
 
     <p>
         @if (Convert.ToBoolean(ViewData["userRole"]))
@@ -27,19 +27,19 @@
     <table class="table">
         <tr>
             <th>
-                @Html.ActionLink("RideName", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
+                @Html.ActionLink("Name", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().RidePrice)
+                Admission Price
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().IsOutside)
+                Location
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().RainOutCount)
+                Rainout Count
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().IsOpen)
+                Status
             </th>
             <th></th>
         </tr>
@@ -58,16 +58,30 @@
                         @Html.DisplayFor(modelItem => item.RideName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.RidePrice)
+                        <text>$</text>@Html.DisplayFor(modelItem => item.RidePrice)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IsOutside)
+                        @if(item.IsOutside)
+                        {
+                            <text>Outside</text>
+                        }
+                        @if(!item.IsOutside)
+                        {
+                            <text>Inside</text>
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.RainOutCount)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IsOpen)
+                        @if(item.IsOpen)
+                        {
+                            <text>Open</text>
+                        }
+                        @if(!item.IsOpen)
+                        {
+                            <text>Closed</text>
+                        }
                     </td>
                     <td>
                         @if (Convert.ToBoolean(ViewData["userRole"]))
