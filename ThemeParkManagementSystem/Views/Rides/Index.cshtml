@@ -12,17 +12,16 @@
     <h2>Index</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @if (Convert.ToBoolean(ViewData["userRole"]))
+        {
+            @Html.ActionLink("Create New", "Create")
+        }
     </p>
     <p>
         @using (Html.BeginForm("Index", "Rides", FormMethod.Get))
         {
             <text> Search By: </text> @Html.RadioButton("searchBy", "Name") <text> Ride Name </text>
-            //@Html.RadioButton("searchBy", "RidePrice") <text> Ride Price </text> <br />
             @Html.TextBox("search")<input type="submit" value="Search" />
-            /*<text>RideName </text>@Html.DropDownList("ridename", new SelectList(ViewBag.RideName))
-            <text>RidePrice </text>@Html.DropDownList("rideprice", new SelectList(ViewBag.RidePrice))*/
-
         }
     </p>
     <table class="table">
@@ -71,12 +70,18 @@
                         @Html.DisplayFor(modelItem => item.IsOpen)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.RideID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.RideID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.RideID }) |
+                        @if (Convert.ToBoolean(ViewData["userRole"]))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.RideID }) <text> | </text>
+                        }
+                        @Html.ActionLink("Details", "Details", new { id = item.RideID })
+                        @if (Convert.ToBoolean(ViewData["userRole"]))
+                        {
+                            <text> | </text>@Html.ActionLink("Delete", "Delete", new { id = item.RideID })
+                        }
                         @if (item.IsOutside && item.IsOpen)
                         {
-                             @Html.ActionLink("Issue Rainout", "Rainout", new { id = item.RideID })
+                            <text> | </text>@Html.ActionLink("Issue Rainout", "Rainout", new { id = item.RideID })
                         }
                     </td>
                 </tr>

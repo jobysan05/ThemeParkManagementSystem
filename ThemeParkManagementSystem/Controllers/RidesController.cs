@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using PagedList;
 using PagedList.Mvc;
 using ThemeParkManagementSystem.Models;
@@ -15,6 +17,29 @@ namespace ThemeParkManagementSystem.Controllers
     public class RidesController : Controller
     {
         private tpdatabaseEntities db = new tpdatabaseEntities();
+
+        private void IsAdmin()
+        {
+            try
+            {
+                var user = User.Identity;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == "Admin")
+                {
+                    ViewData["userRole"] = true;
+                }
+                else
+                {
+                    ViewData["userRole"] = false;
+                }
+            }
+            catch (Exception e)
+            {
+                ViewData["userRole"] = false;
+            }
+        }
 
         public ActionResult Rainout(int? id)
         {
@@ -37,7 +62,9 @@ namespace ThemeParkManagementSystem.Controllers
         // GET: Rides
         public ActionResult Index(string searchBy, string search, int? page, string sortBy)
         {
-             ViewBag.SortNameParameter = string.IsNullOrEmpty(sortBy) ? "RideName desc" : "";
+            IsAdmin();
+
+            ViewBag.SortNameParameter = string.IsNullOrEmpty(sortBy) ? "RideName desc" : "";
 
             var rides = from x in db.RIDES.AsQueryable()
                         select x;
@@ -63,6 +90,7 @@ namespace ThemeParkManagementSystem.Controllers
         // GET: Rides/Details/5
         public ActionResult Details(int? id)
         {
+            IsAdmin();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
