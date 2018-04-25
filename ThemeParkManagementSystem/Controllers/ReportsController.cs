@@ -9,7 +9,7 @@ namespace ThemeParkManagementSystem.Controllers
 {
     public class ReportsController : Controller
     {
-        // GET: s
+        // GET: Reports
         private tpdatabaseEntities db = new tpdatabaseEntities();
         public ActionResult Index()
         {
@@ -20,7 +20,7 @@ namespace ThemeParkManagementSystem.Controllers
             return View();
         }
 
-        // GET: s/Details/5
+        // GET: Reports/Details/5
         public ActionResult Details(int id)
         {
             return View();

@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.ShopName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ShopType)
+                @ViewData[item.ShopType.ToString()]
             </td>
             <td>
                 @Html.ActionLink("Select", "Index", new { id = item.ShopID }) |
@@ -62,7 +62,7 @@
 </table>
 @if (Model.Inventory != null)
 {
-    <h3>Products in shop</h3>
+    <h3>Products in Inventory</h3>
     <table class="table">
         <tr>
             <th>Name</th>
