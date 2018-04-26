@@ -20,8 +20,8 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -206,7 +206,6 @@
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RevenueController.cs" />
     <Compile Include="Controllers\RidesController.cs" />
     <Compile Include="Controllers\Rides_StaffController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -458,8 +457,8 @@
     <Content Include="Views\TicketLookup\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
-    <Content Include="Views\Report\Index.cshtml" />
-    <Content Include="Views\Revenue\Index.cshtml" />
+    <Content Include="Views\Reports\TicketRevenue.cshtml" />
+    <Content Include="Views\Reports\RidePopularity.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

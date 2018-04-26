@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "TicketRevenue";
+}
+
+<h2>Ticket Revenue</h2>
+
+
+<p>
+    @using (Html.BeginForm("TicketRevenue", "Reports", FormMethod.Get))
+    {
+        <text> Begin Date </text>
+        @Html.TextBox("date1")
+        <text> End Date </text>
+        @Html.TextBox("date2")
+        <input type="submit" value="Search" />
+    }
+</p>
+
+<table>
+    <tr>
+        <th>
+            <text> Ticket revenue for the requested dates is $</text>   @ViewData["Revenue"]
+        </th>
+    </tr>
+</table>
