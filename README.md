@@ -9,7 +9,7 @@ To manage information about a specific theme park and collect data including num
 
 To do
 -----
-1. user login, different types of users, authentication
+1. ~user login, different types of users, authentication~
     * https://code.msdn.microsoft.com/ASPNET-MVC-5-Security-And-44cbdb97
     * https://weblog.west-wind.com/posts/2015/Apr/29/Adding-minimal-OWIN-Identity-Authentication-to-an-Existing-ASPNET-MVC-Application#MinimalCodeSummary
     * https://www.asp.net/aspnet/overview/owin-and-katana
@@ -19,7 +19,7 @@ To do
     * ~when maintenance caseID is created, set appropriate ride isOpen to false~
 4. reports
     * GUESTS_SHOPS - date parameter to see popularity during given date ranges
-    * GUESTS_RIDES - date parameter to see popularity during given date ranges
+    * ~GUESTS_RIDES - date parameter to see popularity during given date ranges~
     * GUEST and TICKET - a list with guest and corresponding ticket info that can also be given a date range
     * Create graphs to show spikes in avg guests 
         * https://docs.microsoft.com/en-us/aspnet/web-pages/overview/data/7-displaying-data-in-a-chart
