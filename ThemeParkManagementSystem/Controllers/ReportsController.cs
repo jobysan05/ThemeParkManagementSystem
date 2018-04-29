@@ -16,18 +16,18 @@ namespace ThemeParkManagementSystem.Controllers
             
             if (id == null)
             {
-                Nullable<int> countLis = db.topRides(date1, date2).ToList<Nullable<int>>().FirstOrDefault();
+                Nullable<int> popularRideID = db.topRides(date1, date2).ToList<Nullable<int>>().FirstOrDefault();
 
-                var rideCoun = countLis;
+                var popularID = popularRideID;
 
                 DateTime? d1 = date1;
                 DateTime? d2 = date2;
-                Nullable<int> numOfGuest = db.Guestcount(d1, d2, rideCoun).ToList<Nullable<int>>().FirstOrDefault();
+                Nullable<int> numOfGuest = db.Guestcount(d1, d2, popularID).ToList<Nullable<int>>().FirstOrDefault();
                 var guestCount = numOfGuest.Value;
 
-                ViewData["RideCount"] = rideCoun;
-                ViewData["GuestCount"] = guestCount;
+                var result = "The ID for the most popular ride is  " + popularID + " and it had " + numOfGuest + " guests";
 
+                ViewData["Result"] = result;
                 
                 return View();
 
@@ -36,7 +36,9 @@ namespace ThemeParkManagementSystem.Controllers
             {
                 Nullable<int> countList = db.RideCount(date1, date2, id).ToList<Nullable<int>>().FirstOrDefault();
                 var rideCount = countList.Value;
-                ViewData["RideCount"] = rideCount;
+
+                var resultt = "Ride " + id + " had  " + rideCount + " guests between the choosen dates";
+                ViewData["Result"] = resultt;
             }
             return View();
         }
