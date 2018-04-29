@@ -20,7 +20,11 @@ namespace ThemeParkManagementSystem.Controllers
         public ActionResult TicketRevenue(DateTime? date1, DateTime? date2)
         {
             decimal? countlist = db.revenue(date1, date2).ToList().FirstOrDefault();
-            var count = countlist.Value;
+            decimal? count = 0;
+            if (countlist.HasValue)
+            {
+                count = countlist.Value;
+            }
             ViewData["TicketRevenue"] = count;
             return View();
         }
