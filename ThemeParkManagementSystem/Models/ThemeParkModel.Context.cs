@@ -104,5 +104,48 @@ namespace ThemeParkManagementSystem.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetShopTypes", typeIDParameter);
         }
+    
+        public virtual ObjectResult<Nullable<decimal>> ticketrevenue(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2)
+        {
+            var date1Parameter = date1.HasValue ?
+                new ObjectParameter("date1", date1) :
+                new ObjectParameter("date1", typeof(System.DateTime));
+    
+            var date2Parameter = date2.HasValue ?
+                new ObjectParameter("date2", date2) :
+                new ObjectParameter("date2", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("ticketrevenue", date1Parameter, date2Parameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> topRides(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2)
+        {
+            var date1Parameter = date1.HasValue ?
+                new ObjectParameter("date1", date1) :
+                new ObjectParameter("date1", typeof(System.DateTime));
+    
+            var date2Parameter = date2.HasValue ?
+                new ObjectParameter("date2", date2) :
+                new ObjectParameter("date2", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("topRides", date1Parameter, date2Parameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Guestcount(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2, Nullable<int> rideNum)
+        {
+            var date1Parameter = date1.HasValue ?
+                new ObjectParameter("date1", date1) :
+                new ObjectParameter("date1", typeof(System.DateTime));
+    
+            var date2Parameter = date2.HasValue ?
+                new ObjectParameter("date2", date2) :
+                new ObjectParameter("date2", typeof(System.DateTime));
+    
+            var rideNumParameter = rideNum.HasValue ?
+                new ObjectParameter("rideNum", rideNum) :
+                new ObjectParameter("rideNum", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Guestcount", date1Parameter, date2Parameter, rideNumParameter);
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace ThemeParkManagementSystem.Controllers
 
         {
             
-            Nullable<decimal> countlist = db.revenue(date1, date2).ToList<Nullable<decimal>>().FirstOrDefault();
+            Nullable<decimal> countlist = db.ticketrevenue(date1, date2).ToList<Nullable<decimal>>().FirstOrDefault();
             
             var count = countlist;
             ViewData["Revenue"] = count;

@@ -43,12 +43,10 @@ warning 6002: The table/view 'tpdatabase.dbo.GUEST_TICKET' does not have a prima
             <PropertyRef Name="TicketID" />
             <PropertyRef Name="GuestID" />
             <PropertyRef Name="DatePurchased" />
-            <PropertyRef Name="TicketPrice" />
           </Key>
           <Property Name="TicketID" Type="int" Nullable="false" />
           <Property Name="GuestID" Type="int" Nullable="false" />
           <Property Name="DatePurchased" Type="datetime" Nullable="false" />
-          <Property Name="TicketPrice" Type="decimal" Precision="4" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="INVENTORY">
           <Key>
@@ -321,6 +319,11 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
         <Function Name="GetShopTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="typeID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Guestcount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date1" Type="date" Mode="In" />
+          <Parameter Name="date2" Type="date" Mode="In" />
+          <Parameter Name="rideNum" Type="int" Mode="In" />
+        </Function>
         <Function Name="revenue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="date1" Type="date" Mode="In" />
           <Parameter Name="date2" Type="date" Mode="In" />
@@ -329,6 +332,14 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <Parameter Name="date1" Type="date" Mode="In" />
           <Parameter Name="date2" Type="date" Mode="In" />
           <Parameter Name="rideNum" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ticketrevenue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date1" Type="date" Mode="In" />
+          <Parameter Name="date2" Type="date" Mode="In" />
+        </Function>
+        <Function Name="topRides" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date1" Type="date" Mode="In" />
+          <Parameter Name="date2" Type="date" Mode="In" />
         </Function>
         <EntityContainer Name="tpdatabaseModelStoreContainer">
           <EntitySet Name="GUEST" EntityType="Self.GUEST" Schema="dbo" store:Type="Tables" />
@@ -353,8 +364,7 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             <DefiningQuery>SELECT 
     [GUEST_TICKET].[TicketID] AS [TicketID], 
     [GUEST_TICKET].[GuestID] AS [GuestID], 
-    [GUEST_TICKET].[DatePurchased] AS [DatePurchased], 
-    [GUEST_TICKET].[TicketPrice] AS [TicketPrice]
+    [GUEST_TICKET].[DatePurchased] AS [DatePurchased]
     FROM [dbo].[GUEST_TICKET] AS [GUEST_TICKET]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="RIDES_STAFF" EntityType="Self.RIDES_STAFF" store:Type="Tables" store:Schema="dbo">
@@ -554,14 +564,12 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             <PropertyRef Name="TicketID" />
             <PropertyRef Name="GuestID" />
             <PropertyRef Name="DatePurchased" />
-            <PropertyRef Name="TicketPrice" />
           </Key>
           <Property Name="TicketID" Type="Int32" Nullable="false" />
           <Property Name="GuestID" Type="Int32" Nullable="false" />
           <Property Name="DatePurchased" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="GUEST" Relationship="Self.FK__GUEST_TIC__Guest__3D2915A8" FromRole="GUEST_TICKET" ToRole="GUEST" />
           <NavigationProperty Name="TICKET" Relationship="Self.FK__GUEST_TIC__Ticke__3C34F16F" FromRole="GUEST_TICKET" ToRole="TICKET" />
-          <Property Name="TicketPrice" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
         </EntityType>
         <EntityType Name="RIDES_STAFF">
           <Key>
@@ -822,10 +830,23 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             <Parameter Name="date2" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="GetEmpTypes" ReturnType="Collection(String)">
-            <Parameter Name="typeID" Mode="In" Type="Int32" />
+          <Parameter Name="typeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetShopTypes" ReturnType="Collection(String)">
-            <Parameter Name="typeID" Mode="In" Type="Int32" />
+          <Parameter Name="typeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ticketrevenue" ReturnType="Collection(Decimal)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="topRides" ReturnType="Collection(Int32)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Guestcount" ReturnType="Collection(Int32)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+            <Parameter Name="rideNum" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RideCount">
@@ -846,6 +867,10 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
         </EntityType>
         <ComplexType Name="revenue">
           <Property Type="Decimal" Name="Column1" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="topRide_Result">
+          <Property Type="Int32" Name="rideid" Nullable="false" />
+          <Property Type="Int32" Name="riders" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -963,7 +988,6 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <EntitySetMapping Name="GUEST_TICKET">
             <EntityTypeMapping TypeName="tpdatabaseModel.GUEST_TICKET">
               <MappingFragment StoreEntitySet="GUEST_TICKET">
-                <ScalarProperty Name="TicketPrice" ColumnName="TicketPrice" />
                 <ScalarProperty Name="TicketID" ColumnName="TicketID" />
                 <ScalarProperty Name="GuestID" ColumnName="GuestID" />
                 <ScalarProperty Name="DatePurchased" ColumnName="DatePurchased" />
@@ -1017,6 +1041,9 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetEmpTypes" FunctionName="tpdatabaseModel.Store.GetEmpTypes" />
           <FunctionImportMapping FunctionImportName="GetShopTypes" FunctionName="tpdatabaseModel.Store.GetShopTypes" />
+          <FunctionImportMapping FunctionImportName="ticketrevenue" FunctionName="tpdatabaseModel.Store.ticketrevenue" />
+          <FunctionImportMapping FunctionImportName="topRides" FunctionName="tpdatabaseModel.Store.topRides" />
+          <FunctionImportMapping FunctionImportName="Guestcount" FunctionName="tpdatabaseModel.Store.Guestcount" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
