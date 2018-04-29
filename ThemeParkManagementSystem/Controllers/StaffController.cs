@@ -9,6 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ThemeParkManagementSystem.Models;
+using PagedList;
 
 namespace ThemeParkManagementSystem.Controllers
 {
@@ -49,31 +50,24 @@ namespace ThemeParkManagementSystem.Controllers
         }
 
         // GET: Staff
-        public ActionResult Index(string search, int ?id)
+        public ActionResult Index(string searchBy, string search, int? page, string sortBy)
         {
             isAdmin();
             GetTypeNames();
-            var viewModel = new StaffIndexData();
-            viewModel.Staff = db.STAFFs
-                .Include(i => i.RIDES_STAFF);
 
-            if (id != null)
+            var staffs = from x in db.STAFFs.AsQueryable()
+                         select x;
+            if (searchBy == "FirstName")
             {
-                ViewBag.EmployeeID = id.Value;
-                viewModel.RidesStaff = viewModel.Staff.Where(
-                    i => i.EmployeeID == id.Value).Single().RIDES_STAFF;
+                return View(db.STAFFs.Where(x => x.FirstName.StartsWith(search) || search == null).ToList().ToPagedList(page ?? 1, 5));
             }
-
-            var vModel = new StaffIndexData();
-            if(!String.IsNullOrEmpty(search))
-               {
-                vModel.Staff = db.STAFFs
-                .Where(c => c.LastName.Contains(search));
-                return View(vModel);
+            else if (searchBy == "LastName")
+            {
+                return View(db.STAFFs.Where(x => x.LastName.StartsWith(search) || search == null).ToList().ToPagedList(page ?? 1, 5));
             }
             else
             {
-                return View(viewModel);
+                return View(staffs.ToList().ToPagedList(page ?? 1, 5));
             }
         }
 
