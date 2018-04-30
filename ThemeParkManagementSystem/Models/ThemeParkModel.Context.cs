@@ -148,19 +148,6 @@ namespace ThemeParkManagementSystem.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Guestcount", date1Parameter, date2Parameter, rideNumParameter);
         }
     
-        public virtual ObjectResult<allRides> allRides(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2)
-        {
-            var date1Parameter = date1.HasValue ?
-                new ObjectParameter("date1", date1) :
-                new ObjectParameter("date1", typeof(System.DateTime));
-    
-            var date2Parameter = date2.HasValue ?
-                new ObjectParameter("date2", date2) :
-                new ObjectParameter("date2", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<allRides>("allRides", date1Parameter, date2Parameter);
-        }
-    
         public virtual ObjectResult<Nullable<decimal>> shoprevenue(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2)
         {
             var date1Parameter = date1.HasValue ?

@@ -14,7 +14,10 @@ namespace ThemeParkManagementSystem.Controllers
     public class ShopRevenueController : Controller
     {
         private tpdatabaseEntities db = new tpdatabaseEntities();
-        // GET: ShopRevenue
+        
+
+
+        //This edit is so i can push this controller 
         public ActionResult Index(DateTime? date1, DateTime? date2)
         {
             Nullable<decimal> countlist = db.shoprevenue(date1, date2).ToList<Nullable<decimal>>().FirstOrDefault();

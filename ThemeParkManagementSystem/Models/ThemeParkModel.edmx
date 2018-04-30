@@ -309,10 +309,6 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="allRides" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="date1" Type="date" Mode="In" />
-          <Parameter Name="date2" Type="date" Mode="In" />
-        </Function>
         <Function Name="CalculateTicketRevenue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="date1" Type="date" Mode="In" />
           <Parameter Name="date2" Type="date" Mode="In" />
@@ -856,10 +852,6 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             <Parameter Name="date2" Mode="In" Type="DateTime" />
             <Parameter Name="rideNum" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="allRides" ReturnType="Collection(tpdatabaseModel.allRides)">
-            <Parameter Name="date1" Mode="In" Type="DateTime" />
-            <Parameter Name="date2" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="shoprevenue" ReturnType="Collection(Decimal)">
             <Parameter Name="date1" Mode="In" Type="DateTime" />
             <Parameter Name="date2" Mode="In" Type="DateTime" />
@@ -1071,14 +1063,6 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <FunctionImportMapping FunctionImportName="ticketrevenue" FunctionName="tpdatabaseModel.Store.ticketrevenue" />
           <FunctionImportMapping FunctionImportName="topRides" FunctionName="tpdatabaseModel.Store.topRides" />
           <FunctionImportMapping FunctionImportName="Guestcount" FunctionName="tpdatabaseModel.Store.Guestcount" />
-          <FunctionImportMapping FunctionImportName="allRides" FunctionName="tpdatabaseModel.Store.allRides">
-          <ResultMapping>
-              <ComplexTypeMapping TypeName="tpdatabaseModel.allRides">
-                <ScalarProperty Name="RideID" ColumnName="RideID" />
-                <ScalarProperty Name="Column1" ColumnName="Column1" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="shoprevenue" FunctionName="tpdatabaseModel.Store.shoprevenue" >
           </FunctionImportMapping>
         </EntityContainerMapping>
