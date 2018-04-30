@@ -223,12 +223,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\allRides.cs">
-      <DependentUpon>ThemeParkModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\allRides_Result.cs">
-      <DependentUpon>ThemeParkModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\GUEST.cs">
       <DependentUpon>ThemeParkModel.tt</DependentUpon>
     </Compile>
