@@ -309,6 +309,10 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="allRides" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date1" Type="date" Mode="In" />
+          <Parameter Name="date2" Type="date" Mode="In" />
+        </Function>
         <Function Name="CalculateTicketRevenue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="date1" Type="date" Mode="In" />
           <Parameter Name="date2" Type="date" Mode="In" />
@@ -332,6 +336,10 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <Parameter Name="date1" Type="date" Mode="In" />
           <Parameter Name="date2" Type="date" Mode="In" />
           <Parameter Name="rideNum" Type="int" Mode="In" />
+        </Function>
+        <Function Name="shoprevenue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date1" Type="date" Mode="In" />
+          <Parameter Name="date2" Type="date" Mode="In" />
         </Function>
         <Function Name="ticketrevenue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="date1" Type="date" Mode="In" />
@@ -848,6 +856,14 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
             <Parameter Name="date2" Mode="In" Type="DateTime" />
             <Parameter Name="rideNum" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="allRides" ReturnType="Collection(tpdatabaseModel.allRides)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="shoprevenue" ReturnType="Collection(Decimal)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RideCount">
           <Property Type="Int32" Name="Column1" Nullable="true" />
@@ -871,6 +887,17 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
         <ComplexType Name="topRide_Result">
           <Property Type="Int32" Name="rideid" Nullable="false" />
           <Property Type="Int32" Name="riders" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="allRides_Result">
+          <Property Type="Int32" Name="RideID" Nullable="false" />
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="allRides">
+          <Property Type="Int32" Name="RideID" Nullable="false" />
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="shoprevenue">
+          <Property Type="Decimal" Name="Column1" Nullable="true" Precision="38" Scale="2" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1044,6 +1071,16 @@ warning 6002: The table/view 'tpdatabase.dbo.TICKETLOOKUP' does not have a prima
           <FunctionImportMapping FunctionImportName="ticketrevenue" FunctionName="tpdatabaseModel.Store.ticketrevenue" />
           <FunctionImportMapping FunctionImportName="topRides" FunctionName="tpdatabaseModel.Store.topRides" />
           <FunctionImportMapping FunctionImportName="Guestcount" FunctionName="tpdatabaseModel.Store.Guestcount" />
+          <FunctionImportMapping FunctionImportName="allRides" FunctionName="tpdatabaseModel.Store.allRides">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="tpdatabaseModel.allRides">
+                <ScalarProperty Name="RideID" ColumnName="RideID" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="shoprevenue" FunctionName="tpdatabaseModel.Store.shoprevenue" >
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
